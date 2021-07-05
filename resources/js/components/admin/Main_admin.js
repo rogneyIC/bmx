@@ -2,20 +2,18 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Home from "./Home_admin";
 import What from "./What_admin";
-import Ratings from "./Ratings_admin";
-import Levelers from "./Levelers_admin";
+import Donations from "./Donations_admin";
+import Leveler from "./Leveler_admin";
 import { Route, BrowserRouter as Router } from "react-router-dom";
 import ScrollButton from "../common/ScrollButton";
-import { Content, Heading } from "../common/Styles";
 
 function Main_admin() {
     return (
         <Router>
             <Route path="/home" component={Home}></Route>
             <Route path="/what" component={What}></Route>
-            <Route path="/ratings" component={Ratings}></Route>
-            <Route path="/levelers" component={Levelers}></Route>
-            {/* <Content /> */}
+            <Route path="/donations" component={Donations}></Route>
+            <Route path="/leveler" component={Leveler}></Route>
             <ScrollButton />
         </Router>
     );

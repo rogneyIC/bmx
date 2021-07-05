@@ -21,5 +21,5 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/what', [App\Http\Controllers\HomeController::class, 'index'])->name('what');
-Route::get('/ratings', [App\Http\Controllers\HomeController::class, 'index'])->name('ratings');
-Route::get('/levelers', [App\Http\Controllers\HomeController::class, 'index'])->name('levelers');
+Route::get('/donations', [App\Http\Controllers\HomeController::class, 'index'])->name('donations');
+Route::get('/leveler', [App\Http\Controllers\HomeController::class, 'index'])->name('leveler');

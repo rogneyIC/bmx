@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class Levelers_admin extends Component {
+class Leveler_admin extends Component {
     constructor(props) {
         super(props);
         this.state = {};
@@ -32,4 +32,4 @@ class Levelers_admin extends Component {
     }
 }
 
-export default Levelers_admin;
+export default Leveler_admin;

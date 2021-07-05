@@ -15,15 +15,15 @@ class Home_admin extends Component {
 
     // }
     onLoad() {
-        const container = $(this.myRef.current.contentDocument);
         const _this = this;
+        const container = $(this.myRef.current.contentDocument);        
         $(container.find("svg g")).css("cursor", "pointer");
         $(
             container.find(
                 'svg g[filter="url(#filter5_bd)"], svg g[filter="url(#filter6_d)"]'
             )
         ).on("click", function () {
-            _this.props.history.push("/what");
+            _this.props.history.push("/donations");
         });
     }
     render() {
