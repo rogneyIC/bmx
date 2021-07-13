@@ -1,3 +1,18 @@
+@font-face {
+    font-family: AbrilFatface;
+    src: url(../font/AbrilFatface-Regular.ttf);
+}
+
+@font-face {
+    font-family: Averia;
+    src: url(../font/AveriaSerifLibre-Regular.ttf);
+}
+
+@font-face {
+    font-family: Lato;
+    src: url(../font/Lato-Regular.ttf);
+}
+
 /*html {
     --scrollbarBG: #d3e7f0;
     --thumbBG: #004071;
@@ -31,7 +46,95 @@ body::-webkit-scrollbar-thumb {
     border: 3px solid var(--scrollbarBG);
 }
 
-.fond {
+/*.dashboard {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.sidebarBackdrop {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    --tw-bg-opacity: 1;
+    background-color: rgba(15, 23, 42, var(--tw-bg-opacity));
+    --tw-bg-opacity: 0.3;
+    z-index: 40;
+    transition-property: opacity;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.2s;
+    opacity: 0;
+    pointer-events: none;
+}
+
+@media (min-width: 1024px) {
+    .sidebarParent {
+        width: 16rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .sidebarBackdrop {
+        display: none;
+        z-index: auto;
+    }
+}
+
+.sidebar {
+    position: absolute;
+    z-index: 40;
+    left: 0px;
+    top: 0px;
+    transform: translateX(var(--tw-translate-x))
+        translateY(var(--tw-translate-y)) rotate(var(--tw-rotate))
+        skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y))
+        scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+    --tw-translate-x: -16rem;
+    --tw-translate-y: 0;
+    --tw-rotate: 0;
+    --tw-skew-x: 0;
+    --tw-skew-y: 0;
+    --tw-scale-x: 1;
+    --tw-scale-y: 1;
+    height: 100vh;
+    overflow-y: scroll;
+    width: 16rem;
+    flex-shrink: 0;
+    --tw-bg-opacity: 1;
+    background-color: rgba(30, 41, 59, var(--tw-bg-opacity));
+    padding: 1rem;
+    transition-property: transform, -webkit-transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.2s;
+}
+
+@media (min-width: 1024px) {
+    .sidebar {
+        position: static;
+        left: auto;
+        top: auto;
+        --tw-translate-x: 0px;
+        overflow-y: auto;
+    }
+}
+
+.sidebarHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+    padding-right: 0.75rem;
+}
+
+@media (min-width: 640px) {
+    .sidebarHeader {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+} */
+
+/*.fond {
      background: url(../img/bmx.jpg) no-repeat center center fixed;
     background-size: cover;
 }

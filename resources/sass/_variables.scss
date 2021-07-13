@@ -2,8 +2,10 @@
 $body-bg: #f8fafc;
 
 // Typography
-$font-family-sans-serif: 'Nunito', sans-serif;
-$font-size-base: 0.9rem;
+//$font-family-sans-serif: 'Nunito', sans-serif;
+$font-family-serif: "Averia", serif;
+$font-family-sans-serif: "Lato", sans-serif;
+$font-size-base: 1.15rem;
 $line-height-base: 1.6;
 
 // Colors
@@ -17,3 +19,13 @@ $yellow: #ffed4a;
 $green: #38c172;
 $teal: #4dc0b5;
 $cyan: #6cb2eb;
+$white-color: #ffffff;
+$dark    : #262B40;
+
+$sidebar-width: calc(100% - 287px);
+
+$padding-small-vertical: 5px;
+$padding-zero: 0px;
+$font-size-large: 1.5rem;
+$font-weight-normal: 400;
+$navbar-padding-a: 10px 15px;

@@ -13,40 +13,24 @@
 </head>
 
 <body>
-    <div class="root">
+    <div class="root d-flex align-items-center justify-content-center">
         <div class="container">
             @if (Route::has('login'))
-            <!-- <div class="row justify-content-md-center"> -->
             <div class="row">
                 @auth
                 <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Inicio</a>
                 @else
-                <!-- <div class="row">
-                    <div class="col">
-                        <div id="sliderIndex" class="carousel slide carousel-fade" data-bs-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="{{ asset('images/bmx1.jpg') }}" class="d-block w-100">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="{{ asset('images/bmx2.jpg') }}" class="d-block w-100">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="{{ asset('images/bmx3.jpg') }}" class="d-block w-100">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
                 <div class="col-8">
-                    <div class="row padding20">
+                    <div class="row">
                         <div class="col">
                             <div class="textIndex">
-                                Esto es una prueba del texto que se verá en la pantalla principal.
-                                Aquí va un texto que solamente el administrador puede modificar.
-                                Así que, un usario que no sea administrador no puede editar. También
-                                a este campo se le va a poner otro tipo de letra más bonito.
-                                Esto solamente es una prueba para que el cliente lo vea.
+                                El BMX (abreviación de su nombre en inglés: "Bicycle Motocross") es una disciplina del ciclismo
+                                que se practica con bicicletas cross con ruedas de 20 pulgadas de diámetro. El BMX abarca dos
+                                modalidades: carrera, cuyo objetivo es completar el recorrido en el menor tiempo posible, y estilo
+                                libre (freestyle), cuyo objetivo es realizar acrobacias. El BMX es un deporte extremo que debe ser
+                                practicado con la debida seguridad que nos brindan los siguientes objetos: casco, rodilleras, coderas,
+                                guantes de tela o plástico y zapatos anchos. La bicicleta tiene que estar en buenas condiciones para
+                                evitar accidentes.
                             </div>
                         </div>
                     </div>
@@ -71,10 +55,10 @@
                 <div class="col-4 align-self-center">
                     <div class="row">
                         <div class="col">
-                            <object data="{{ asset('images/logo.svg') }}" type="image/svg+xml" id="objectSVG"></object>
+                            <object data="{{ asset('images/logo-index.svg') }}" type="image/svg+xml"></object>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class=" row">
                         <div class="col d-grid">
                             <a class="btn btn-primary" href="{{ route('login') }}" role="button">Iniciar sesión</a>
                         </div>
@@ -86,10 +70,9 @@
                     </div>
                     @endauth
                 </div>
+                @endif
             </div>
-            @endif
         </div>
-    </div>
 </body>
 
 </html>

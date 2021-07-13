@@ -20,7 +20,7 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <!-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'BMX') }}
@@ -46,7 +46,7 @@
                             <a class="nav-link" href="{{ route('what') }}">{{ __('¿Quiénes somos?') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('donations') }}">{{ __('Donaciones') }}</a>
+                            <a class="nav-link" href="{{ route('donation') }}">{{ __('Donaciones') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('leveler') }}">{{ __('Nivelador') }}</a>
@@ -76,9 +76,9 @@
                     @endguest
                 </div>
             </div>
-        </nav>
+        </nav> -->
 
-        <main class="root">
+        <main>
             @yield('content')
         </main>
     </div>

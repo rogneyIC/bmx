@@ -13,5 +13,4 @@ require("./toastr.min.js");
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-require("./components/admin/Main_admin");
-require("./components/user/Main_user");
+require("./pages/Dashboard");

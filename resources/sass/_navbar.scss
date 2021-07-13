@@ -1,0 +1,75 @@
+.main-panel {
+    .input-group-text {
+        font-size: 0.875rem !important;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !important;
+        border-right: 0 !important;
+        color: #93a5be !important;
+        background-color: #ffffff !important;
+    }
+
+    .input-group .form-control:not(:first-child) {
+        border-left: 0 !important;
+        padding-left: 0 !important;
+    }
+
+    .form-control:focus {
+        border-color: #ced4da;
+        outline: none;
+        box-shadow: none;
+    }
+
+    .nav-item {
+        .user-avatar {
+            height: 2.5rem;
+            width: 2.5rem;
+            min-height: 2.5rem;
+            min-width: 2.5rem;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .user-dropdown.dropdown-menu.show {
+            right: 0 !important;
+            left: auto !important;
+        }
+
+        .show .dropdown-menu {
+            animation: show-dropdown 0.2s ease forwards;
+        }
+
+        .dropdown-menu {
+            margin: 0.125rem 0 0;
+            border: 0.0625rem solid #eaedf2;
+            border-radius: 0.5rem;
+            box-shadow: 0 0.5rem 1rem rgb(46 54 80 / 15%);
+        }
+
+        .nav-link span {
+            position: relative;
+        }
+
+        .icon.icon-sm span,
+        .icon.icon-sm svg {
+            font-size: 1.5rem;
+        }
+
+        .icon-notifications .unread-notifications {
+            position: absolute;
+            right: -5px;
+            top: -5px;
+        }
+
+        .icon-badge {
+            display: inline-block;
+            position: absolute;
+            top: -11px;
+            right: 6px;
+            height: 7px;
+            width: 7px;
+            background-color: #fa5252;
+        }
+    }
+}
