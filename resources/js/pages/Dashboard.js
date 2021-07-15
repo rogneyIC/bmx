@@ -2,15 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Route, BrowserRouter as Router } from "react-router-dom";
 
-import Sidebar from "../components/common/Sidebar";
-import NavbarNav from "../components/common/NavbarNav";
+import Sidebar from "../components/Sidebar";
+import NavbarNav from "../components/NavbarNav";
 import Home from "./Home";
 import What from "./What";
 import Donation from "./Donation";
 import Leveler from "./Leveler";
 import Trip from "./Trip";
 import DateTec from "./DateTec";
-import "bootstrap/dist/css/bootstrap.min.css";
+//import "bootstrap/dist/css/bootstrap.min.css";
 
 function Dashboard() {
     const user = document.getElementById("main").getAttribute("user");

@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "reactstrap";
 import img_chart from "../../img/img-chart.jpg";
-import LevelerChart from "../components/common/LevelerChart";
+import LevelerChart from "../components/LevelerChart";
 
 export default (props) => {
     return (

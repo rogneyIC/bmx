@@ -59,9 +59,11 @@
                         </div>
                     </div>
                     <div class=" row">
+                        @if (Route::has('login'))
                         <div class="col d-grid">
                             <a class="btn btn-primary" href="{{ route('login') }}" role="button">Iniciar sesión</a>
                         </div>
+                        @endif
                         @if (Route::has('register'))
                         <div class="col d-grid">
                             <a class="btn btn-primary" href="{{ route('register') }}" role="button">Registrarse</a>

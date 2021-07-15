@@ -1,9 +1,10 @@
 .login {
+    background-image: url(../img/fond-login.jpeg);
     .input-group-text {
-        font-size: 0.875rem !important;
+        //font-size: 0.875rem !important;
         transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !important;
         border-right: 0 !important;
-        color: #93a5be !important;
+        color: #0d6efd !important;
         background-color: #ffffff !important;
     }
 
@@ -16,5 +17,24 @@
         border-color: #ced4da;
         outline: none;
         box-shadow: none;
+    }
+
+    .card {
+        //background: rgba(3, 3, 3, 0.25);
+        box-shadow: 1px 1px 50px #000;
+        //color: white;
+        #fileIcon {
+            background-color: #0d6efd !important;
+            color: #fff !important;
+        }
+
+        #fileIcon:hover {
+            background-color: #6c6c6c !important;
+            cursor: pointer;
+        }
+
+        #photo-info {
+            padding-left: 10px !important;
+        }
     }
 }
