@@ -70,9 +70,3 @@
     </div>
 </div>
 @endsection
-
-<script>
-    function cambiar() {
-        document.getElementById("photo-info").value = document.getElementById("photo").files[0].name;
-    }
-</script>

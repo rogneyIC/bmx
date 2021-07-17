@@ -555,11 +555,6 @@ body > .navbar-collapse:after {
 .main-panel .navbar {
   margin-bottom: 0;
 }
-.main-panel .home-text {
-  font-family: "Averia", serif;
-  font-size: 1.5rem;
-  text-align: justify;
-}
 
 .sidebar-inner .logo-img img {
   margin: 20px 0 -20px;
@@ -598,6 +593,13 @@ body > .navbar-collapse:after {
   outline: none;
   box-shadow: none;
 }
+.main-panel .nav-item .user-avatar.lg-avatar {
+  height: 3.5rem;
+  width: 3.5rem;
+  min-height: 3.5rem;
+  min-width: 3.5rem;
+  font-size: 0.75rem;
+}
 .main-panel .nav-item .user-avatar {
   height: 2.5rem;
   width: 2.5rem;
@@ -612,6 +614,19 @@ body > .navbar-collapse:after {
 .main-panel .nav-item .user-dropdown.dropdown-menu.show {
   right: 0 !important;
   left: auto !important;
+}
+.main-panel .nav-item .notification-dropdown.dropdown-menu.show {
+  font-size: 1rem;
+  min-width: 23rem;
+  transform: translateX(-57%);
+}
+.main-panel .nav-item .notification-dropdown.dropdown-menu.show h6, .main-panel .nav-item .notification-dropdown.dropdown-menu.show .h6 {
+  font-weight: bold;
+}
+.main-panel .nav-item .notification-dropdown.dropdown-menu.show .font-small {
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: #66799e;
 }
 .main-panel .nav-item .show .dropdown-menu {
   -webkit-animation: show-dropdown 0.2s ease forwards;
@@ -643,6 +658,10 @@ body > .navbar-collapse:after {
   height: 7px;
   width: 7px;
   background-color: #fa5252;
+}
+
+.main-panel .form-progress label {
+  text-align: end;
 }
 
 /*!

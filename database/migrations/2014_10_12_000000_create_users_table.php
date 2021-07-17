@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->tinyInteger('user_age');
+            $table->string('user_phone');
             $table->tinyInteger('user_region');
             $table->string('user_instagram')->nullable();
             $table->string('user_facebook')->nullable();

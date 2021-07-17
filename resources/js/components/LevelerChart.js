@@ -1,7 +1,8 @@
 import React from "react";
 import { Bar } from "react-chartjs-2";
-
-const cantRegion = 10;
+import { Container, Row, Col } from "reactstrap";
+import img_chart from "../../img/img-chart.jpg";
+import { NavLink } from "react-router-dom";
 
 const data = [
     { x: 1, name: "Pepe/35", point: 10, region: 1 },
@@ -9,12 +10,12 @@ const data = [
     { x: 3, name: "Papo/17", point: 120, region: 1 },
     { x: 4, name: "Pupi/20", point: 36, region: 1 },
     { x: 5, name: "Pipo/23", point: 85, region: 2 },
-    { x: 6, name: "Pepe2/35", point: 10, region: 2 },
-    { x: 7, name: "Juan2/25", point: 60, region: 2 },
-    { x: 8, name: "Papo2/17", point: 120, region: 3 },
-    { x: 9, name: "Pupi2/20", point: 36, region: 3 },
-    { x: 10, name: "Pipo2/23", point: 85, region: 3 },
-    { x: 11, name: "Pepe3/35", point: 10, region: 3 },
+    { x: 6, name: "Pepe2/35", point: 20, region: 2 },
+    { x: 7, name: "Juan2/25", point: 30, region: 2 },
+    { x: 8, name: "Papo2/17", point: 110, region: 3 },
+    { x: 9, name: "Pupi2/20", point: 66, region: 3 },
+    { x: 10, name: "Pipo2/23", point: 75, region: 3 },
+    { x: 11, name: "Pepe3/35", point: 40, region: 3 },
     { x: 12, name: "Juan3/25", point: 60, region: 4 },
     { x: 13, name: "Papo3/17", point: 120, region: 4 },
     { x: 14, name: "Pupi3/20", point: 36, region: 4 },
@@ -67,6 +68,7 @@ const data = [
 ];
 
 const labelArray = [];
+const dataArray = [];
 
 const colorArray = [
     "blue",
@@ -96,42 +98,21 @@ data.forEach(function (val, index, array) {
             backgroundColor.push(colorArray[index2]);
         }
     });
-    labelArray.push(val.x);
+    labelArray.push(val.name);
+    dataArray.push(val.point);
 });
 
 const cfg = {
     labels: labelArray,
     datasets: [
         {
-            data: data,
+            data: dataArray,
             backgroundColor: backgroundColor,
         },
     ],
 };
 
 const options = {
-    /*legendCallback(chart) {
-        var text = [];
-        text.push("<ul>");
-        for (var i = 0; i < chart.data.datasets.length; i++) {
-            console.log(chart.data.datasets[i]); // see what's inside the obj.
-            text.push("<li>");
-            text.push(
-                '<span style="background-color:' +
-                    chart.data.datasets[i].borderColor +
-                    '">' +
-                    chart.data.datasets[i].label +
-                    "</span>"
-            );
-            text.push("</li>");
-        }
-        text.push("</ul>");
-        return text.join("");
-    },*/
-    parsing: {
-        //xAxisKey: "name",
-        yAxisKey: "point",
-    },
     plugins: {
         legend: {
             display: false,
@@ -157,23 +138,42 @@ const options = {
 
 const new_width = data.length * 50 + "px";
 
-const LevelerChart = () => (
-    <>
-        <div className="chartWrapper">
-            <div
-                className="chartAreaWrapper"
-                style={{ height: "500px", width: "100%" }}
-            >
-                <Bar
-                    data={cfg}
-                    options={options}
-                    id="levelerChar"
-                    height="500"
-                    width="0"
-                />
-            </div>
-        </div>
-    </>
-);
+class LevelerChart extends React.Component {
+    render() {
+        return (
+            <Container>
+                <Row>
+                    <Col xs="2">
+                        <img src={img_chart} className="img-fluid" alt="..." />
+                    </Col>
+                    <Col xs="10">
+                        <div className="chartWrapper">
+                            <div className="chartAreaWrapper">
+                                <Bar
+                                    data={cfg}
+                                    options={options}
+                                    id="levelerChar"
+                                    height="500"
+                                    width="0"
+                                />
+                            </div>
+                        </div>
+                    </Col>
+                </Row>
+                <Row className="justify-content-md-end">
+                    <Col xs="auto">
+                        <NavLink
+                            to="/leveler/progress"
+                            activeClassName="active"
+                            className="btn btn-primary"
+                        >
+                            Subir avance
+                        </NavLink>                        
+                    </Col>
+                </Row>
+            </Container>
+        );
+    }
+}
 
 export default LevelerChart;

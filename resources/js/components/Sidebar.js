@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useLocation, NavLink } from "react-router-dom";
 import { Nav, NavItem } from "reactstrap";
 import sidebarImage from "../../img/sidebarFond.jpg";
-import logo from "../../img/logo-c.svg";
+import logo from "../../img/logo-sidebar.svg";
 
 export default (props) => {
     const location = useLocation();

@@ -1,14 +1,10 @@
-import Profile1 from "../../img/users/profile-picture-1.jpg";
-import Profile2 from "../../img/users/profile-picture-2.jpg";
-import Profile3 from "../../img/users/profile-picture-3.jpg";
-import Profile4 from "../../img/users/profile-picture-4.jpg";
-import Profile5 from "../../img/users/profile-picture-5.jpg";
+import Profile from "../../img/users/default-avatar.png";
 
 export default [
     {
         id: 1,
         read: false,
-        image: Profile1,
+        image: Profile,
         sender: "Jose Leos",
         time: "a few moments ago",
         link: "#",
@@ -17,7 +13,7 @@ export default [
     {
         id: 2,
         read: false,
-        image: Profile2,
+        image: Profile,
         sender: "Neil Sims",
         time: "2 hrs ago",
         link: "#",
@@ -26,7 +22,7 @@ export default [
     {
         id: 3,
         read: false,
-        image: Profile3,
+        image: Profile,
         sender: "Roberta Casas",
         time: "5 hrs ago",
         link: "#",
@@ -35,7 +31,7 @@ export default [
     {
         id: 4,
         read: true,
-        image: Profile4,
+        image: Profile,
         sender: "Joseph Garth",
         time: "1 day ago",
         link: "#",
@@ -44,7 +40,7 @@ export default [
     {
         id: 5,
         read: true,
-        image: Profile5,
+        image: Profile,
         sender: "Jose Leos",
         time: "2 days ago",
         link: "#",

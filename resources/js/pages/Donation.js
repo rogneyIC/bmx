@@ -1,11 +1,12 @@
 import React from "react";
 import { Container, Row, Col, Form, FormGroup, Label, Input } from "reactstrap";
 import toastr from "toastr";
-import FormDonation from "../components/FormDonation";
 
 export default (props) => {
     const toastrShow = () => {
-        toastr.info("Gracias por su solicitud, en breve se le contactará");
+        toastr.success(
+            "Gracias por su constribución, en breve se le contactará"
+        );
     };
 
     return (
@@ -35,11 +36,8 @@ export default (props) => {
                     </table>
                 </Col>
             </Row>
-            <div className="row justify-content-md-end">
-                {/* <button type="button" className="btn btn-primary btn-lg">
-                        Haz tu donación
-                    </button> */}
-                <div className="col-auto">
+            <Row className="justify-content-md-end">
+                <Col xs="auto">
                     <button
                         type="button"
                         className="btn btn-primary"
@@ -121,8 +119,8 @@ export default (props) => {
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </Col>
+            </Row>
         </Container>
     );
 };

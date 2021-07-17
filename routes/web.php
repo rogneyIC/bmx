@@ -25,3 +25,4 @@ Route::get('/donation', [App\Http\Controllers\HomeController::class, 'index'])->
 Route::get('/leveler', [App\Http\Controllers\HomeController::class, 'index'])->name('leveler');
 Route::get('/trip', [App\Http\Controllers\HomeController::class, 'index'])->name('trip');
 Route::get('/datetec', [App\Http\Controllers\HomeController::class, 'index'])->name('datetec');
+Route::get('/leveler/progress', [App\Http\Controllers\HomeController::class, 'index'])->name('progress');

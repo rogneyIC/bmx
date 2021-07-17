@@ -1,19 +1,18 @@
 import React from "react";
-import { Container, Row, Col } from "reactstrap";
-import img_chart from "../../img/img-chart.jpg";
 import LevelerChart from "../components/LevelerChart";
+import Progress from "../components/Progress";
+import toastr from "toastr";
+import { Switch, Route } from "react-router-dom";
 
-export default (props) => {
-    return (
-        <Container>
-            <Row>
-                <Col xs="2">
-                    <img src={img_chart} className="img-fluid" alt="..." />
-                </Col>
-                <Col xs="10">
-                    <LevelerChart></LevelerChart>
-                </Col>
-            </Row>
-        </Container>
-    );
-};
+class Leveler extends React.Component {
+    render() {
+        return (
+            <Switch>
+                <Route path="/leveler/progress" component={Progress} />
+                <Route path="/leveler" component={LevelerChart} />
+            </Switch>
+        );
+    }
+}
+
+export default Leveler;

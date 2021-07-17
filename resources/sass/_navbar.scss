@@ -19,6 +19,14 @@
     }
 
     .nav-item {
+        .user-avatar.lg-avatar {
+            height: 3.5rem;
+            width: 3.5rem;
+            min-height: 3.5rem;
+            min-width: 3.5rem;
+            font-size: 0.75rem;
+        }
+
         .user-avatar {
             height: 2.5rem;
             width: 2.5rem;
@@ -34,6 +42,20 @@
         .user-dropdown.dropdown-menu.show {
             right: 0 !important;
             left: auto !important;
+        }
+
+        .notification-dropdown.dropdown-menu.show {
+            font-size: 1rem;
+            min-width: 23rem;
+            transform: translateX(-57%);
+            h6 {
+                font-weight: bold;
+            }
+            .font-small {
+                font-size: 0.875rem;
+                font-weight: 300;
+                color: #66799e;
+            }
         }
 
         .show .dropdown-menu {

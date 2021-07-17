@@ -8,7 +8,7 @@
                 <div class="card">
                     <div class="card-header">{{ __('Registrarse') }}</div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('register') }}">
+                        <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col">
                                     @csrf
@@ -53,6 +53,19 @@
                             </div>
                             <div class="row">
                                 <div class="col">
+                                    <!-- Phone -->
+                                    <label for="user_phone" class="form-label">{{ __('Teléfono') }}</label>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="nameIcon"><i class="fas fa-id-card"></i></span>
+                                        <input id="user_phone" type="text" class="form-control @error('user_phone') is-invalid @enderror" name="user_phone" value="{{ old('user_phone') }}" required autocomplete="name" autofocus>
+                                        @error('user_phone')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col">
                                     <!-- Photo -->
                                     <label class="form-label">{{ __('Foto') }}</label>
                                     <div class="input-group mb-3">
@@ -92,7 +105,7 @@
                                     <label for="user_instagram" class="form-label">{{ __('Usuario de instagram') }}</label>
                                     <div class="input-group mb-3">
                                         <span class="input-group-text"><i class="fab fa-instagram-square"></i></span>
-                                        <input id="user_instagram" type="text" class="form-control @error('user_instagram') is-invalid @enderror" name="user_instagram" value="{{ old('user_instagram') }}" required autocomplete="name">
+                                        <input id="user_instagram" type="text" class="form-control @error('user_instagram') is-invalid @enderror" name="user_instagram" value="{{ old('user_instagram') }}" autocomplete="name">
                                         @error('user_instagram')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -105,7 +118,7 @@
                                     <label for="user_facebook" class="form-label">{{ __('Usuario de facebook') }}</label>
                                     <div class="input-group mb-3">
                                         <span class="input-group-text"><i class="fab fa-facebook"></i></span>
-                                        <input id="user_facebook" type="text" class="form-control @error('user_facebook') is-invalid @enderror" name="user_facebook" value="{{ old('user_facebook') }}" required autocomplete="name">
+                                        <input id="user_facebook" type="text" class="form-control @error('user_facebook') is-invalid @enderror" name="user_facebook" value="{{ old('user_facebook') }}" autocomplete="name">
                                         @error('user_facebook')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -157,3 +170,8 @@
     </div>
 </div>
 @endsection
+<script>
+    function cambiar() {
+        document.getElementById("user_photo-info").value = document.getElementById("user_photo").files[0].name;
+    }
+</script>
