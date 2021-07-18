@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index');
-});
+})->name('index');
 
 Auth::routes();
 
@@ -24,5 +24,5 @@ Route::get('/what', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/donation', [App\Http\Controllers\HomeController::class, 'index'])->name('donation');
 Route::get('/leveler', [App\Http\Controllers\HomeController::class, 'index'])->name('leveler');
 Route::get('/trip', [App\Http\Controllers\HomeController::class, 'index'])->name('trip');
-Route::get('/datetec', [App\Http\Controllers\HomeController::class, 'index'])->name('datetec');
+Route::get('/datatec', [App\Http\Controllers\HomeController::class, 'index'])->name('datatec');
 Route::get('/leveler/progress', [App\Http\Controllers\HomeController::class, 'index'])->name('progress');

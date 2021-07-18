@@ -541,7 +541,7 @@ body > .navbar-collapse:after {
   background: rgba(203, 203, 210, 0.15);
   position: relative;
   float: right;
-  width: calc(100% - 287px);
+  width: 100%;
   min-height: 100%;
   padding: 0 1rem;
 }
@@ -556,7 +556,10 @@ body > .navbar-collapse:after {
   margin-bottom: 0;
 }
 
-.sidebar-inner .logo-img img {
+.sidebar-parent {
+  display: none;
+}
+.sidebar-parent .logo-img img {
   margin: 20px 0 -20px;
 }
 

@@ -30,7 +30,7 @@ export default (props) => {
                         <NavLink
                             to="/home"
                             activeClassName="active"
-                            className="nav-link"
+                            className="nav-link home"
                         >
                             Inicio
                         </NavLink>
@@ -39,7 +39,7 @@ export default (props) => {
                         <NavLink
                             to="/what"
                             activeClassName="active"
-                            className="nav-link"
+                            className="nav-link what"
                         >
                             ¿Quiénes somos?
                         </NavLink>
@@ -73,7 +73,7 @@ export default (props) => {
                     </NavItem>
                     <NavItem>
                         <NavLink
-                            to="/datetec"
+                            to="/datatec"
                             activeClassName="active"
                             className="nav-link"
                         >

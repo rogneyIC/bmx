@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import ReactDOM from "react-dom";
 import { Route, BrowserRouter as Router } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
@@ -8,22 +8,81 @@ import What from "./What";
 import Donation from "./Donation";
 import Leveler from "./Leveler";
 import Trip from "./Trip";
-import DateTec from "./DateTec";
+import Datatec from "./Datatec";
 
 function Dashboard() {
     const user = JSON.parse(document.getElementById("main").dataset.user);
     const role = document.getElementById("main").dataset.role;
+    const refSidebar = useRef();
+    const refMainPanel = useRef();
+
     return (
         <Router>
-            <Sidebar />
-            <div className="main-panel">
+            <div className="sidebar-parent" ref={refSidebar}>
+                <Sidebar />
+            </div>
+            <div className="main-panel" ref={refMainPanel}>
                 <NavbarNav user={user} role={role} />
-                <Route path="/home" component={Home} />
-                <Route path="/what" component={What} />
-                <Route path="/donation" component={Donation} />
-                <Route path="/leveler" component={Leveler} />
-                <Route path="/Trip" component={Trip} />
-                <Route path="/DateTec" component={DateTec} />
+                <Route
+                    path="/home"
+                    render={(props) => (
+                        <Home
+                            {...props}
+                            refSidebar={refSidebar}
+                            refMainPanel={refMainPanel}
+                        />
+                    )}
+                />
+                <Route
+                    path="/what"
+                    render={(props) => (
+                        <What
+                            {...props}
+                            refSidebar={refSidebar}
+                            refMainPanel={refMainPanel}
+                        />
+                    )}
+                />
+                <Route
+                    path="/donation"
+                    render={(props) => (
+                        <Donation
+                            {...props}
+                            refSidebar={refSidebar}
+                            refMainPanel={refMainPanel}
+                        />
+                    )}
+                />
+                <Route
+                    path="/leveler"
+                    render={(props) => (
+                        <Leveler
+                            {...props}
+                            refSidebar={refSidebar}
+                            refMainPanel={refMainPanel}
+                        />
+                    )}
+                />
+                <Route
+                    path="/Trip"
+                    render={(props) => (
+                        <Trip
+                            {...props}
+                            refSidebar={refSidebar}
+                            refMainPanel={refMainPanel}
+                        />
+                    )}
+                />
+                <Route
+                    path="/Datatec"
+                    render={(props) => (
+                        <Datatec
+                            {...props}
+                            refSidebar={refSidebar}
+                            refMainPanel={refMainPanel}
+                        />
+                    )}
+                />
             </div>
         </Router>
     );

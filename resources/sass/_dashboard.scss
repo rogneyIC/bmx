@@ -114,7 +114,8 @@ body > .navbar-collapse {
     background: rgba(203, 203, 210, 0.15);
     position: relative;
     float: right;
-    width: $sidebar-width;
+    //width: $sidebar-width;
+    width: 100%;
     min-height: 100%;
     padding: 0 1rem;
 
@@ -138,7 +139,8 @@ body > .navbar-collapse {
     // }
 }
 
-.sidebar-inner {
+.sidebar-parent {
+    display: none;
     .logo-img img {
         margin: 20px 0 -20px;
     }

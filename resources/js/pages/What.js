@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Col } from "reactstrap";
 import bmx1 from "../../img/bmx1.jpg";
 import bmx2 from "../../img/bmx2.jpg";
@@ -7,6 +7,14 @@ import bmx4 from "../../img/bmx4.jpg";
 import bmx5 from "../../img/bmx5.jpg";
 
 export default (props) => {
+    useEffect(() => {
+        if (props.refSidebar.current)
+            props.refSidebar.current.style.display = "flex";
+
+        if (props.refMainPanel.current)
+            props.refMainPanel.current.style.width = "calc(100% - 287px)";
+    });
+
     return (
         <Container>
             <Row>

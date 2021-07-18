@@ -1,26 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Col } from "reactstrap";
-import logo from "../../img/logo-index.svg";
 import bmx1 from "../../img/bmx1.jpg";
 import bmx2 from "../../img/bmx2.jpg";
 import bmx3 from "../../img/bmx3.jpg";
 import bmx4 from "../../img/bmx4.jpg";
 import bmx5 from "../../img/bmx5.jpg";
+import Logo from "../components/Logo";
 
 export default (props) => {
-    const object = React.useRef(null);
-    const onLoad = () => {
-        const container = $(object.current.contentDocument);
-        $(container.find("svg g")).css("cursor", "pointer");
-        $(
-            container.find(
-                'svg g[filter="url(#filter5_bd)"], svg g[filter="url(#filter6_d)"]'
-            )
-        ).on("click", function () {
-            props.history.push("/donation");
-        });
-    };
+    useEffect(() => {
+        if (props.refSidebar.current)
+            props.refSidebar.current.style.display = "none";
 
+        if (props.refMainPanel.current)
+            props.refMainPanel.current.style.width = "100%";
+    });
     return (
         <Container>
             <Row>
@@ -82,14 +76,9 @@ export default (props) => {
                         </Col>
                     </Row>
                 </Col>
-                <div className="col-5 align-self-center">
-                    <object
-                        data={logo}
-                        type="image/svg+xml"
-                        ref={object}
-                        onLoad={onLoad}
-                    ></object>
-                </div>
+                <Col xs="5" className="align-self-center">
+                    <Logo props={props} />
+                </Col>
             </Row>
         </Container>
     );

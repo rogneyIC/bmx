@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Col, Form, FormGroup, Label, Input } from "reactstrap";
 import toastr from "toastr";
 
 export default (props) => {
+    useEffect(() => {
+        if (props.refSidebar.current)
+            props.refSidebar.current.style.display = "flex";
+
+        if (props.refMainPanel.current)
+            props.refMainPanel.current.style.width = "calc(100% - 287px)";
+    });
     const toastrShow = () => {
         toastr.success(
             "Gracias por su constribución, en breve se le contactará"
