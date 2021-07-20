@@ -72,9 +72,10 @@ class RegisterController extends Controller
             'user_age' => $data['user_age'],
             'user_phone' => $data['user_phone'],
             'user_region' => $data['user_region'],
-            'user_photo' => $data['user_photo'],
             'user_instagram' => $data['user_instagram'],
             'user_facebook' => $data['user_facebook'],
+            'user_photo' => $data['user_photo'],
+            'user_point' => 0,
         ]);
 
         $user->roles()->attach(Role::where('name', 'user')->first());

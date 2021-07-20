@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import * as FaIcons from "react-icons/fa";
 import {
@@ -14,22 +14,39 @@ import {
     Dropdown,
 } from "react-bootstrap";
 import NOTIFICATIONS_DATA from "./notifications";
+import crud from "./Crud";
+import NotificationDonation from "./NotificationDonation";
 
 export default (props) => {
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const res = await crud.listDonation(false);
+            setData(res);
+        };
+        setInterval(function () {
+            fetchData();
+        }, 10000);
+        return () => {
+            setData([]);
+        };
+    }, []);
+
     //const [isOpen, setIsOpen] = useState(false);
     //const toggle = () => setIsOpen(!isOpen);
 
-    const [notifications, setNotifications] = useState(NOTIFICATIONS_DATA);
-    const areNotificationsRead = notifications.reduce(
+    //const [notifications, setNotifications] = useState(NOTIFICATIONS_DATA);
+    const areNotificationsRead = data.reduce(
         (acc, notif) => acc && notif.read,
         true
     );
     const markNotificationsAsRead = () => {
         setTimeout(() => {
-            setNotifications(notifications.map((n) => ({ ...n, read: true })));
-        }, 300);
+            setData(data.map((n) => ({ ...n, read: true })));
+        }, 1000);
     };
-    const Notification = (props) => {
+    /*const Notification = (props) => {
         const { link, sender, image, time, message, read = false } = props;
         const readClassName = read ? "" : "text-danger";
 
@@ -61,7 +78,7 @@ export default (props) => {
                 </Row>
             </ListGroup.Item>
         );
-    };
+    };*/
 
     const handleLogout = () => {
         axios.post("/logout").then(() => (location.href = "/"));
@@ -120,9 +137,9 @@ export default (props) => {
                                             Notificaciones
                                         </ListGroup.Item>
 
-                                        {notifications.map((n) => (
-                                            <Notification
-                                                key={`notification-${n.id}`}
+                                        {data.map((n) => (
+                                            <NotificationDonation
+                                                key={`data-${n.id}`}
                                                 {...n}
                                             />
                                         ))}
@@ -177,94 +194,5 @@ export default (props) => {
                 </Navbar.Collapse>
             </Container>
         </Navbar>
-        /*<Navbar expand="md">
-            
-            <NavbarToggler onClick={toggle} />
-
-            <Collapse isOpen={isOpen} navbar>
-                <Nav className="ms-auto align-items-center" navbar>
-                    {props.role == "admin" ? (
-                        <UncontrolledDropdown
-                            nav
-                            inNavbar
-                            onToggle={markNotificationsAsRead}
-                        >
-                            <DropdownToggle
-                                nav
-                                className="icon-notifications me-lg-2"
-                            >
-                                <span className="icon icon-sm">
-                                    <FaIcons.FaBell className="bell-shake" />
-                                    {areNotificationsRead ? null : (
-                                        <span className="icon-badge rounded-circle unread-notifications" />
-                                    )}
-                                </span>
-                            </DropdownToggle>
-                            <DropdownMenu className="notification-dropdown py-0 mt-2">
-                                <ListGroup className="list-group-flush">
-                                    <ListGroupItem
-                                        tag="a"
-                                        href="#"
-                                        className="text-center text-primary fw-bold py-3"
-                                    >
-                                        Notificaciones
-                                    </ListGroupItem>
-
-                                    {notifications.map((n) => (
-                                        <Notification
-                                            key={`notification-${n.id}`}
-                                            {...n}
-                                        />
-                                    ))}
-
-                                    <DropdownItem className="text-center text-primary fw-bold py-3">
-                                        View all
-                                    </DropdownItem>
-                                </ListGroup>
-                            </DropdownMenu>
-                        </UncontrolledDropdown>
-                    ) : null}
-
-                    <UncontrolledDropdown nav inNavbar>
-                        <DropdownToggle nav>
-                            <div className="media d-flex align-items-center">
-                                <img
-                                    src={srcImg}
-                                    className="user-avatar md-avatar rounded-circle"
-                                />
-                                <div className="media-body ms-2 text-dark align-items-center d-none d-lg-block">
-                                    <span className="mb-0 font-small fw-bold">
-                                        {props.user.user_name}
-                                    </span>
-                                </div>
-                            </div>
-                        </DropdownToggle>
-                        <DropdownMenu right className="user-dropdown">
-                            <DropdownItem>
-                                <FaIcons.FaUserCircle className="me-2" /> Mi
-                                perfil
-                            </DropdownItem>
-                            <DropdownItem>
-                                <FaIcons.FaCog className="me-2" />{" "}
-                                Configuraciones
-                            </DropdownItem>
-                            <DropdownItem>
-                                <FaIcons.FaEnvelopeOpen className="me-2" />{" "}
-                                Mensajes
-                            </DropdownItem>
-                            <DropdownItem>
-                                <FaIcons.FaUserShield className="me-2" />{" "}
-                                Soporte
-                            </DropdownItem>
-                            <DropdownItem divider />
-                            <DropdownItem onClick={handleLogout}>
-                                <FaIcons.FaSignOutAlt className="text-danger me-2" />{" "}
-                                Cerrar sesión
-                            </DropdownItem>
-                        </DropdownMenu>
-                    </UncontrolledDropdown>
-                </Nav>
-            </Collapse>
-        </Navbar>*/
     );
 };

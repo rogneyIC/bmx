@@ -22,14 +22,11 @@ class DonationFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
             'donation' => $this->faker->sentence(3),
             'detail' => $this->faker->sentence(5),
             'message_optional' => $this->faker->sentence(7),
-            'destiny' => $this->faker->numerify('Region-##'),
-            'accumulated_return' => $this->faker->numerify(),
-            'user_instagram' => $this->faker->lexify('instagram-????'),
-            'user_facebook' => $this->faker->lexify('facebook-????'),
+            'destiny' => 'Region ' . $this->faker->numberBetween(1, 16),
+            'accumulated_return' => $this->faker->numerify()
         ];
     }
 }

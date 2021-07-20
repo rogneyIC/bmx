@@ -24,10 +24,11 @@ class User extends Authenticatable
         'password',
         'user_age',
         'user_phone',
-        'user_region',
-        'user_photo',
+        'user_region',        
         'user_instagram',
         'user_facebook',
+        'user_photo',
+        'user_point',
     ];
 
     /**

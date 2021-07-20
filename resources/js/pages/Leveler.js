@@ -10,11 +10,11 @@ export default (props) => {
 
         if (props.refMainPanel.current)
             props.refMainPanel.current.style.width = "calc(100% - 256px)";
-    });
+    }, []);
     return (
         <Switch>
+            <Route exact path="/leveler" component={LevelerChart} />
             <Route path="/leveler/progress" component={Progress} />
-            <Route path="/leveler" component={LevelerChart} />
         </Switch>
     );
 };

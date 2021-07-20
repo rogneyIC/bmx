@@ -2,22 +2,15 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Container, Table, Row, Col } from "react-bootstrap";
 import ModalDonation from "../components/ModalDonation";
+import crud from "../components/Crud";
 
-function Donation(props) {
-    const [error, setError] = useState(null);
-    const [isLoaded, setIsLoaded] = useState(false);
+export default (props) => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
-            const result = await axios
-                .get("/donation/list")
-                .then((response) => {
-                    setData(response.data);
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+            const res = await crud.listDonation(true);
+            setData(res);
         };
         fetchData();
 
@@ -26,10 +19,10 @@ function Donation(props) {
 
         if (props.refMainPanel.current)
             props.refMainPanel.current.style.width = "calc(100% - 256px)";
+        return () => {
+            setData([]);
+        };
     }, []);
-
-    const initialDb = [];
-    const [db, setDb] = useState(initialDb);
 
     return (
         <Container className="py-3 px-4">
@@ -52,7 +45,7 @@ function Donation(props) {
                             {data.map((item) => {
                                 return (
                                     <tr key={item.id}>
-                                        <td>{item.name}</td>
+                                        <td>{item.user_name}</td>
                                         <td>{item.donation}</td>
                                         <td>{item.detail}</td>
                                         <td>{item.message_optional}</td>
@@ -61,58 +54,11 @@ function Donation(props) {
                                     </tr>
                                 );
                             })}
-                            {/* <tr>
-                                <th>1</th>
-                                <td>Pepe</td>
-                                <td>1 bicicleta</td>
-                                <td>Nueva</td>
-                                <td>Para Ramón</td>
-                                <td>Región 2</td>
-                                <td>0</td>
-                            </tr>
-                            <tr>
-                                <th>2</th>
-                                <td>Pepe</td>
-                                <td>1 bicicleta</td>
-                                <td>Nueva</td>
-                                <td>Para Ramón</td>
-                                <td>Región 2</td>
-                                <td>0</td>
-                            </tr>
-                            <tr>
-                                <th>3</th>
-                                <td>Pepe</td>
-                                <td>1 bicicleta</td>
-                                <td>Nueva</td>
-                                <td>Para Ramón</td>
-                                <td>Región 2</td>
-                                <td>0</td>
-                            </tr>
-                            <tr>
-                                <th>4</th>
-                                <td>Pepe</td>
-                                <td>1 bicicleta</td>
-                                <td>Nueva</td>
-                                <td>Para Ramón</td>
-                                <td>Región 2</td>
-                                <td>0</td>
-                            </tr>
-                            <tr>
-                                <th>5</th>
-                                <td>Pepe</td>
-                                <td>1 bicicleta</td>
-                                <td>Nueva</td>
-                                <td>Para Ramón</td>
-                                <td>Región 2</td>
-                                <td>0</td>
-                            </tr> */}
                         </tbody>
                     </Table>
                 </Col>
             </Row>
-            <ModalDonation />
+            <ModalDonation user_id={props.user_id} />
         </Container>
     );
-}
-
-export default Donation;
+};

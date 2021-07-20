@@ -8,13 +8,13 @@ import bmx5 from "../../img/bmx5.jpg";
 import Logo from "../components/Logo";
 
 export default (props) => {
-    useEffect(() => {
+    useEffect(() => {        
         if (props.refSidebar.current)
             props.refSidebar.current.style.display = "none";
 
         if (props.refMainPanel.current)
             props.refMainPanel.current.style.width = "100%";
-    });
+    }, []);
     return (
         <Container className="py-3">
             <Row>

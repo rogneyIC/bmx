@@ -2,21 +2,36 @@ import React, { useState } from "react";
 import { Button, Col, Form, Modal, Row } from "react-bootstrap";
 import toastr from "toastr";
 
-export default () => {
+export default (props) => {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const toastrShow = () => {
-        toastr.success(
-            "Gracias por su constribución, en breve se le contactará"
-        );
-    };
+    const [donation, setDonation] = useState(null);
+    const [detail, setDetail] = useState(null);
+    const [message, setMessage] = useState(null);
 
-    const send = () => {
-        handleClose();
-        toastrShow();
+    const [error, setError] = useState(null);
+
+    const sendData = async (e) => {
+        e.preventDefault();
+        const user_id = props.user_id;
+        const data = { user_id, donation, detail, message };
+        await axios
+            .post("/donation/store", data)
+            .then((response) => {
+                console.log(response);
+                handleClose();
+                toastr.success(
+                    "Gracias por su constribución, en breve se le contactará"
+                );
+            })
+            .catch((error) => {
+                console.log(error);
+                setError(error);
+                toastr.warning(error);
+            });
     };
 
     return (
@@ -35,60 +50,55 @@ export default () => {
                             onClick={handleClose}
                         ></button>
                     </Modal.Header>
-                    <Modal.Body className="px-4">
-                        <Form>
+                    <Form onSubmit={sendData}>
+                        <Modal.Body className="px-4">
                             <Row>
-                                <Form.Group className="mb-3 col">
-                                    <Form.Label>Nombre:</Form.Label>
-                                    <Form.Control
-                                        type="text"
-                                        placeholder="Nombre"
-                                    />
-                                </Form.Group>
                                 <Form.Group className="mb-3 col">
                                     <Form.Label>Donación:</Form.Label>
                                     <Form.Control
-                                        type="text"
-                                        placeholder="Donación"
-                                    />
-                                </Form.Group>
-                            </Row>
-                            <Row>
-                                <Form.Group className="mb-3 col">
-                                    <Form.Label>Número de contacto:</Form.Label>
-                                    <Form.Control
-                                        type="phone"
-                                        placeholder="Número de teléfono"
-                                    />
-                                </Form.Group>
-                                <Form.Group className="mb-3 col">
-                                    <Form.Label>Usuario instagram:</Form.Label>
-                                    <Form.Control
-                                        type="text"
-                                        placeholder="Usuario de instagram"
+                                        as="textarea"
+                                        rows={3}
+                                        name="donation"
+                                        onChange={(event) =>
+                                            setDonation(event.target.value)
+                                        }
                                     />
                                 </Form.Group>
                             </Row>
                             <Row className="mb-0">
                                 <Form.Group className="mb-3 col">
                                     <Form.Label>Detalles:</Form.Label>
-                                    <Form.Control as="textarea" rows={5} />
+                                    <Form.Control
+                                        as="textarea"
+                                        rows={5}
+                                        name="detail"
+                                        onChange={(event) =>
+                                            setDetail(event.target.value)
+                                        }
+                                    />
                                 </Form.Group>
                                 <Form.Group className="mb-3 col">
                                     <Form.Label>Mensaje opcional:</Form.Label>
-                                    <Form.Control as="textarea" rows={5} />
+                                    <Form.Control
+                                        as="textarea"
+                                        rows={5}
+                                        name="message"
+                                        onChange={(event) =>
+                                            setMessage(event.target.value)
+                                        }
+                                    />
                                 </Form.Group>
                             </Row>
-                        </Form>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={handleClose}>
-                            Cancelar
-                        </Button>
-                        <Button variant="primary" onClick={send}>
-                            Enviar
-                        </Button>
-                    </Modal.Footer>
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="secondary" onClick={handleClose}>
+                                Cancelar
+                            </Button>
+                            <Button variant="primary" type="submit">
+                                Enviar
+                            </Button>
+                        </Modal.Footer>
+                    </Form>
                 </Modal>
             </Col>
         </Row>

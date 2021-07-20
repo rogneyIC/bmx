@@ -8,7 +8,7 @@ export default (props) => {
 
         if (props.refMainPanel.current)
             props.refMainPanel.current.style.width = "calc(100% - 256px)";
-    });
+    }, []);
     return (
         <Container className="py-3 px-4">
             <p>Datos técnicos</p>

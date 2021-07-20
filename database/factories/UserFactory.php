@@ -29,10 +29,11 @@ class UserFactory extends Factory
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'user_age' => $this->faker->numberBetween(15, 35),
             'user_phone' => $this->faker->phoneNumber(),
-            'user_region' => $this->faker->numerify('Region-##'),
-            'user_photo' => '../default-avatar.png',
+            'user_region' => $this->faker->numberBetween(1, 16),
             'user_instagram' => $this->faker->lexify('instagram-????'),
-            'user_facebook' => $this->faker->lexify('instagram-????'),
+            'user_facebook' => $this->faker->lexify('facebook-????'),
+            'user_photo' => '../default-avatar.png',
+            'user_point' => 0,
             'remember_token' => Str::random(10),
         ];
     }

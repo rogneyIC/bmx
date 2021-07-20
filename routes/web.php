@@ -27,4 +27,7 @@ Route::get('/trip', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/datatec', [App\Http\Controllers\HomeController::class, 'index'])->name('datatec');
 Route::get('/leveler/progress', [App\Http\Controllers\HomeController::class, 'index'])->name('progress');
 
-Route::get('/donation/list', [App\Http\Controllers\DonationController::class, 'index']);
+Route::post('/donation/list', [App\Http\Controllers\DonationController::class, 'index']);
+Route::post('/user/list', [App\Http\Controllers\UserController::class, 'index']);
+
+Route::post('/donation/store', [App\Http\Controllers\DonationController::class, 'store']);

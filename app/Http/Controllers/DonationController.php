@@ -10,21 +10,14 @@ class DonationController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
-    {        
-        return Donation::get();
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function index(Request  $request)
     {
-        //
+        return Donation::join('users', 'donations.user_id', '=', 'users.id')
+            ->where('donations.accepted', $request->accepted ? true : false)
+            ->get();
     }
 
     /**
@@ -35,7 +28,20 @@ class DonationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $donation = new Donation;
+            $donation->user_id = $request['user_id'];
+            $donation->donation = $request['donation'];
+            $donation->detail = $request['detail'];
+            $donation->message_optional = $request['message'];
+            $donation->accepted = false;
+            $donation->save();
+            $response['success'] = true;
+        } catch (\Exception $e) {
+            $response['error'] = $e->getMessage();
+            $response['success'] = false;
+        }
+        return $response;
     }
 
     /**

@@ -21,10 +21,11 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->tinyInteger('user_age');
             $table->string('user_phone');
-            $table->tinyText('user_region');
+            $table->tinyInteger('user_region');
             $table->string('user_instagram')->nullable();
             $table->string('user_facebook')->nullable();
             $table->string('user_photo')->nullable();
+            $table->integer('user_point');
             $table->rememberToken();
             $table->timestamps();
         });

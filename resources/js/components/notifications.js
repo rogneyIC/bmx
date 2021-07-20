@@ -36,14 +36,5 @@ export default [
         time: "1 day ago",
         link: "#",
         message: `New message: "Hey, what's up? All set for the presentation?"`,
-    },
-    {
-        id: 5,
-        read: true,
-        image: Profile,
-        sender: "Jose Leos",
-        time: "2 days ago",
-        link: "#",
-        message: `New message: "We need to improve the UI/UX for the landing page."`,
-    },
+    }
 ];
