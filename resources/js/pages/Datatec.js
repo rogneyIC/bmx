@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Container } from "react-bootstrap";
 
 export default (props) => {
     useEffect(() => {
@@ -6,11 +7,11 @@ export default (props) => {
             props.refSidebar.current.style.display = "flex";
 
         if (props.refMainPanel.current)
-            props.refMainPanel.current.style.width = "calc(100% - 287px)";
+            props.refMainPanel.current.style.width = "calc(100% - 256px)";
     });
     return (
-        <div>
+        <Container className="py-3 px-4">
             <p>Datos técnicos</p>
-        </div>
+        </Container>
     );
 };

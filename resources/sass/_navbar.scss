@@ -63,9 +63,7 @@
         }
 
         .dropdown-menu {
-            margin: 0.125rem 0 0;
             border: 0.0625rem solid #eaedf2;
-            border-radius: 0.5rem;
             box-shadow: 0 0.5rem 1rem rgb(46 54 80 / 15%);
         }
 
@@ -92,6 +90,14 @@
             height: 7px;
             width: 7px;
             background-color: #fa5252;
+        }
+
+        .dropdown-toggle::after {
+            display: none;
+        }
+
+        .text-small {
+            font-size: 1rem;
         }
     }
 }

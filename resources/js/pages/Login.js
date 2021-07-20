@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Container, Row } from "reactstrap";
+import { Container, Row } from "react-bootstrap";
 import * as FaIcons from "react-icons/fa";
 
 function Main() {

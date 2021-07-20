@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\User;
+use App\Models\Role;
+use App\Models\Donation;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,7 +16,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
         $this->call(RoleTableSeeder::class);
+        $this->call(UserSeeder::class);
+        User::factory(10)
+            ->hasAttached(Role::where('name', 'user')->first())
+            ->has(Donation::factory(3))
+            ->create();
     }
 }

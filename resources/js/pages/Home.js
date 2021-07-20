@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Container, Row, Col } from "reactstrap";
+import { Container, Row, Col, Carousel } from "react-bootstrap";
 import bmx1 from "../../img/bmx1.jpg";
 import bmx2 from "../../img/bmx2.jpg";
 import bmx3 from "../../img/bmx3.jpg";
@@ -16,9 +16,9 @@ export default (props) => {
             props.refMainPanel.current.style.width = "100%";
     });
     return (
-        <Container>
+        <Container className="py-3">
             <Row>
-                <Col xs="7">
+                <Col xs={7}>
                     <Row>
                         <Col>
                             <p className="home-text">
@@ -35,48 +35,27 @@ export default (props) => {
                     </Row>
                     <Row>
                         <Col>
-                            <div
-                                id="carouselIndex"
-                                className="carousel slide carousel-fade shadow"
-                                data-bs-ride="carousel"
-                            >
-                                <div className="carousel-inner">
-                                    <div className="carousel-item active">
-                                        <img
-                                            src={bmx1}
-                                            className="d-block w-100"
-                                        />
-                                    </div>
-                                    <div className="carousel-item">
-                                        <img
-                                            src={bmx2}
-                                            className="d-block w-100"
-                                        />
-                                    </div>
-                                    <div className="carousel-item">
-                                        <img
-                                            src={bmx3}
-                                            className="d-block w-100"
-                                        />
-                                    </div>
-                                    <div className="carousel-item">
-                                        <img
-                                            src={bmx4}
-                                            className="d-block w-100"
-                                        />
-                                    </div>
-                                    <div className="carousel-item">
-                                        <img
-                                            src={bmx5}
-                                            className="d-block w-100"
-                                        />
-                                    </div>
-                                </div>
-                            </div>
+                            <Carousel fade controls={false} interval={4000}>
+                                <Carousel.Item>
+                                    <img className="d-block w-100" src={bmx1} />
+                                </Carousel.Item>
+                                <Carousel.Item>
+                                    <img className="d-block w-100" src={bmx2} />
+                                </Carousel.Item>
+                                <Carousel.Item>
+                                    <img className="d-block w-100" src={bmx3} />
+                                </Carousel.Item>
+                                <Carousel.Item>
+                                    <img className="d-block w-100" src={bmx4} />
+                                </Carousel.Item>
+                                <Carousel.Item>
+                                    <img className="d-block w-100" src={bmx5} />
+                                </Carousel.Item>
+                            </Carousel>
                         </Col>
                     </Row>
                 </Col>
-                <Col xs="5" className="align-self-center">
+                <Col xs={5} className="align-self-center">
                     <Logo props={props} />
                 </Col>
             </Row>

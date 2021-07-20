@@ -9,7 +9,7 @@ export default (props) => {
             props.refSidebar.current.style.display = "flex";
 
         if (props.refMainPanel.current)
-            props.refMainPanel.current.style.width = "calc(100% - 287px)";
+            props.refMainPanel.current.style.width = "calc(100% - 256px)";
     });
     return (
         <Switch>

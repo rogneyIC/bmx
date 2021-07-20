@@ -4,7 +4,7 @@ body > .navbar-collapse {
     top: 0;
     bottom: 0;
     left: 0;
-    width: 18rem;
+    width: 16rem;
     display: block;
     z-index: 1;
     color: #fff;
@@ -17,7 +17,7 @@ body > .navbar-collapse {
         max-height: calc(100vh - 75px);
         min-height: 100%;
         overflow: auto;
-        width: 18rem;
+        width: 16rem;
         z-index: 4;
         padding-bottom: 100px;
     }
@@ -114,10 +114,8 @@ body > .navbar-collapse {
     background: rgba(203, 203, 210, 0.15);
     position: relative;
     float: right;
-    //width: $sidebar-width;
     width: 100%;
     min-height: 100%;
-    padding: 0 1rem;
 
     > .content {
         padding: 30px 15px;
@@ -131,12 +129,6 @@ body > .navbar-collapse {
     .navbar {
         margin-bottom: 0;
     }
-
-    // .home-text {
-    //     font-family: "Averia", serif;
-    //     font-size: $font-size-large;
-    //     text-align: justify;
-    // }
 }
 
 .sidebar-parent {

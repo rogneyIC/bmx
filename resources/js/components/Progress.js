@@ -2,102 +2,112 @@ import React from "react";
 import {
     Button,
     Card,
-    CardBody,
-    CardFooter,
+    CardGroup,
     Col,
     Container,
     Form,
-    FormGroup,
-    Input,
-    Label,
     Row,
-    Table,
-} from "reactstrap";
+} from "react-bootstrap";
 
-class Progress extends React.Component {
-    render() {
-        return (
-            <Container>
-                <Table striped>
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Dato 1</th>
-                            <th>Dato 2</th>
-                            <th>Dato 3</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                    </tbody>
-                </Table>
+export default () => {
+    return (
+        <Container className="py-3 px-4">
+            <Row>
+                <CardGroup className="card-leveler">
+                    <Card>
+                        <Card.Header>Dato 1</Card.Header>
+                        <Card.Body>
+                            <Card.Title>Card title</Card.Title>
+                            <Card.Text>
+                                This is a wider card with supporting text below
+                                as a natural lead-in to additional content. This
+                                content is a little bit longer.
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                    <Card>
+                        <Card.Header>Dato 2</Card.Header>
+                        <Card.Body>
+                            <Card.Title>Card title</Card.Title>
+                            <Card.Text>
+                                This card has supporting text below as a natural
+                                lead-in to additional content.{" "}
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                    <Card>
+                        <Card.Header>Dato 3</Card.Header>
+                        <Card.Body>
+                            <Card.Title>Card title</Card.Title>
+                            <Card.Text>
+                                This is a wider card with supporting text below
+                                as a natural lead-in to additional content. This
+                                card has even longer content than the first to
+                                show that equal height action.
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </CardGroup>
+            </Row>
+            <Row>
                 <Form className="form-progress">
                     <Card>
-                        <CardBody>
-                            <FormGroup className="mb-3" row>
-                                <Label sm={1}>1:</Label>
+                        <Card.Body>
+                            <Form.Group className="mb-3" as={Row}>
+                                <Form.Label column sm={1}>
+                                    1:
+                                </Form.Label>
                                 <Col>
-                                    <Input type="text" />
+                                    <Form.Control type="text" />
                                 </Col>
-                            </FormGroup>
-                            <FormGroup className="mb-3" row>
-                                <Label sm={1}>2:</Label>
+                            </Form.Group>
+                            <Form.Group className="mb-3" as={Row}>
+                                <Form.Label column sm={1}>
+                                    2:
+                                </Form.Label>
                                 <Col>
-                                    <Input type="text" />
+                                    <Form.Control type="text" />
                                 </Col>
-                            </FormGroup>
-                            <FormGroup className="mb-3" row>
-                                <Label sm={1}>3:</Label>
+                            </Form.Group>
+                            <Form.Group className="mb-3" as={Row}>
+                                <Form.Label column sm={1}>
+                                    3:
+                                </Form.Label>
                                 <Col>
-                                    <Input type="text" />
+                                    <Form.Control type="text" />
                                 </Col>
-                            </FormGroup>
-                            <FormGroup className="mb-3" row>
-                                <Label sm={1}>4:</Label>
+                            </Form.Group>
+                            <Form.Group className="mb-3" as={Row}>
+                                <Form.Label column sm={1}>
+                                    4:
+                                </Form.Label>
                                 <Col>
-                                    <Input type="text" />
+                                    <Form.Control type="text" />
                                 </Col>
-                            </FormGroup>
-                            <FormGroup className="mb-3" row>
-                                <Label sm={1}>5:</Label>
+                            </Form.Group>
+                            <Form.Group className="mb-3" as={Row}>
+                                <Form.Label column sm={1}>
+                                    5:
+                                </Form.Label>
                                 <Col>
-                                    <Input type="text" />
+                                    <Form.Control type="text" />
                                 </Col>
-                            </FormGroup>
-                            <FormGroup className="mb-3" row>
-                                <Label sm={1} for="progress-phone">
+                            </Form.Group>
+                            <Form.Group className="mb-3" as={Row}>
+                                <Form.Label column sm={1}>
                                     Link:
-                                </Label>
+                                </Form.Label>
                                 <Col>
-                                    <Input type="text" />
+                                    <Form.Control type="text" />
                                 </Col>
-                            </FormGroup>
-                        </CardBody>
-                        <CardFooter>
+                            </Form.Group>
+                        </Card.Body>
+                        <Card.Footer>
                             <Button color="primary">Enviar</Button>
-                        </CardFooter>
+                        </Card.Footer>
                     </Card>
                 </Form>
-            </Container>
-        );
-    }
-}
-
-export default Progress;
+            </Row>
+        </Container>
+    );
+};

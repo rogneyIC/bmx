@@ -432,7 +432,7 @@ body > .navbar-collapse {
   top: 0;
   bottom: 0;
   left: 0;
-  width: 18rem;
+  width: 16rem;
   display: block;
   z-index: 1;
   color: #fff;
@@ -446,7 +446,7 @@ body > .navbar-collapse .sidebar-wrapper {
   max-height: calc(100vh - 75px);
   min-height: 100%;
   overflow: auto;
-  width: 18rem;
+  width: 16rem;
   z-index: 4;
   padding-bottom: 100px;
 }
@@ -543,7 +543,6 @@ body > .navbar-collapse:after {
   float: right;
   width: 100%;
   min-height: 100%;
-  padding: 0 1rem;
 }
 .main-panel > .content {
   padding: 30px 15px;
@@ -636,9 +635,7 @@ body > .navbar-collapse:after {
           animation: show-dropdown 0.2s ease forwards;
 }
 .main-panel .nav-item .dropdown-menu {
-  margin: 0.125rem 0 0;
   border: 0.0625rem solid #eaedf2;
-  border-radius: 0.5rem;
   box-shadow: 0 0.5rem 1rem rgba(46, 54, 80, 0.15);
 }
 .main-panel .nav-item .nav-link span {
@@ -662,7 +659,17 @@ body > .navbar-collapse:after {
   width: 7px;
   background-color: #fa5252;
 }
+.main-panel .nav-item .dropdown-toggle::after {
+  display: none;
+}
+.main-panel .nav-item .text-small {
+  font-size: 1rem;
+}
 
+.main-panel .card-leveler .card-header {
+  color: white;
+  background-color: #3490dc;
+}
 .main-panel .form-progress label {
   text-align: end;
 }

@@ -2,32 +2,22 @@ import React, { useState } from "react";
 import axios from "axios";
 import * as FaIcons from "react-icons/fa";
 import {
-    Col,
-    Collapse,
-    DropdownItem,
-    DropdownMenu,
-    DropdownToggle,
-    Form,
-    FormGroup,
-    Input,
-    InputGroup,
-    InputGroupText,
-    ListGroup,
-    ListGroupItem,
-    Nav,
-    Navbar,
-    NavbarBrand,
-    NavbarToggler,
-    NavLink,
+    Container,
     Row,
-    UncontrolledDropdown,
-} from "reactstrap";
-
+    Col,
+    Navbar,
+    Nav,
+    Image,
+    ListGroup,
+    Form,
+    InputGroup,
+    Dropdown,
+} from "react-bootstrap";
 import NOTIFICATIONS_DATA from "./notifications";
 
 export default (props) => {
-    const [isOpen, setIsOpen] = useState(false);
-    const toggle = () => setIsOpen(!isOpen);
+    //const [isOpen, setIsOpen] = useState(false);
+    //const toggle = () => setIsOpen(!isOpen);
 
     const [notifications, setNotifications] = useState(NOTIFICATIONS_DATA);
     const areNotificationsRead = notifications.reduce(
@@ -44,15 +34,15 @@ export default (props) => {
         const readClassName = read ? "" : "text-danger";
 
         return (
-            <ListGroupItem
+            <ListGroup.Item
                 tag="a"
                 action
                 href={link}
                 className="border-bottom border-light"
             >
-                <Row className="align-items-center mb-0">
+                <Row className="align-items-center">
                     <Col className="col-auto">
-                        <img
+                        <Image
                             src={image}
                             className="user-avatar lg-avatar rounded-circle"
                         />
@@ -69,7 +59,7 @@ export default (props) => {
                         <p className="font-small mt-1 mb-0">{message}</p>
                     </Col>
                 </Row>
-            </ListGroupItem>
+            </ListGroup.Item>
         );
     };
 
@@ -77,31 +67,118 @@ export default (props) => {
         axios.post("/logout").then(() => (location.href = "/"));
     };
 
-    let srcImg = "/images/avatars/" + props.user.user_photo;
+    const srcImg = "/images/avatars/" + props.user.user_photo;
 
     return (
-        <Navbar expand="md">
-            <NavbarBrand>
-                <Form inline className="navbar-search">
-                    <FormGroup
-                        id="topbarSearch"
-                        className="mb-2 mr-sm-2 mb-sm-0"
-                    >
-                        <InputGroup>
-                            <InputGroupText>
-                                <FaIcons.FaSearch />
-                            </InputGroupText>
-                            <Input
-                                className="form-control me-2"
-                                type="search"
-                                id="search-nav"
-                                placeholder="Search"
-                                aria-label="Search"
-                            />
-                        </InputGroup>
-                    </FormGroup>
-                </Form>
-            </NavbarBrand>
+        <Navbar expand="md" bg="dark" variant="dark" sticky="top">
+            <Container fluid>
+                {/* <Navbar.Brand>
+                    <Form inline className="navbar-search">
+                        <Form.Group
+                            id="topbarSearch"
+                            className="mb-2 mr-sm-2 mb-sm-0"
+                        >
+                            <InputGroup>
+                                <InputGroup.Text>
+                                    <FaIcons.FaSearch />
+                                </InputGroup.Text>
+                                <Form.Control
+                                    type="search"
+                                    id="search-nav"
+                                    placeholder="Search"
+                                />
+                            </InputGroup>
+                        </Form.Group>
+                    </Form>
+                </Navbar.Brand> */}
+                <Navbar.Toggle aria-controls="nav-bmx" />
+                <Navbar.Collapse className="justify-content-end" id="nav-bmx">
+                    <Nav className="align-items-center">
+                        {props.role == "admin" ? (
+                            <Dropdown
+                                as={Nav.Item}
+                                onToggle={markNotificationsAsRead}
+                            >
+                                <Dropdown.Toggle
+                                    as={Nav.Link}
+                                    className="icon-notifications me-lg-2"
+                                >
+                                    <span className="icon icon-sm">
+                                        <FaIcons.FaBell />
+                                        {areNotificationsRead ? null : (
+                                            <span className="icon-badge rounded-circle unread-notifications" />
+                                        )}
+                                    </span>
+                                </Dropdown.Toggle>
+                                <Dropdown.Menu className="notification-dropdown py-0 mt-2">
+                                    <ListGroup className="list-group-flush">
+                                        <ListGroup.Item
+                                            tag="a"
+                                            href="#"
+                                            className="text-center text-primary fw-bold py-3"
+                                        >
+                                            Notificaciones
+                                        </ListGroup.Item>
+
+                                        {notifications.map((n) => (
+                                            <Notification
+                                                key={`notification-${n.id}`}
+                                                {...n}
+                                            />
+                                        ))}
+
+                                        <Dropdown.Item className="text-center text-primary fw-bold py-3">
+                                            View all
+                                        </Dropdown.Item>
+                                    </ListGroup>
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        ) : null}
+
+                        <Dropdown as={Nav.Item}>
+                            <Dropdown.Toggle as={Nav.Link}>
+                                <div className="media d-flex align-items-center">
+                                    <img
+                                        src={srcImg}
+                                        className="user-avatar md-avatar rounded-circle"
+                                    />
+                                    <div className="media-body ms-2 text-white align-items-center d-none d-lg-block">
+                                        <span className="mb-0 font-small fw-bold">
+                                            {props.user.user_name}
+                                        </span>
+                                    </div>
+                                </div>
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu className="user-dropdown">
+                                <Dropdown.Item>
+                                    <FaIcons.FaUserCircle className="me-2" /> Mi
+                                    perfil
+                                </Dropdown.Item>
+                                <Dropdown.Item>
+                                    <FaIcons.FaCog className="me-2" />{" "}
+                                    Configuraciones
+                                </Dropdown.Item>
+                                <Dropdown.Item>
+                                    <FaIcons.FaEnvelopeOpen className="me-2" />{" "}
+                                    Mensajes
+                                </Dropdown.Item>
+                                <Dropdown.Item>
+                                    <FaIcons.FaUserShield className="me-2" />{" "}
+                                    Soporte
+                                </Dropdown.Item>
+                                <Dropdown.Divider />
+                                <Dropdown.Item onClick={handleLogout}>
+                                    <FaIcons.FaSignOutAlt className="text-danger me-2" />{" "}
+                                    Cerrar sesión
+                                </Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    </Nav>
+                </Navbar.Collapse>
+            </Container>
+        </Navbar>
+        /*<Navbar expand="md">
+            
             <NavbarToggler onClick={toggle} />
 
             <Collapse isOpen={isOpen} navbar>
@@ -188,6 +265,6 @@ export default (props) => {
                     </UncontrolledDropdown>
                 </Nav>
             </Collapse>
-        </Navbar>
+        </Navbar>*/
     );
 };

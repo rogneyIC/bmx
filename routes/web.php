@@ -26,3 +26,5 @@ Route::get('/leveler', [App\Http\Controllers\HomeController::class, 'index'])->n
 Route::get('/trip', [App\Http\Controllers\HomeController::class, 'index'])->name('trip');
 Route::get('/datatec', [App\Http\Controllers\HomeController::class, 'index'])->name('datatec');
 Route::get('/leveler/progress', [App\Http\Controllers\HomeController::class, 'index'])->name('progress');
+
+Route::get('/donation/list', [App\Http\Controllers\DonationController::class, 'index']);

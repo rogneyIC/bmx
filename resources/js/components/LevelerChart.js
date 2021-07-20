@@ -1,6 +1,13 @@
 import React from "react";
 import { Bar } from "react-chartjs-2";
-import { Container, Row, Col } from "reactstrap";
+import {
+    Container,
+    Row,
+    Col,
+    Image,
+    DropdownButton,
+    Dropdown,
+} from "react-bootstrap";
 import img_chart from "../../img/img-chart.jpg";
 import { NavLink } from "react-router-dom";
 
@@ -138,42 +145,100 @@ const options = {
 
 const new_width = data.length * 50 + "px";
 
-class LevelerChart extends React.Component {
-    render() {
-        return (
-            <Container>
-                <Row>
-                    <Col xs="2">
-                        <img src={img_chart} className="img-fluid" alt="..." />
-                    </Col>
-                    <Col xs="10">
+export default () => {
+    return (
+        <Container className="py-3 px-4">
+            <Row>
+                <Col xs={2}>
+                    <Image src={img_chart} fluid />
+                </Col>
+                <Col xs={10} className="align-self-end">
+                    <Row className="justify-content-md-end">
+                        <Col xs={2} className="text-end">
+                            Filtrar:
+                        </Col>
+                        <Col xs={2}>
+                            <DropdownButton title="Región" className="d-grid">
+                                {[
+                                    "Región 1",
+                                    "Región 2",
+                                    "Región 3",
+                                    "Región 4",
+                                    "Región 5",
+                                    "Región 6",
+                                    "Región 7",
+                                    "Región 8",
+                                    "Región 9",
+                                    "Región 10",
+                                    "Región 11",
+                                    "Región 12",
+                                    "Región 13",
+                                    "Región 14",
+                                    "Región 15",
+                                    "Región 16",
+                                ].map((variant) => (
+                                    <Dropdown.Item as="button" key={variant}>
+                                        {variant}
+                                    </Dropdown.Item>
+                                ))}
+                            </DropdownButton>
+                        </Col>
+                        <Col xs={2}>
+                            <DropdownButton
+                                title="Categoría"
+                                className="d-grid"
+                            >
+                                <Dropdown.Item as="button">
+                                    Iniciante
+                                </Dropdown.Item>
+                                <Dropdown.Item as="button">
+                                    Intermedio
+                                </Dropdown.Item>
+                                <Dropdown.Item as="button">
+                                    Experto
+                                </Dropdown.Item>
+                                <Dropdown.Item as="button">Pro</Dropdown.Item>
+                            </DropdownButton>
+                        </Col>
+                        <Col xs={2}>
+                            <DropdownButton title="Edad" className="d-grid">
+                                <Dropdown.Item as="button">
+                                    {"<=12"}
+                                </Dropdown.Item>
+                                <Dropdown.Item as="button">13-17</Dropdown.Item>
+                                <Dropdown.Item as="button">18-24</Dropdown.Item>
+                                <Dropdown.Item as="button">
+                                    {">=25"}
+                                </Dropdown.Item>
+                            </DropdownButton>
+                        </Col>
+                    </Row>
+                    <Row>
                         <div className="chartWrapper">
                             <div className="chartAreaWrapper">
                                 <Bar
                                     data={cfg}
                                     options={options}
                                     id="levelerChar"
-                                    height="500"
+                                    height="350"
                                     width="0"
                                 />
                             </div>
                         </div>
-                    </Col>
-                </Row>
-                <Row className="justify-content-md-end">
-                    <Col xs="auto">
-                        <NavLink
-                            to="/leveler/progress"
-                            activeClassName="active"
-                            className="btn btn-primary"
-                        >
-                            Subir avance
-                        </NavLink>                        
-                    </Col>
-                </Row>
-            </Container>
-        );
-    }
-}
-
-export default LevelerChart;
+                    </Row>
+                </Col>
+            </Row>
+            <Row className="justify-content-md-end">
+                <Col xs="auto">
+                    <NavLink
+                        to="/leveler/progress"
+                        activeClassName="active"
+                        className="btn btn-primary"
+                    >
+                        Subir avance
+                    </NavLink>
+                </Col>
+            </Row>
+        </Container>
+    );
+};

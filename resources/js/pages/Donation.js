@@ -1,133 +1,118 @@
-import React, { useEffect } from "react";
-import { Container, Row, Col, Form, FormGroup, Label, Input } from "reactstrap";
-import toastr from "toastr";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Container, Table, Row, Col } from "react-bootstrap";
+import ModalDonation from "../components/ModalDonation";
 
-export default (props) => {
+function Donation(props) {
+    const [error, setError] = useState(null);
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [data, setData] = useState([]);
+
     useEffect(() => {
+        const fetchData = async () => {
+            const result = await axios
+                .get("/donation/list")
+                .then((response) => {
+                    setData(response.data);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        };
+        fetchData();
+
         if (props.refSidebar.current)
             props.refSidebar.current.style.display = "flex";
 
         if (props.refMainPanel.current)
-            props.refMainPanel.current.style.width = "calc(100% - 287px)";
-    });
-    const toastrShow = () => {
-        toastr.success(
-            "Gracias por su constribución, en breve se le contactará"
-        );
-    };
+            props.refMainPanel.current.style.width = "calc(100% - 256px)";
+    }, []);
+
+    const initialDb = [];
+    const [db, setDb] = useState(initialDb);
 
     return (
-        <Container>
+        <Container className="py-3 px-4">
             <Row>
                 <Col>
-                    <table className="table table-success table-striped table-hover table-bordered border-primary">
-                        <thead>
+                    {/* <table className="table table-success table-striped table-hover table-bordered border-primary"> */}
+                    <Table striped bordered hover>
+                        <thead className="table-primary">
                             <tr>
+                                {/* <th>#</th> */}
                                 <th>Nombre</th>
-                                <th>Email</th>
-                                <th>Teléfono</th>
+                                <th>Donación</th>
+                                <th>Detalles</th>
+                                <th>Mensaje opcional</th>
+                                <th>Destino</th>
+                                <th>Vuelto acumulado</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            {data.map((item) => {
+                                return (
+                                    <tr key={item.id}>
+                                        <td>{item.name}</td>
+                                        <td>{item.donation}</td>
+                                        <td>{item.detail}</td>
+                                        <td>{item.message_optional}</td>
+                                        <td>{item.destiny}</td>
+                                        <td>{item.accumulated_return}</td>
+                                    </tr>
+                                );
+                            })}
+                            {/* <tr>
+                                <th>1</th>
                                 <td>Pepe</td>
-                                <td>pepe@gmail.com</td>
-                                <td>76829301</td>
+                                <td>1 bicicleta</td>
+                                <td>Nueva</td>
+                                <td>Para Ramón</td>
+                                <td>Región 2</td>
+                                <td>0</td>
                             </tr>
                             <tr>
-                                <td>Roberto</td>
-                                <td>robert@gmail.com</td>
-                                <td>128303912</td>
+                                <th>2</th>
+                                <td>Pepe</td>
+                                <td>1 bicicleta</td>
+                                <td>Nueva</td>
+                                <td>Para Ramón</td>
+                                <td>Región 2</td>
+                                <td>0</td>
                             </tr>
+                            <tr>
+                                <th>3</th>
+                                <td>Pepe</td>
+                                <td>1 bicicleta</td>
+                                <td>Nueva</td>
+                                <td>Para Ramón</td>
+                                <td>Región 2</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <th>4</th>
+                                <td>Pepe</td>
+                                <td>1 bicicleta</td>
+                                <td>Nueva</td>
+                                <td>Para Ramón</td>
+                                <td>Región 2</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <th>5</th>
+                                <td>Pepe</td>
+                                <td>1 bicicleta</td>
+                                <td>Nueva</td>
+                                <td>Para Ramón</td>
+                                <td>Región 2</td>
+                                <td>0</td>
+                            </tr> */}
                         </tbody>
-                    </table>
+                    </Table>
                 </Col>
             </Row>
-            <Row className="justify-content-md-end">
-                <Col xs="auto">
-                    <button
-                        type="button"
-                        className="btn btn-primary"
-                        data-bs-toggle="modal"
-                        data-bs-target="#donation-modal"
-                    >
-                        Haz tu donación
-                    </button>
-                    <div
-                        className="modal fade"
-                        id="donation-modal"
-                        aria-hidden="true"
-                    >
-                        <div className="modal-dialog modal-sm">
-                            <div className="modal-content">
-                                <div className="modal-header">
-                                    <h5 className="modal-title">Donación</h5>
-                                    <button
-                                        type="button"
-                                        className="btn-close"
-                                        data-bs-dismiss="modal"
-                                        aria-label="Close"
-                                    ></button>
-                                </div>
-                                <div className="modal-body">
-                                    <Form>
-                                        <FormGroup className="mb-3">
-                                            <Label for="donation-name">
-                                                Nombre:
-                                            </Label>
-                                            <Input
-                                                type="text"
-                                                name="name"
-                                                id="donation-name"
-                                                placeholder="Nombre"
-                                            />
-                                        </FormGroup>
-                                        <FormGroup className="mb-3">
-                                            <Label for="donation-email">
-                                                Correo electrónico:
-                                            </Label>
-                                            <Input
-                                                type="email"
-                                                name="email"
-                                                id="donation-email"
-                                                placeholder="Correo electrónico"
-                                            />
-                                        </FormGroup>
-                                        <FormGroup className="mb-3">
-                                            <Label for="donation-phone">
-                                                Teléfono:
-                                            </Label>
-                                            <Input
-                                                type="phone"
-                                                name="phone"
-                                                id="donation-phone"
-                                                placeholder="Número de teléfono"
-                                            />
-                                        </FormGroup>
-                                    </Form>
-                                </div>
-                                <div className="modal-footer">
-                                    <button
-                                        type="button"
-                                        className="btn btn-primary"
-                                        data-bs-dismiss="modal"
-                                        onClick={toastrShow}
-                                    >
-                                        Enviar
-                                    </button>
-                                    <button
-                                        type="button"
-                                        className="btn btn-secondary"
-                                        data-bs-dismiss="modal"
-                                    >
-                                        Cancelar
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </Col>
-            </Row>
+            <ModalDonation />
         </Container>
     );
-};
+}
+
+export default Donation;

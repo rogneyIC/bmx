@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useLocation, NavLink } from "react-router-dom";
-import { Nav, NavItem } from "reactstrap";
 import sidebarImage from "../../img/sidebarFond.jpg";
 import logo from "../../img/logo-sidebar.svg";
+import { Image, Nav } from "react-bootstrap";
 
 export default (props) => {
     const location = useLocation();
@@ -21,12 +21,12 @@ export default (props) => {
                 <div className="logo d-flex align-items-center justify-content-center">
                     <div className="simple-text logo-mini mx-1">
                         <div className="logo-img">
-                            <img src={logo} alt="..." />
+                            <Image src={logo} fluid />
                         </div>
                     </div>
                 </div>
-                <Nav vertical className="pt-3 pb-3 px-4">
-                    <NavItem>
+                <Nav className="pt-3 pb-3 px-4 flex-column">
+                    <Nav.Item>
                         <NavLink
                             to="/home"
                             activeClassName="active"
@@ -34,17 +34,17 @@ export default (props) => {
                         >
                             Inicio
                         </NavLink>
-                    </NavItem>
-                    <NavItem>
+                    </Nav.Item>
+                    <Nav.Item>
                         <NavLink
                             to="/what"
                             activeClassName="active"
                             className="nav-link what"
                         >
-                            ¿Quiénes somos?
+                            ¿Qués es? ¿Cómo funciona?
                         </NavLink>
-                    </NavItem>
-                    <NavItem>
+                    </Nav.Item>
+                    <Nav.Item>
                         <NavLink
                             to="/donation"
                             activeClassName="active"
@@ -52,8 +52,8 @@ export default (props) => {
                         >
                             Donaciones
                         </NavLink>
-                    </NavItem>
-                    <NavItem>
+                    </Nav.Item>
+                    <Nav.Item>
                         <NavLink
                             to="/leveler"
                             activeClassName="active"
@@ -61,8 +61,8 @@ export default (props) => {
                         >
                             Nivelador
                         </NavLink>
-                    </NavItem>
-                    <NavItem>
+                    </Nav.Item>
+                    <Nav.Item>
                         <NavLink
                             to="/trip"
                             activeClassName="active"
@@ -70,8 +70,8 @@ export default (props) => {
                         >
                             TRIP
                         </NavLink>
-                    </NavItem>
-                    <NavItem>
+                    </Nav.Item>
+                    <Nav.Item>
                         <NavLink
                             to="/datatec"
                             activeClassName="active"
@@ -79,7 +79,7 @@ export default (props) => {
                         >
                             Datos técnicos
                         </NavLink>
-                    </NavItem>
+                    </Nav.Item>
                 </Nav>
             </div>
         </div>
