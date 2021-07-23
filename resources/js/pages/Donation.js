@@ -1,7 +1,6 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Container, Table, Row, Col } from "react-bootstrap";
-import ModalDonation from "../components/ModalDonation";
+import ModalDonation from "../components/modal/ModalDonation";
 import crud from "../components/Crud";
 
 export default (props) => {
@@ -12,6 +11,9 @@ export default (props) => {
             const res = await crud.listDonation(true);
             setData(res);
         };
+        /* setInterval(function () {
+             fetchData();
+         }, 10000);*/
         fetchData();
 
         if (props.refSidebar.current)
@@ -28,11 +30,9 @@ export default (props) => {
         <Container className="py-3 px-4">
             <Row>
                 <Col>
-                    {/* <table className="table table-success table-striped table-hover table-bordered border-primary"> */}
                     <Table striped bordered hover>
                         <thead className="table-primary">
                             <tr>
-                                {/* <th>#</th> */}
                                 <th>Nombre</th>
                                 <th>Donación</th>
                                 <th>Detalles</th>
@@ -58,6 +58,13 @@ export default (props) => {
                     </Table>
                 </Col>
             </Row>
+            {data.length == 0 ? (
+                <Row>
+                    <Col className="text-center">
+                        <h4>No existen donaciones</h4>
+                    </Col>
+                </Row>
+            ) : null}
             <ModalDonation user_id={props.user_id} />
         </Container>
     );

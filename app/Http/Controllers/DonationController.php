@@ -16,6 +16,7 @@ class DonationController extends Controller
     public function index(Request  $request)
     {
         return Donation::join('users', 'donations.user_id', '=', 'users.id')
+            ->select('donations.*', 'users.*', 'donations.id as donation_id')
             ->where('donations.accepted', $request->accepted ? true : false)
             ->get();
     }
@@ -29,13 +30,13 @@ class DonationController extends Controller
     public function store(Request $request)
     {
         try {
-            $donation = new Donation;
-            $donation->user_id = $request['user_id'];
-            $donation->donation = $request['donation'];
-            $donation->detail = $request['detail'];
-            $donation->message_optional = $request['message'];
-            $donation->accepted = false;
-            $donation->save();
+            Donation::create([
+                'user_id' => $request['user_id'],
+                'donation' => $request['donation'],
+                'detail' => $request['detail'],
+                'message_optional' => $request['message'],
+                'accepted' => false
+            ]);
             $response['success'] = true;
         } catch (\Exception $e) {
             $response['error'] = $e->getMessage();
@@ -45,47 +46,47 @@ class DonationController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Donation  $donation
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Donation $donation)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Donation  $donation
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Donation $donation)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Donation  $donation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Donation $donation)
+    public function update(Request $request)
     {
-        //
+        try {
+            $data = [
+                'donation' => $request['donation'],
+                'detail' => $request['detail'],
+                'message_optional' => $request['message'],
+                'destiny' => $request['destiny'],
+                'accumulated_return' => $request['accumulated'],
+                'accepted' => true,
+            ];
+            Donation::where('id', $request['id'])->update($data);
+            $response['success'] = true;
+        } catch (\Exception $e) {
+            $response['error'] = $e->getMessage();
+            $response['success'] = false;
+        }
+        return $response;
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Donation  $donation
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Donation $donation)
+    public function delete(Request $request)
     {
-        //
+        try {
+            Donation::destroy($request['id']);
+            Donation::truncate();
+            $response['success'] = true;
+        } catch (\Exception $e) {
+            $response['error'] = $e->getMessage();
+            $response['success'] = false;
+        }
+        return $response;
     }
 }

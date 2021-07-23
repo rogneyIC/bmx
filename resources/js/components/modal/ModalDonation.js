@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Button, Col, Form, Modal, Row } from "react-bootstrap";
 import toastr from "toastr";
 
@@ -21,7 +21,6 @@ export default (props) => {
         await axios
             .post("/donation/store", data)
             .then((response) => {
-                console.log(response);
                 handleClose();
                 toastr.success(
                     "Gracias por su constribución, en breve se le contactará"
@@ -56,8 +55,7 @@ export default (props) => {
                                 <Form.Group className="mb-3 col">
                                     <Form.Label>Donación:</Form.Label>
                                     <Form.Control
-                                        as="textarea"
-                                        rows={3}
+                                        type="text"
                                         name="donation"
                                         onChange={(event) =>
                                             setDonation(event.target.value)

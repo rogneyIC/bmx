@@ -31,3 +31,5 @@ Route::post('/donation/list', [App\Http\Controllers\DonationController::class, '
 Route::post('/user/list', [App\Http\Controllers\UserController::class, 'index']);
 
 Route::post('/donation/store', [App\Http\Controllers\DonationController::class, 'store']);
+Route::post('/donation/update', [App\Http\Controllers\DonationController::class, 'update']);
+Route::post('/donation/delete', [App\Http\Controllers\DonationController::class, 'delete']);
