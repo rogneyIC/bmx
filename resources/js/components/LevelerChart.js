@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Bar } from "react-chartjs-2";
 import {
     Container,
@@ -24,22 +24,22 @@ export default () => {
         const dataArray = [];
 
         const colorArray = [
-            "blue",
-            "red",
-            "green",
-            "yellow",
-            "brown",
-            "pink",
-            "grey",
-            "indigo",
-            "darkslategrey",
-            "violet",
-            "cyan",
-            "salmon",
-            "khaki",
-            "lime",
-            "orange",
-            "tomato",
+            "rgb(247,156,145)",
+            "rgb(253,196,149)",
+            "rgb(223,208,135)",
+            "rgb(249,219,26)",
+            "rgb(224,165,35)",
+            "rgb(250,220,177)",
+            "rgb(192,192,192)",
+            "rgb(236,240,129)",
+            "rgb(144,173,132)",
+            "rgb(180,205,86)",
+            "rgb(49,204,50)",
+            "rgb(68,167,39)",
+            "rgb(0,121,0)",
+            "rgb(220,183,249)",
+            "rgb(162,165,248)",
+            "rgb(19,155,227)",
         ];
 
         const backgroundColor = [];
@@ -49,7 +49,7 @@ export default () => {
                     backgroundColor.push(colorArray[index2]);
                 }
             });
-            labelArray.push(val.user_name + "/" + val.user_age);
+            labelArray.push(val.user_name + " / " + val.user_age + "años");
             dataArray.push(val.user_point);
         });
 
@@ -57,7 +57,7 @@ export default () => {
             labels: labelArray,
             datasets: [
                 {
-                    dataResponse: dataArray,
+                    data: dataArray,
                     backgroundColor: backgroundColor,
                 },
             ],
@@ -66,7 +66,7 @@ export default () => {
         const options = {
             plugins: {
                 legend: {
-                    display: false,
+                    display: true,
                 },
             },
             scales: {
@@ -77,28 +77,23 @@ export default () => {
                         },
                     },
                 ],
-            },
-            animation: {
-                onComplete: function () {
-                    {
-                        //
-                    }
-                },
-            },
+            }
         };
 
         return [cfg, options];
     };
 
-    useEffect(() => {
-        const ac = new AbortController();
+    const refChart = useRef();
 
+    useEffect(() => {
         const fetchData = async () => {
             await axios
                 .post("/user/list")
                 .then((response) => {
                     setData(config(response.data));
                     setIsLoaded(true);
+                    //console.log(refChart.current.legend);
+                    //refChart.current.chart.chartInstance.generateLegend();
                 })
                 .catch((error) => {
                     setError(error);
@@ -187,6 +182,7 @@ export default () => {
                                     id="levelerChar"
                                     height="350"
                                     width="0"
+                                    ref={refChart}
                                 />
                             </div>
                         </div>

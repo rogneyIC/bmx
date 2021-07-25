@@ -30,6 +30,7 @@
         "@popperjs/core": "^2.9.2",
         "bootstrap": "^5.0.2",
         "chart.js": "^3.4.1",
+        "html-react-parser": "^1.2.7",
         "moment": "^2.29.1",
         "react-bootstrap": "^1.6.1",
         "react-chartjs-2": "^3.0.3",

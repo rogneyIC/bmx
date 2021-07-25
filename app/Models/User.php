@@ -29,6 +29,7 @@ class User extends Authenticatable
         'user_facebook',
         'user_photo',
         'user_point',
+        'user_category',
     ];
 
     /**

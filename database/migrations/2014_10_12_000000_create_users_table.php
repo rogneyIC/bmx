@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->string('user_facebook')->nullable();
             $table->string('user_photo')->nullable();
             $table->integer('user_point');
+            $table->string('user_category');
             $table->rememberToken();
             $table->timestamps();
         });

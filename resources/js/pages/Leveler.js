@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import LevelerChart from "../components/LevelerChart";
+import Chart from "../components/Chart";
 import Progress from "../components/Progress";
 import { Switch, Route } from "react-router-dom";
 
@@ -13,7 +13,7 @@ export default (props) => {
     }, []);
     return (
         <Switch>
-            <Route exact path="/leveler" component={LevelerChart} />
+            <Route exact path="/leveler" component={Chart} />
             <Route path="/leveler/progress" component={Progress} />
         </Switch>
     );
