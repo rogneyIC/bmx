@@ -31,7 +31,32 @@ class UserController extends Controller
         $user =  User::join('role_user', 'users.id', '=', 'role_user.user_id')
             ->where('role_user.role_id', 2);
 
-        /* age */
+        switch ($request['option']) {
+            case 'region':
+                $user->whereIn('user_region', $request['region']);
+                break;
+            case 'category':
+                $user->whereIn('user_category', $request['category']);
+                break;
+            case 'age':
+                switch ($request['age']) {
+                    case 1:
+                        $user->where('user_age', '<', 13);
+                        break;
+                    case 2:
+                        $user->whereIn('user_age', [13, 14, 15, 16, 17]);
+                        break;
+                    case 3:
+                        $user->whereIn('user_age', [18, 19, 20, 21, 22, 23, 24]);
+                        break;
+                    case 4:
+                        $user->where('user_age', '>', 24);
+                        break;
+                }
+                break;
+        }
+
+        /* age 
         if ($request['age'][0]) {
             $user->where('user_age', '<', 13);
         } else if ($request['age'][1]) {
@@ -40,18 +65,18 @@ class UserController extends Controller
             $user->whereIn('user_age', [18, 19, 20, 21, 22, 23, 24]);
         } else if ($request['age'][3]) {
             $user->where('user_age', '>', 24);
-        }
+        }*/
 
 
-        /* region */
+        /* region 
         if (count($request['region']) > 0) {
             $user->whereIn('user_region', $request['region']);
-        }
+        }*/
 
-        /* category */
+        /* category 
         if (count($request['category']) > 0) {
             $user->whereIn('user_category', $request['category']);
-        }
+        }*/
 
         $user->orderBy('user_region');
         return $user->get();

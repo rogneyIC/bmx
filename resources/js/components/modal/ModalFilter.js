@@ -179,7 +179,6 @@ export default (props) => {
         await axios
             .post("/user/filter", data)
             .then((response) => {
-                console.log(config(response.data));
                 props.chartInstance.data = config(response.data);
                 props.chartInstance.update();
                 handleClose();

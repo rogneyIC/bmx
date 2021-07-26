@@ -61,6 +61,7 @@ function Dashboard() {
                             {...props}
                             refSidebar={refSidebar}
                             refMainPanel={refMainPanel}
+                            user_id={user.id}
                         />
                     )}
                 />

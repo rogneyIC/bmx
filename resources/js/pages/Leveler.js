@@ -13,7 +13,11 @@ export default (props) => {
     }, []);
     return (
         <Switch>
-            <Route exact path="/leveler" component={Chart} />
+            <Route
+                exact
+                path="/leveler"
+                render={() => <Chart user_id={props.user_id} />}
+            />
             <Route path="/leveler/progress" component={Progress} />
         </Switch>
     );

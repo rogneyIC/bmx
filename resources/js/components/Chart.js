@@ -1,18 +1,24 @@
 import React, { useEffect, useRef, useState } from "react";
 import Chart from "chart.js/auto";
 import {
+    Button,
     Col,
     Container,
     Dropdown,
-    DropdownButton,
+    FormControl,
     Image,
+    InputGroup,
     Row,
 } from "react-bootstrap";
 import img_chart from "../../img/img-chart.jpg";
 import ModalFilter from "./modal/ModalFilter";
+import ModalFilterRegion from "./modal/ModalFilterRegion";
+import ModalFilterCategory from "./modal/ModalFilterCategory";
+import { FaFilter } from "react-icons/fa";
 
-export default () => {
+export default (props) => {
     const chartContainer = useRef(null);
+    const [fieldset, setFieldset] = useState(true);
     const [chartInstance, setChartInstance] = useState(null);
     const [data, setData] = useState([]);
     const [age, setAge] = useState(null);
@@ -47,7 +53,13 @@ export default () => {
                     backgroundColor.push(colorArray[index2]);
                 }
             });
-            labelArray.push(val.user_name + " / " + val.user_age + "años");
+            props.user_id == val.user_id
+                ? labelArray.push(
+                      "* " + val.user_name + " / " + val.user_age + "años *"
+                  )
+                : labelArray.push(
+                      val.user_name + " / " + val.user_age + "años"
+                  );
             dataArray.push(val.user_point);
         });
 
@@ -87,6 +99,9 @@ export default () => {
                                         },
                                     ],
                                 },
+                                animation: {
+                                    onComplete: function (e) {},
+                                },
                             },
                         };
                         const newChartInstance = new Chart(
@@ -107,10 +122,26 @@ export default () => {
         }
     }, [chartContainer]);
 
-    const sendData = async (value) => {
-        const data = { option: "age", age: value };
+    const activeFilter = async () => {
+        if (fieldset) {
+            setFieldset(false);
+        } else {
+            await axios
+                .post("/user/filter", { option: "all" })
+                .then((response) => {
+                    chartInstance.data = config(response.data);
+                    chartInstance.update();
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+            setFieldset(true);
+        }
+    };
+
+    const filterAge = async (value) => {
         await axios
-            .post("/user/filter", data)
+            .post("/user/filter", { option: "age", age: value })
             .then((response) => {
                 chartInstance.data = config(response.data);
                 chartInstance.update();
@@ -129,8 +160,59 @@ export default () => {
                 <Col xs={10} className="align-self-end">
                     <Row className="justify-content-md-end">
                         <Col xs={2} className="text-end">
-                            <ModalFilter chartInstance={chartInstance} />
+                            {/* <InputGroup>
+                                <InputGroup.Text>
+                                    <FaFilter />
+                                </InputGroup.Text>
+                                <FormControl placeholder="Filtrar:" disabled />
+                            </InputGroup> */}
+                            <Button variant="primary" onClick={activeFilter}>
+                                <FaFilter />
+                                {" Filtrar"}
+                            </Button>
                         </Col>
+                        <Col>
+                            <fieldset disabled={fieldset} className="row">
+                                <Col xs={2} className="d-grid">
+                                    <ModalFilterRegion
+                                        chartInstance={chartInstance}
+                                    />
+                                </Col>
+                                <Col xs={2} className="d-grid">
+                                    <ModalFilterCategory
+                                        chartInstance={chartInstance}
+                                    />
+                                </Col>
+                                <Col xs={2}>
+                                    <Dropdown
+                                        className="d-grid"
+                                        onSelect={filterAge}
+                                    >
+                                        <Dropdown.Toggle variant="primary">
+                                            {"Edad"}
+                                        </Dropdown.Toggle>
+
+                                        <Dropdown.Menu>
+                                            <Dropdown.Item eventKey="1">
+                                                {"menor de 13 años"}
+                                            </Dropdown.Item>
+                                            <Dropdown.Item eventKey="2">
+                                                {"13-17 años"}
+                                            </Dropdown.Item>
+                                            <Dropdown.Item eventKey="3">
+                                                {"13-24 años"}
+                                            </Dropdown.Item>
+                                            <Dropdown.Item eventKey="4">
+                                                {"mayor de 24 años"}
+                                            </Dropdown.Item>
+                                        </Dropdown.Menu>
+                                    </Dropdown>
+                                </Col>
+                            </fieldset>
+                        </Col>
+                        {/* <Col xs={2} className="text-end">
+                            <ModalFilter chartInstance={chartInstance} />
+                        </Col> */}
                     </Row>
                     <Row>
                         <Col>
