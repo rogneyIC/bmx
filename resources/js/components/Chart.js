@@ -11,10 +11,11 @@ import {
     Row,
 } from "react-bootstrap";
 import img_chart from "../../img/img-chart.jpg";
-import ModalFilter from "./modal/ModalFilter";
+//import ModalFilter from "./modal/ModalFilter";
 import ModalFilterRegion from "./modal/ModalFilterRegion";
 import ModalFilterCategory from "./modal/ModalFilterCategory";
 import { FaFilter } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
 
 export default (props) => {
     const chartContainer = useRef(null);
@@ -49,18 +50,14 @@ export default (props) => {
         let backgroundColor = [];
         dataResponse.forEach(function (val, index, array) {
             colorArray.forEach(function (val2, index2, array2) {
-                if (val.user_region == index2 + 1) {
+                if (val.region == index2 + 1) {
                     backgroundColor.push(colorArray[index2]);
                 }
             });
             props.user_id == val.user_id
-                ? labelArray.push(
-                      "* " + val.user_name + " / " + val.user_age + "años *"
-                  )
-                : labelArray.push(
-                      val.user_name + " / " + val.user_age + "años"
-                  );
-            dataArray.push(val.user_point);
+                ? labelArray.push("* " + val.name + " / " + val.age + "años *")
+                : labelArray.push(val.name + " / " + val.age + "años");
+            dataArray.push(val.point);
         });
 
         return {
@@ -131,11 +128,11 @@ export default (props) => {
                 .then((response) => {
                     chartInstance.data = config(response.data);
                     chartInstance.update();
+                    setFieldset(true);
                 })
                 .catch((error) => {
                     console.log(error);
                 });
-            setFieldset(true);
         }
     };
 
@@ -221,6 +218,17 @@ export default (props) => {
                             </div>
                         </Col>
                     </Row>
+                </Col>
+            </Row>
+            <Row className="justify-content-md-end">
+                <Col xs="auto">
+                    <NavLink
+                        to="/leveler/progress"
+                        activeClassName="active"
+                        className="btn btn-primary"
+                    >
+                        {"Subir avance"}
+                    </NavLink>
                 </Col>
             </Row>
         </Container>

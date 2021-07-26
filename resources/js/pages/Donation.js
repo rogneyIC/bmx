@@ -45,7 +45,7 @@ export default (props) => {
                             {data.map((item) => {
                                 return (
                                     <tr key={item.id}>
-                                        <td>{item.user_name}</td>
+                                        <td>{item.name}</td>
                                         <td>{item.donation}</td>
                                         <td>{item.detail}</td>
                                         <td>{item.message_optional}</td>

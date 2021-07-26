@@ -47,7 +47,7 @@ export default (props) => {
         axios.post("/logout").then(() => (location.href = "/"));
     };
 
-    const srcImg = "/images/avatars/" + props.user.user_photo;
+    const srcImg = "/images/avatars/" + props.user.photo;
 
     return (
         <Navbar bg="dark" variant="dark" sticky="top">
@@ -117,7 +117,7 @@ export default (props) => {
                                 />
                                 <div className="media-body ms-2 text-white align-items-center d-none d-lg-block">
                                     <span className="mb-0 font-small fw-bold">
-                                        {props.user.user_name}
+                                        {props.user.name}
                                     </span>
                                 </div>
                             </div>

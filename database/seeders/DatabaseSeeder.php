@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Role;
 use App\Models\Donation;
+use App\Models\Progress;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,9 +19,10 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(RoleTableSeeder::class);
         $this->call(UserSeeder::class);
-        User::factory(20)
+        User::factory(100)
             ->hasAttached(Role::where('name', 'user')->first())
             // ->has(Donation::factory(1))
+            ->has(Progress::factory(1))
             ->create();
     }
 }

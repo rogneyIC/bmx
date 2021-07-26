@@ -15,7 +15,7 @@
                                 <label for="email" class="form-label">{{ __('Correo electrónico') }}</label>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="emailIcon"><i class="fas fa-envelope"></i></span>
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus aria-describedby="emailIcon">
+                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autofocus aria-describedby="emailIcon">
                                     @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -25,7 +25,7 @@
                                 <label for="password" class="form-label">{{ __('Contraseña') }}</label>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="passwordIcon"><i class="fas fa-lock"></i></span>
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" aria-describedby="passwordIcon">
+                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required aria-describedby="passwordIcon">
                                     @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

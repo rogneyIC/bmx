@@ -20,12 +20,12 @@ export default (props) => {
         let backgroundColor = [];
         dataResponse.forEach(function (val, index, array) {
             colorArray.forEach(function (val2, index2, array2) {
-                if (val.user_region == index2 + 1) {
+                if (val.region == index2 + 1) {
                     backgroundColor.push(colorArray[index2]);
                 }
             });
-            labelArray.push(val.user_name + " / " + val.user_age + "años");
-            dataArray.push(val.user_point);
+            labelArray.push(val.name + " / " + val.age + "años");
+            dataArray.push(val.point);
         });
 
         return {

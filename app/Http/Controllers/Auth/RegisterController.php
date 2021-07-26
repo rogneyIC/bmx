@@ -51,7 +51,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'user_name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -66,16 +66,16 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $user = User::create([
-            'user_name' => $data['user_name'],
+            'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'user_age' => $data['user_age'],
-            'user_phone' => $data['user_phone'],
-            'user_region' => $data['user_region'],
-            'user_instagram' => $data['user_instagram'],
-            'user_facebook' => $data['user_facebook'],
-            'user_photo' => $data['user_photo'],
-            'user_point' => 0,
+            'age' => $data['age'],
+            'phone' => $data['phone'],
+            'region' => $data['region'],
+            'instagram' => $data['instagram'],
+            'facebook' => $data['facebook'],
+            'photo' => $data['photo'],
+            'point' => 0,
         ]);
 
         $user->roles()->attach(Role::where('name', 'user')->first());

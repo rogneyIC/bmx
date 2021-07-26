@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Role;
 use App\Models\Donation;
+use App\Models\Progress;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -19,17 +20,18 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'user_name',
+        'name',
         'email',
         'password',
-        'user_age',
-        'user_phone',
-        'user_region',        
-        'user_instagram',
-        'user_facebook',
-        'user_photo',
-        'user_point',
-        'user_category',
+        'age',
+        'phone',
+        'region',        
+        'instagram',
+        'facebook',
+        'photo',
+        'point',
+        'category',
+        'competitor',
     ];
 
     /**
@@ -54,6 +56,11 @@ class User extends Authenticatable
     public function donations()
     {
         return $this->hasMany(Donation::class);
+    }
+
+    public function progress()
+    {
+        return $this->hasOne(Progress::class);
     }
 
     public function roles()

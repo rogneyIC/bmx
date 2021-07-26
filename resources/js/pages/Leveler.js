@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Chart from "../components/Chart";
-import Progress from "../components/Progress";
+import Progress from "./Progress";
 import { Switch, Route } from "react-router-dom";
 
 export default (props) => {

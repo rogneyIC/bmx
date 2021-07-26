@@ -16,9 +16,9 @@ export default (props) => {
     const [message, setMessage] = useState("");
 
     const onShow = () => {
-        setName(props.props.user_name);
-        setPhone(props.props.user_phone);
-        setInstagram(props.props.user_instagram);
+        setName(props.props.name);
+        setPhone(props.props.phone);
+        setInstagram(props.props.instagram);
         setDonation(props.props.donation);
         setDetail(props.props.detail);
         setMessage(

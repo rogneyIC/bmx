@@ -23,18 +23,19 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'user_name' => $this->faker->name(),
+            'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'user_age' => $this->faker->numberBetween(15, 35),
-            'user_phone' => $this->faker->phoneNumber(),
-            'user_region' => $this->faker->numberBetween(1, 16),
-            'user_instagram' => $this->faker->lexify('instagram-????'),
-            'user_facebook' => $this->faker->lexify('facebook-????'),
-            'user_photo' => '../default-avatar.png',
-            'user_point' => $this->faker->numberBetween(0, 100),
-            'user_category' => 'iniciante',
+            'age' => $this->faker->numberBetween(15, 35),
+            'phone' => $this->faker->phoneNumber(),
+            'region' => $this->faker->numberBetween(1, 16),
+            'instagram' => $this->faker->lexify('instagram-????'),
+            'facebook' => $this->faker->lexify('facebook-????'),
+            'photo' => '../default-avatar.png',
+            'point' => $this->faker->numberBetween(0, 100),
+            'category' => 'iniciante',
+            'competitor' => false,
             'remember_token' => Str::random(10),
         ];
     }
