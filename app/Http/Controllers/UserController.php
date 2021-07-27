@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Progress;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -10,14 +11,15 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request  $request)
     {
-        return User::join('role_user', 'users.id', '=', 'role_user.user_id')
+        return [User::join('role_user', 'users.id', '=', 'role_user.user_id')
             ->where('role_user.role_id', 2)
             ->orderBy('region')
-            ->get();
+            ->get(), count(Progress::where('user_id', $request['id'])->get()) == 0 ? false : true];
     }
 
     /**

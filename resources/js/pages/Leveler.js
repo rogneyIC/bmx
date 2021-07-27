@@ -16,9 +16,15 @@ export default (props) => {
             <Route
                 exact
                 path="/leveler"
-                render={() => <Chart user_id={props.user_id} />}
+                render={() => (
+                    <Chart user_id={props.user_id} role={props.role} />
+                )}
             />
-            <Route path="/leveler/progress" component={Progress} />
+
+            <Route
+                path="/leveler/progress"
+                render={() => <Progress user_id={props.user_id} />}
+            />
         </Switch>
     );
 };

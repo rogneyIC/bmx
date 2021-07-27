@@ -30,7 +30,7 @@ export default (props) => {
                         <div className="d-flex justify-content-between align-items-center">
                             <div>
                                 <h6 className="mb-0 text-small">
-                                    {props.user_name}
+                                    {props.name}
                                 </h6>
                             </div>
                             <div className="text-end">

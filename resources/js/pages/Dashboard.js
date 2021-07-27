@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import { Route, BrowserRouter as Router } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
@@ -15,6 +15,19 @@ function Dashboard() {
     const role = document.getElementById("main").dataset.role;
     const refSidebar = useRef();
     const refMainPanel = useRef();
+    const [competitor, setCompetitor] = useState(false);
+
+    useEffect(async () => {
+        await axios
+            .post("/progress/competitor", { id: user.id })
+            .then((response) => {
+                if (response.data.length > 0) setCompetitor(true);
+            })
+            .catch((error) => {
+                //setError(error);
+                console.log(error);
+            });
+    }, []);
 
     return (
         <Router>
@@ -62,6 +75,8 @@ function Dashboard() {
                             refSidebar={refSidebar}
                             refMainPanel={refMainPanel}
                             user_id={user.id}
+                            competitor={competitor}
+                            role={role}
                         />
                     )}
                 />

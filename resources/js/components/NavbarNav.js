@@ -10,22 +10,24 @@ import {
     NavItem,
 } from "react-bootstrap";
 import crud from "./Crud";
-import NotificationDonation from "./NotificationDonation";
 import toastr from "toastr";
+import NotificationDonation from "./NotificationDonation";
+import NotificationProgress from "./NotificationProgress";
 
 export default (props) => {
-    const [data, setData] = useState([]);
+    const [listDonation, setListDonation] = useState([]);
+    const [listProgress, setListProgress] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
-            const res = await crud.listDonation(false);
-            setData(res);
+            setListDonation(await crud.listDonation(false));
+            setListProgress(await crud.listProgress(false));
         };
         setInterval(function () {
             fetchData();
         }, 5000);
         return () => {
-            setData([]);
+            setListDonation([]);
         };
     }, []);
 
@@ -33,15 +35,25 @@ export default (props) => {
         toastr.info("No existen donaciones pendientes");
     };
 
-    const areNotificationsRead = data.reduce(
+    const notProgress = () => {
+        toastr.info("No existen progresos de usuarios pendientes");
+    };
+
+    const areNotificationsRead = listDonation.reduce(
         (acc, notif) => acc && notif.read,
         true
     );
-    const markNotificationsAsRead = () => {
+
+    const areNotificationsProgressRead = listProgress.reduce(
+        (acc, notif) => acc && notif.read,
+        true
+    );
+
+    /*const markNotificationsAsRead = () => {
         setTimeout(() => {
-            setData(data.map((n) => ({ ...n, read: true })));
+            setListDonation(listDonation.map((n) => ({ ...n, read: true })));
         }, 1000);
-    };
+    };*/
 
     const handleLogout = () => {
         axios.post("/logout").then(() => (location.href = "/"));
@@ -54,7 +66,7 @@ export default (props) => {
             <Container fluid className="justify-content-end">
                 <Nav className="align-items-center">
                     {props.role == "admin" ? (
-                        data.length == 0 ? (
+                        listDonation.length == 0 ? (
                             <NavItem
                                 className="icon-notifications me-lg-2 only-icon"
                                 onClick={notDonation}
@@ -86,22 +98,61 @@ export default (props) => {
                                             Donaciones pendintes
                                         </ListGroup.Item>
 
-                                        {data.map((n) => (
+                                        {listDonation.map((n) => (
                                             <NotificationDonation
                                                 key={n.donation_id}
                                                 {...n}
                                             />
                                         ))}
 
-                                        {data.length != 0 ? (
-                                            <Dropdown.Item className="text-center text-primary fw-bold py-3">
-                                                Ver todas
-                                            </Dropdown.Item>
-                                        ) : (
-                                            <ListGroup.Item className="text-center text-primary fw-bold py-3">
-                                                No hay donaciones pendientes
-                                            </ListGroup.Item>
+                                        <Dropdown.Item className="text-center text-primary fw-bold py-3">
+                                            Ver todas
+                                        </Dropdown.Item>
+                                    </ListGroup>
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        )
+                    ) : null}
+
+                    {props.role == "admin" ? (
+                        listProgress.length == 0 ? (
+                            <NavItem
+                                className="icon-notifications me-lg-2 only-icon"
+                                onClick={notProgress}
+                            >
+                                <span className="icon icon-sm">
+                                    <FaIcons.FaDonate color="white" />
+                                </span>
+                            </NavItem>
+                        ) : (
+                            <Dropdown as={Nav.Item}>
+                                <Dropdown.Toggle
+                                    as={Nav.Link}
+                                    className="icon-notifications me-lg-2"
+                                >
+                                    <span className="icon icon-sm">
+                                        <FaIcons.FaDonate color="white" />
+                                        {areNotificationsProgressRead ? null : (
+                                            <span className="icon-badge rounded-circle unread-notifications" />
                                         )}
+                                    </span>
+                                </Dropdown.Toggle>
+                                <Dropdown.Menu className="notification-dropdown py-0 mt-2">
+                                    <ListGroup className="list-group-flush">
+                                        <ListGroup.Item className="text-center text-primary fw-bold py-3">
+                                            Progresos de usuarios pendintes
+                                        </ListGroup.Item>
+
+                                        {listProgress.map((n) => (
+                                            <NotificationProgress
+                                                key={n.progress_id}
+                                                {...n}
+                                            />
+                                        ))}
+
+                                        <Dropdown.Item className="text-center text-primary fw-bold py-3">
+                                            Ver todas
+                                        </Dropdown.Item>
                                     </ListGroup>
                                 </Dropdown.Menu>
                             </Dropdown>

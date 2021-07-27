@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         User::factory(100)
             ->hasAttached(Role::where('name', 'user')->first())
             // ->has(Donation::factory(1))
-            ->has(Progress::factory(1))
+            //->has(Progress::factory(1))
             ->create();
     }
 }

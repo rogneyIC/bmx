@@ -20,9 +20,10 @@ class Progress extends Model
         'trick',
         'link',
         'point',
+        'accepted'
     ];
 
     protected $casts = [
-        'trick' => AsArrayObject::class,
+        'trick' => 'array',
     ];
 }

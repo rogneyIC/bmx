@@ -30,6 +30,12 @@ Route::get('/leveler/progress', [App\Http\Controllers\HomeController::class, 'in
 Route::post('/user/list', [App\Http\Controllers\UserController::class, 'index']);
 Route::post('/user/filter', [App\Http\Controllers\UserController::class, 'filter']);
 
+Route::post('/progress/competitor', [App\Http\Controllers\ProgressController::class, 'isCompetitor']);
+Route::post('/progress/list', [App\Http\Controllers\ProgressController::class, 'index']);
+Route::post('/progress/store', [App\Http\Controllers\ProgressController::class, 'store']);
+Route::post('/progress/update', [App\Http\Controllers\ProgressController::class, 'update']);
+Route::post('/progress/delete', [App\Http\Controllers\ProgressController::class, 'delete']);
+
 Route::post('/donation/list', [App\Http\Controllers\DonationController::class, 'index']);
 Route::post('/donation/store', [App\Http\Controllers\DonationController::class, 'store']);
 Route::post('/donation/update', [App\Http\Controllers\DonationController::class, 'update']);

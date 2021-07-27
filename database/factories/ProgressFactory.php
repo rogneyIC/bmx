@@ -25,6 +25,7 @@ class ProgressFactory extends Factory
             'trick' => "{[truco1, truco2, truco3]}",
             'link' => "link_default",
             'point' => 0,
+            'accepted' => false,
         ];
     }
 }

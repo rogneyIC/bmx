@@ -76,6 +76,8 @@ class RegisterController extends Controller
             'facebook' => $data['facebook'],
             'photo' => $data['photo'],
             'point' => 0,
+            'category' => 'iniciante',
+            'competitor' => false,
         ]);
 
         $user->roles()->attach(Role::where('name', 'user')->first());

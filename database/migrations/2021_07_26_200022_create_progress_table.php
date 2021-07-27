@@ -16,9 +16,10 @@ class CreateProgressTable extends Migration
         Schema::create('progress', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->json('trick');
-            $table->string('link');
+            $table->json('trick')->nullable();
+            $table->string('link')->nullable();
             $table->integer('point');
+            $table->boolean('accepted');
             $table->timestamps();
             $table->foreign('user_id')
                 ->references('id')

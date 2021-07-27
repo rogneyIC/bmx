@@ -5,9 +5,7 @@ import {
     Col,
     Container,
     Dropdown,
-    FormControl,
     Image,
-    InputGroup,
     Row,
 } from "react-bootstrap";
 import img_chart from "../../img/img-chart.jpg";
@@ -16,13 +14,14 @@ import ModalFilterRegion from "./modal/ModalFilterRegion";
 import ModalFilterCategory from "./modal/ModalFilterCategory";
 import { FaFilter } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
+import toastr from "toastr";
 
 export default (props) => {
     const chartContainer = useRef(null);
     const [fieldset, setFieldset] = useState(true);
     const [chartInstance, setChartInstance] = useState(null);
     const [data, setData] = useState([]);
-    const [age, setAge] = useState(null);
+    const [competitor, setCompetitor] = useState(true);
 
     const config = (dataResponse) => {
         let labelArray = [];
@@ -75,12 +74,13 @@ export default (props) => {
         if (chartContainer && chartContainer.current) {
             const fetchData = async () => {
                 await axios
-                    .post("/user/list")
+                    .post("/user/list", { id: props.user_id })
                     .then((response) => {
-                        setData(response.data);
+                        setData(response.data[0]);
+                        setCompetitor(response.data[1]);
                         const chartConfig = {
                             type: "bar",
-                            data: config(response.data),
+                            data: config(response.data[0]),
                             options: {
                                 plugins: {
                                     legend: {
@@ -148,6 +148,18 @@ export default (props) => {
             });
     };
 
+    const makeCompetitor = async () => {
+        await axios
+            .post("/progress/store", { user_id: props.user_id })
+            .then((response) => {
+                setCompetitor(true);
+                toastr.success("Felicidades, ahora usted es un competidor");
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
     return (
         <Container className="py-3 px-4 leveler">
             <Row>
@@ -156,31 +168,35 @@ export default (props) => {
                 </Col>
                 <Col xs={10} className="align-self-end">
                     <Row className="justify-content-md-end">
+                        {!competitor && props.role != "admin" ? (
+                            <Col xs={3} className="text-end">
+                                <Button
+                                    variant="primary"
+                                    onClick={makeCompetitor}
+                                >
+                                    {"Hazme competidor"}
+                                </Button>
+                            </Col>
+                        ) : null}
                         <Col xs={2} className="text-end">
-                            {/* <InputGroup>
-                                <InputGroup.Text>
-                                    <FaFilter />
-                                </InputGroup.Text>
-                                <FormControl placeholder="Filtrar:" disabled />
-                            </InputGroup> */}
                             <Button variant="primary" onClick={activeFilter}>
                                 <FaFilter />
                                 {" Filtrar"}
                             </Button>
                         </Col>
-                        <Col>
+                        <Col xs={7}>
                             <fieldset disabled={fieldset} className="row">
-                                <Col xs={2} className="d-grid">
+                                <Col className="d-grid">
                                     <ModalFilterRegion
                                         chartInstance={chartInstance}
                                     />
                                 </Col>
-                                <Col xs={2} className="d-grid">
+                                <Col className="d-grid">
                                     <ModalFilterCategory
                                         chartInstance={chartInstance}
                                     />
                                 </Col>
-                                <Col xs={2}>
+                                <Col>
                                     <Dropdown
                                         className="d-grid"
                                         onSelect={filterAge}
@@ -220,17 +236,19 @@ export default (props) => {
                     </Row>
                 </Col>
             </Row>
-            <Row className="justify-content-md-end">
-                <Col xs="auto">
-                    <NavLink
-                        to="/leveler/progress"
-                        activeClassName="active"
-                        className="btn btn-primary"
-                    >
-                        {"Subir avance"}
-                    </NavLink>
-                </Col>
-            </Row>
+            {competitor ? (
+                <Row className="justify-content-md-end">
+                    <Col xs="auto">
+                        <NavLink
+                            to="/leveler/progress"
+                            activeClassName="active"
+                            className="btn btn-primary"
+                        >
+                            {"Subir avance"}
+                        </NavLink>
+                    </Col>
+                </Row>
+            ) : null}
         </Container>
     );
 };
