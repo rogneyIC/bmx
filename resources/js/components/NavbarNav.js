@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import * as FaIcons from "react-icons/fa";
+import { GiProgression } from "react-icons/gi";
 import {
     Container,
     Navbar,
@@ -121,7 +122,7 @@ export default (props) => {
                                 onClick={notProgress}
                             >
                                 <span className="icon icon-sm">
-                                    <FaIcons.FaDonate color="white" />
+                                    <GiProgression color="white" />
                                 </span>
                             </NavItem>
                         ) : (
@@ -131,7 +132,7 @@ export default (props) => {
                                     className="icon-notifications me-lg-2"
                                 >
                                     <span className="icon icon-sm">
-                                        <FaIcons.FaDonate color="white" />
+                                        <GiProgression color="white" />
                                         {areNotificationsProgressRead ? null : (
                                             <span className="icon-badge rounded-circle unread-notifications" />
                                         )}

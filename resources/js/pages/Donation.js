@@ -1,16 +1,27 @@
 import { useEffect, useState } from "react";
-import { Container, Table, Row, Col } from "react-bootstrap";
+import { Container, Table, Row, Col, Button } from "react-bootstrap";
 import ModalDonation from "../components/modal/ModalDonation";
-import crud from "../components/Crud";
+import toastr from "toastr";
 
 export default (props) => {
     const [data, setData] = useState([]);
 
+    const fetchData = async () => {
+        await axios
+            .post("/donation/list", { accepted: true })
+            .then((response) => {
+                response.data.map((item) => {
+                    item.read = item.accepted;
+                });
+                setData(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+                toastr.warning(error);
+            });
+    };
+
     useEffect(() => {
-        const fetchData = async () => {
-            const res = await crud.listDonation(true);
-            setData(res);
-        };
         /* setInterval(function () {
              fetchData();
          }, 10000);*/
@@ -21,10 +32,23 @@ export default (props) => {
 
         if (props.refMainPanel.current)
             props.refMainPanel.current.style.width = "calc(100% - 256px)";
-        return () => {
-            setData([]);
-        };
+        // return () => {
+        //     setData([]);
+        // };
     }, []);
+
+    const deleteDonation = async (id) => {
+        await axios
+            .post("/donation/delete", id)
+            .then((response) => {
+                fetchData();
+                toastr.success("Donación eliminada con éxito");
+            })
+            .catch((error) => {
+                console.log(error);
+                toastr.warning(error);
+            });
+    };
 
     return (
         <Container className="py-3 px-4">
@@ -39,6 +63,9 @@ export default (props) => {
                                 <th>Mensaje opcional</th>
                                 <th>Destino</th>
                                 <th>Vuelto acumulado</th>
+                                {props.role == "admin" ? (
+                                    <th>Acciones</th>
+                                ) : null}
                             </tr>
                         </thead>
                         <tbody>
@@ -51,6 +78,18 @@ export default (props) => {
                                         <td>{item.message_optional}</td>
                                         <td>{item.destiny}</td>
                                         <td>{item.accumulated_return}</td>
+                                        {props.role == "admin" ? (
+                                            <td>
+                                                <Button
+                                                    variant="danger"
+                                                    onClick={() =>
+                                                        deleteDonation(item.id)
+                                                    }
+                                                >
+                                                    Eliminar
+                                                </Button>
+                                            </td>
+                                        ) : null}
                                     </tr>
                                 );
                             })}
@@ -65,7 +104,9 @@ export default (props) => {
                     </Col>
                 </Row>
             ) : null}
-            <ModalDonation user_id={props.user_id} />
+            {props.role == "admin" ? null : (
+                <ModalDonation user_id={props.user_id} />
+            )}
         </Container>
     );
 };

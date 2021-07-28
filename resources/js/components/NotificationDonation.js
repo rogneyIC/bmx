@@ -44,7 +44,7 @@ export default (props) => {
                 </Row>
             </ListGroup.Item>
 
-            <ModalAdminDonation show={show} setShow={setShow} props={props} />
+            <ModalAdminDonation show={show} setShow={setShow} {...props} />
         </>
     );
 };

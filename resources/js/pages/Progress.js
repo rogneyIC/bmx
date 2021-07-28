@@ -1,40 +1,29 @@
-import React, { useState } from "react";
-import {
-    Button,
-    Card,
-    CardGroup,
-    Col,
-    Container,
-    Form,
-    Row,
-} from "react-bootstrap";
-import FloatingLabel from "react-bootstrap-floating-label";
-import toastr from "toastr";
+import React, { useEffect, useState } from "react";
+import { Card, CardGroup, Col, Container, Row } from "react-bootstrap";
+import FormikProgress from "../components/formik/FormikProgress";
+import { useHistory } from "react-router-dom";
 
 export default (props) => {
-    const [trick1, setTrick1] = useState(null);
-    const [trick2, setTrick2] = useState(null);
-    const [trick3, setTrick3] = useState(null);
-    const [link, setLink] = useState(null);
+    let history = useHistory();
+    if (!props.competitor) {
+        history.push("/leveler");
+    }
+    const [trick, setTrick] = useState("");
+    const [link, setLink] = useState("");
 
-    const sendData = async (e) => {
-        e.preventDefault();
-        let id = props.user_id;
-        let trick = { trick1, trick2, trick3 };
-        let data = { id, trick, link };
+    useEffect(async () => {
         await axios
-            .post("/progress/update", data)
+            .post("/progress/getProgress", { user_id: props.user_id })
             .then((response) => {
-                console.log(response);
-                toastr.success(
-                    "Progreso enviado. En espera de la aceptación del administrador"
-                );
+                if (response.data[0].trick !== null)
+                    setTrick(response.data[0].trick.data);
+                if (response.data[0].link !== null)
+                    setLink(response.data[0].link);
             })
             .catch((error) => {
                 console.log(error);
-                toastr.warning(error);
             });
-    };
+    }, []);
 
     return (
         <Container className="py-3 px-4">
@@ -76,80 +65,15 @@ export default (props) => {
                 </CardGroup>
             </Row>
             <Row className="justify-content-md-center">
-                <Form className="form-progress col-6" onSubmit={sendData}>
-                    <Card>
-                        <Card.Body>
-                            <Row className="g-2">
-                                {/* <Col md>
-                                    <Form.Control
-                                        type="text"
-                                        placeholder={"truco 1"}
-                                        name="trick1"
-                                        onChange={(event) =>
-                                            setTrick1(event.target.value)
-                                        }
-                                    />
-                                </Col>
-                                <Col md>
-                                    <Form.Control
-                                        type="text"
-                                        placeholder={"truco 2"}
-                                        name="trick2"
-                                        onChange={(event) =>
-                                            setTrick2(event.target.value)
-                                        }
-                                    />
-                                </Col>
-                                <Col>
-                                    <Form.Control
-                                        type="text"
-                                        placeholder={"truco 3"}
-                                        name="trick3"
-                                        onChange={(event) =>
-                                            setTrick3(event.target.value)
-                                        }
-                                    />
-                                </Col> */}
-                                <Col md>
-                                    {/* <div className="form-floating">
-                                        <Form.Control
-                                            as="textarea"
-                                            placeholder="Escriba aquí sus trucos"
-                                            rows={5}
-                                        />
-                                    </div> */}
-                                    <FloatingLabel
-                                        label="Trucos:"
-                                        type={"textarea"}
-                                    >
-                                        {/* <Form.Control
-                                            as="textarea"
-                                            placeholder="Escriba aquí sus trucos"
-                                            rows={5}
-                                        /> */}
-                                    </FloatingLabel>
-                                </Col>
-                            </Row>
-                            <Row className="g-2">
-                                <Col md>
-                                    <Form.Control
-                                        type="text"
-                                        placeholder={"link"}
-                                        name="link"
-                                        onChange={(event) =>
-                                            setLink(event.target.value)
-                                        }
-                                    />
-                                </Col>
-                            </Row>
-                        </Card.Body>
-                        <Card.Footer>
-                            <Button variant="primary" type="submit">
-                                Enviar
-                            </Button>
-                        </Card.Footer>
-                    </Card>
-                </Form>
+                <Card as={Col} md="6">
+                    <Card.Body>
+                        <FormikProgress
+                            trick={trick}
+                            link={link}
+                            user_id={props.user_id}
+                        />
+                    </Card.Body>
+                </Card>
             </Row>
         </Container>
     );

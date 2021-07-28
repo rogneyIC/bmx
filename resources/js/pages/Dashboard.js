@@ -64,6 +64,7 @@ function Dashboard() {
                             refSidebar={refSidebar}
                             refMainPanel={refMainPanel}
                             user_id={user.id}
+                            role={role}
                         />
                     )}
                 />

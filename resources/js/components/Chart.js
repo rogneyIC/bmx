@@ -1,15 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Chart from "chart.js/auto";
-import {
-    Button,
-    Col,
-    Container,
-    Dropdown,
-    Image,
-    Row,
-} from "react-bootstrap";
+import { Button, Col, Container, Dropdown, Image, Row } from "react-bootstrap";
 import img_chart from "../../img/img-chart.jpg";
-//import ModalFilter from "./modal/ModalFilter";
 import ModalFilterRegion from "./modal/ModalFilterRegion";
 import ModalFilterCategory from "./modal/ModalFilterCategory";
 import { FaFilter } from "react-icons/fa";
@@ -76,6 +68,7 @@ export default (props) => {
                 await axios
                     .post("/user/list", { id: props.user_id })
                     .then((response) => {
+                        console.log(response.data[0]);
                         setData(response.data[0]);
                         setCompetitor(response.data[1]);
                         const chartConfig = {
@@ -152,6 +145,7 @@ export default (props) => {
         await axios
             .post("/progress/store", { user_id: props.user_id })
             .then((response) => {
+                console.log(response);
                 setCompetitor(true);
                 toastr.success("Felicidades, ahora usted es un competidor");
             })

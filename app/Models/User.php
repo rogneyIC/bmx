@@ -29,7 +29,6 @@ class User extends Authenticatable
         'instagram',
         'facebook',
         'photo',
-        'point',
         'category',
         'competitor',
     ];

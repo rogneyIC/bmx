@@ -23,7 +23,9 @@ export default (props) => {
 
             <Route
                 path="/leveler/progress"
-                render={() => <Progress user_id={props.user_id} />}
+                render={() => (
+                    <Progress user_id={props.user_id} competitor={props.competitor} />
+                )}
             />
         </Switch>
     );

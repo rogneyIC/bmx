@@ -33,7 +33,6 @@ class UserFactory extends Factory
             'instagram' => $this->faker->lexify('instagram-????'),
             'facebook' => $this->faker->lexify('facebook-????'),
             'photo' => '../default-avatar.png',
-            'point' => $this->faker->numberBetween(0, 100),
             'category' => 'iniciante',
             'competitor' => false,
             'remember_token' => Str::random(10),

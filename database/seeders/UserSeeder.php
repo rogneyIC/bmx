@@ -22,12 +22,11 @@ class UserSeeder extends Seeder
         $user->email_verified_at = now();
         $user->password = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'; // password
         $user->age = 21;
-        $user->phone = '+11 563548 895';
+        $user->phone = '+56 9 5209 6649';
         $user->region = 1;
         $user->instagram = 'instagram-sergio';
         $user->facebook = 'instagram-sergio';
         $user->photo = '../default-avatar.png';
-        $user->point = 0;
         $user->category = 'iniciante';
         $user->competitor = false;
         $user->remember_token = Str::random(10);

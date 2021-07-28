@@ -32,6 +32,7 @@ Route::post('/user/filter', [App\Http\Controllers\UserController::class, 'filter
 
 Route::post('/progress/competitor', [App\Http\Controllers\ProgressController::class, 'isCompetitor']);
 Route::post('/progress/list', [App\Http\Controllers\ProgressController::class, 'index']);
+Route::post('/progress/getProgress', [App\Http\Controllers\ProgressController::class, 'getProgress']);
 Route::post('/progress/store', [App\Http\Controllers\ProgressController::class, 'store']);
 Route::post('/progress/update', [App\Http\Controllers\ProgressController::class, 'update']);
 Route::post('/progress/delete', [App\Http\Controllers\ProgressController::class, 'delete']);

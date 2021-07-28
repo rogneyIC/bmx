@@ -13,7 +13,7 @@ class ProgressController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Request  $request)
+    public function index(Request $request)
     {
         return Progress::join('users', 'progress.user_id', '=', 'users.id')
             ->select('progress.*', 'users.*', 'progress.id as progress_id')
@@ -66,15 +66,28 @@ class ProgressController extends Controller
         try {
             $data = [
                 'trick' => $request['trick'],
-                'link' => $request['link']
+                'link' => $request['link'],
             ];
-            Progress::where('user_id', $request['id'])->update($data);
+            if ($request['point']) $data['point'] = $request['point'];
+            if ($request['accepted']) $data['accepted'] = true;
+            Progress::where('user_id', $request['user_id'])->update($data);
             $response['success'] = true;
         } catch (\Exception $e) {
             $response['error'] = $e->getMessage();
             $response['success'] = false;
         }
         return $response;
+    }
+
+    /**
+     * Get resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function getProgress(Request $request)
+    {
+        return Progress::where('user_id', $request['user_id'])->get();
     }
 
     /**
