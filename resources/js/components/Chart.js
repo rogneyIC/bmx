@@ -13,7 +13,6 @@ export default (props) => {
     const [fieldset, setFieldset] = useState(true);
     const [chartInstance, setChartInstance] = useState(null);
     const [data, setData] = useState([]);
-    const [competitor, setCompetitor] = useState(true);
 
     const config = (dataResponse) => {
         let labelArray = [];
@@ -68,9 +67,8 @@ export default (props) => {
                 await axios
                     .post("/user/list", { id: props.user_id })
                     .then((response) => {
-                        console.log(response.data[0]);
                         setData(response.data[0]);
-                        setCompetitor(response.data[1]);
+                        props.setCompetitor(response.data[1]);
                         const chartConfig = {
                             type: "bar",
                             data: config(response.data[0]),
@@ -145,8 +143,7 @@ export default (props) => {
         await axios
             .post("/progress/store", { user_id: props.user_id })
             .then((response) => {
-                console.log(response);
-                setCompetitor(true);
+                props.setCompetitor(true);
                 toastr.success("Felicidades, ahora usted es un competidor");
             })
             .catch((error) => {
@@ -162,7 +159,7 @@ export default (props) => {
                 </Col>
                 <Col xs={10} className="align-self-end">
                     <Row className="justify-content-md-end">
-                        {!competitor && props.role != "admin" ? (
+                        {!props.competitor && props.role != "admin" ? (
                             <Col xs={3} className="text-end">
                                 <Button
                                     variant="primary"
@@ -230,7 +227,7 @@ export default (props) => {
                     </Row>
                 </Col>
             </Row>
-            {competitor ? (
+            {props.competitor ? (
                 <Row className="justify-content-md-end">
                     <Col xs="auto">
                         <NavLink

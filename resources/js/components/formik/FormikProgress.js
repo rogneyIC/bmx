@@ -18,6 +18,7 @@ export default (props) => {
             user_id: props.user_id,
             trick: { data: e.trick },
             link: e.link,
+            accepted: false,
         };
         await axios
             .post("/progress/update", data)

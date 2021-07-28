@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Chart from "../components/Chart";
 import Progress from "./Progress";
 import { Switch, Route } from "react-router-dom";
 
 export default (props) => {
+    const [competitor, setCompetitor] = useState(props.competitor);
+
     useEffect(() => {
         if (props.refSidebar.current)
             props.refSidebar.current.style.display = "flex";
@@ -17,14 +19,19 @@ export default (props) => {
                 exact
                 path="/leveler"
                 render={() => (
-                    <Chart user_id={props.user_id} role={props.role} />
+                    <Chart
+                        user_id={props.user_id}
+                        role={props.role}
+                        competitor={competitor}
+                        setCompetitor={setCompetitor}
+                    />
                 )}
             />
 
             <Route
                 path="/leveler/progress"
                 render={() => (
-                    <Progress user_id={props.user_id} competitor={props.competitor} />
+                    <Progress user_id={props.user_id} competitor={competitor} />
                 )}
             />
         </Switch>

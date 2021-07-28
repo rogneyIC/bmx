@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Progress;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProgressController extends Controller
@@ -17,8 +18,7 @@ class ProgressController extends Controller
     {
         return Progress::join('users', 'progress.user_id', '=', 'users.id')
             ->select('progress.*', 'users.*', 'progress.id as progress_id')
-            ->where('progress.accepted', $request->accepted ? true : false)
-            ->whereNotNull('progress.trick')
+            ->where('progress.accepted', false)
             ->get();
     }
 
@@ -47,6 +47,7 @@ class ProgressController extends Controller
                 'point' => 0,
                 'accepted' => false
             ]);
+            User::where('id', $request['user_id'])->update(['competitor' => true]);
             $response['success'] = true;
         } catch (\Exception $e) {
             $response['error'] = $e->getMessage();
@@ -67,9 +68,9 @@ class ProgressController extends Controller
             $data = [
                 'trick' => $request['trick'],
                 'link' => $request['link'],
+                'accepted' => $request['accepted'],
             ];
             if ($request['point']) $data['point'] = $request['point'];
-            if ($request['accepted']) $data['accepted'] = true;
             Progress::where('user_id', $request['user_id'])->update($data);
             $response['success'] = true;
         } catch (\Exception $e) {

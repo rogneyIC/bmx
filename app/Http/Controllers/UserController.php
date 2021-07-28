@@ -19,7 +19,7 @@ class UserController extends Controller
         return [User::join('role_user', 'users.id', '=', 'role_user.user_id')
             ->join('progress', 'users.id', '=', 'progress.user_id')
             ->where('role_user.role_id', 2)
-            ->where('progress.accepted', true)
+            ->whereNotNull('progress.trick')
             ->orderBy('region')
             ->get(), count(Progress::where('user_id', $request['id'])->get()) == 0 ? false : true];
     }

@@ -10,7 +10,6 @@ import {
     Dropdown,
     NavItem,
 } from "react-bootstrap";
-import crud from "./Crud";
 import toastr from "toastr";
 import NotificationDonation from "./NotificationDonation";
 import NotificationProgress from "./NotificationProgress";
@@ -21,14 +20,38 @@ export default (props) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            setListDonation(await crud.listDonation(false));
-            setListProgress(await crud.listProgress(false));
+            await axios
+                .post("/donation/list", { accepted: false })
+                .then((response) => {
+                    response.data.map((item) => {
+                        item.read = item.accepted;
+                    });
+                    setListDonation(response.data);
+                })
+                .catch((error) => {
+                    console.log(error);
+                    toastr.error(error);
+                });
+
+            await axios
+                .post("/progress/list")
+                .then((response) => {
+                    response.data.map((item) => {
+                        item.read = item.accepted;
+                    });
+                    setListProgress(response.data);
+                })
+                .catch((error) => {
+                    console.log(error);
+                    toastr.error(error);
+                });
         };
         setInterval(function () {
             fetchData();
         }, 5000);
         return () => {
             setListDonation([]);
+            setListProgress([]);
         };
     }, []);
 

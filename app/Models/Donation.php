@@ -23,4 +23,13 @@ class Donation extends Model
         'accumulated_return',
         'accepted'
     ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d H:00',
+    ];
 }
