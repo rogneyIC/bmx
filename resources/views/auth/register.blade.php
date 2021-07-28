@@ -13,11 +13,11 @@
                                 <div class="col">
                                     @csrf
                                     <!-- Name -->
-                                    <label for="user_name" class="form-label">{{ __('Nombre') }}</label>
+                                    <label for="name" class="form-label">{{ __('Nombre') }}</label>
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="nameIcon"><i class="fas fa-id-card"></i></span>
-                                        <input id="user_name" type="text" class="form-control @error('user_name') is-invalid @enderror" name="user_name" value="{{ old('user_name') }}" required autocomplete="name" autofocus>
-                                        @error('user_name')
+                                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                        @error('name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -39,11 +39,11 @@
                                 </div>
                                 <div class="col-2">
                                     <!-- Age -->
-                                    <label for="user_age" class="form-label">{{ __('Edad') }}</label>
+                                    <label for="age" class="form-label">{{ __('Edad') }}</label>
                                     <div class="input-group mb-3">
                                         <span class="input-group-text"><i class="fas fa-id-card"></i></span>
-                                        <input id="user_age" type="number" class="form-control @error('user_age') is-invalid @enderror" name="user_age" value="{{ old('user_age') }}" required autocomplete="number" autofocus>
-                                        @error('user_age')
+                                        <input id="age" type="number" class="form-control @error('age') is-invalid @enderror" name="age" value="{{ old('age') }}" required autocomplete="number" autofocus>
+                                        @error('age')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -54,11 +54,11 @@
                             <div class="row">
                                 <div class="col">
                                     <!-- Phone -->
-                                    <label for="user_phone" class="form-label">{{ __('Teléfono') }}</label>
+                                    <label for="phone" class="form-label">{{ __('Teléfono') }}</label>
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="nameIcon"><i class="fas fa-id-card"></i></span>
-                                        <input id="user_phone" type="text" class="form-control @error('user_phone') is-invalid @enderror" name="user_phone" value="{{ old('user_phone') }}" required autocomplete="name" autofocus>
-                                        @error('user_phone')
+                                        <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="name" autofocus>
+                                        @error('phone')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -69,17 +69,17 @@
                                     <!-- Photo -->
                                     <label class="form-label">{{ __('Foto') }}</label>
                                     <div class="input-group mb-3">
-                                        <label for="user_photo" class="input-group-text" id="fileIcon"><i class="fas fa-cloud-upload-alt"></i></label>
-                                        <input id="user_photo" name="user_photo" type="file" accept=".png, .jpg, .jpeg" onchange="cambiar()" style="display: none;" />
-                                        <input id="user_photo-info" type="text" class="form-control" name="user_photo-info" disabled>
+                                        <label for="photo" class="input-group-text" id="fileIcon"><i class="fas fa-cloud-upload-alt"></i></label>
+                                        <input id="photo" name="photo" type="file" accept=".png, .jpg, .jpeg" onchange="cambiar()" style="display: none;" />
+                                        <input id="photo-info" type="text" class="form-control" name="photo-info" disabled>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <!-- Region -->
-                                    <label for="user_region" class="form-label">{{ __('Región') }}</label>
+                                    <label for="region" class="form-label">{{ __('Región') }}</label>
                                     <div class="input-group mb-3">
                                         <span class="input-group-text"><i class="fas fa-globe-americas"></i></span>
-                                        <select class="form-select" id="user_region" name="user_region">
+                                        <select class="form-select" id="region" name="region">
                                             <option selected>{{ __('Seleccione...') }}</option>
                                             <option value="1">{{ __('Región 1') }}</option>
                                             <option value="2">{{ __('Región 2') }}</option>
@@ -102,11 +102,11 @@
                             <div class="row">
                                 <div class="col">
                                     <!-- Instagram -->
-                                    <label for="user_instagram" class="form-label">{{ __('Usuario de instagram') }}</label>
+                                    <label for="instagram" class="form-label">{{ __('Usuario de instagram') }}</label>
                                     <div class="input-group mb-3">
                                         <span class="input-group-text"><i class="fab fa-instagram-square"></i></span>
-                                        <input id="user_instagram" type="text" class="form-control @error('user_instagram') is-invalid @enderror" name="user_instagram" value="{{ old('user_instagram') }}" autocomplete="name">
-                                        @error('user_instagram')
+                                        <input id="instagram" type="text" class="form-control @error('instagram') is-invalid @enderror" name="instagram" value="{{ old('instagram') }}" autocomplete="name">
+                                        @error('instagram')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -115,11 +115,11 @@
                                 </div>
                                 <div class="col">
                                     <!-- Facebook -->
-                                    <label for="user_facebook" class="form-label">{{ __('Usuario de facebook') }}</label>
+                                    <label for="facebook" class="form-label">{{ __('Usuario de facebook') }}</label>
                                     <div class="input-group mb-3">
                                         <span class="input-group-text"><i class="fab fa-facebook"></i></span>
-                                        <input id="user_facebook" type="text" class="form-control @error('user_facebook') is-invalid @enderror" name="user_facebook" value="{{ old('user_facebook') }}" autocomplete="name">
-                                        @error('user_facebook')
+                                        <input id="facebook" type="text" class="form-control @error('facebook') is-invalid @enderror" name="facebook" value="{{ old('facebook') }}" autocomplete="name">
+                                        @error('facebook')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -172,6 +172,6 @@
 @endsection
 <script>
     function cambiar() {
-        document.getElementById("user_photo-info").value = document.getElementById("user_photo").files[0].name;
+        document.getElementById("photo-info").value = document.getElementById("photo").files[0].name;
     }
 </script>
