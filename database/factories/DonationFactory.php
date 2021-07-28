@@ -26,7 +26,8 @@ class DonationFactory extends Factory
             'detail' => $this->faker->sentence(5),
             'message_optional' => $this->faker->sentence(7),
             'destiny' => 'Region ' . $this->faker->numberBetween(1, 16),
-            'accumulated_return' => $this->faker->numerify()
+            'accumulated_return' => $this->faker->numerify(),
+            'accepted' => true
         ];
     }
 }

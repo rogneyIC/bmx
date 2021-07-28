@@ -22,10 +22,10 @@ class ProgressFactory extends Factory
     public function definition()
     {
         return [
-            'trick' => "{[truco1, truco2, truco3]}",
+            'trick' => "{'data':'truco1, truco2, truco3'}",
             'link' => "link_default",
-            'point' => 0,
-            'accepted' => false,
+            'point' => $this->faker->numberBetween(10, 100),
+            'accepted' => true,
         ];
     }
 }
