@@ -80,8 +80,7 @@ class DonationController extends Controller
     public function delete(Request $request)
     {
         try {
-            Donation::destroy($request['id']);
-            Donation::truncate();
+            Donation::where('id', $request['id'])->delete();
             $response['success'] = true;
         } catch (\Exception $e) {
             $response['error'] = $e->getMessage();

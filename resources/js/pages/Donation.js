@@ -11,6 +11,7 @@ export default (props) => {
             .post("/donation/list", { accepted: true })
             .then((response) => {
                 response.data.map((item) => {
+                    console.log(item);
                     item.read = item.accepted;
                 });
                 setData(response.data);
@@ -32,14 +33,14 @@ export default (props) => {
 
         if (props.refMainPanel.current)
             props.refMainPanel.current.style.width = "calc(100% - 256px)";
-        // return () => {
-        //     setData([]);
-        // };
+        return () => {
+            setData([]);
+        };
     }, []);
 
     const deleteDonation = async (id) => {
         await axios
-            .post("/donation/delete", id)
+            .post("/donation/delete", { id })
             .then((response) => {
                 fetchData();
                 toastr.success("Donación eliminada con éxito");
@@ -71,7 +72,7 @@ export default (props) => {
                         <tbody>
                             {data.map((item) => {
                                 return (
-                                    <tr key={item.id}>
+                                    <tr key={item.donation_id}>
                                         <td>{item.name}</td>
                                         <td>{item.donation}</td>
                                         <td>{item.detail}</td>
@@ -83,7 +84,9 @@ export default (props) => {
                                                 <Button
                                                     variant="danger"
                                                     onClick={() =>
-                                                        deleteDonation(item.id)
+                                                        deleteDonation(
+                                                            item.donation_id
+                                                        )
                                                     }
                                                 >
                                                     Eliminar

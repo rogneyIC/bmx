@@ -37,7 +37,7 @@ export default (props) => {
 
     const handleDelete = async () => {
         await axios
-            .post("/donation/delete", props.donation_id)
+            .post("/donation/delete", { id: props.donation_id })
             .then((response) => {
                 handleClose();
                 toastr.success("Donación eliminada con éxito");
