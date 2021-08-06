@@ -27,7 +27,7 @@ class UserFactory extends Factory
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'age' => $this->faker->numberBetween(15, 35),
+            'age' => $this->faker->numberBetween(10, 35),
             'phone' => $this->faker->phoneNumber(),
             'region' => $this->faker->numberBetween(1, 16),
             'instagram' => $this->faker->lexify('instagram-????'),

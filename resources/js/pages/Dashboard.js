@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
-import { Route, BrowserRouter as Router } from "react-router-dom";
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import NavbarNav from "../components/NavbarNav";
 import Home from "./Home";
@@ -9,6 +9,10 @@ import Donation from "./Donation";
 import Leveler from "./Leveler";
 import Trip from "./Trip";
 import Datatec from "./Datatec";
+import toastr from "toastr";
+import Chart from "../components/Chart";
+import Progress from "./Progress";
+import Profile from "../components/Profile";
 
 function Dashboard() {
     const user = JSON.parse(document.getElementById("main").dataset.user);
@@ -19,13 +23,12 @@ function Dashboard() {
 
     useEffect(async () => {
         await axios
-            .post("/progress/competitor", { id: user.id })
+            .post("/user/competitor", { id: user.id })
             .then((response) => {
-                if (response.data.length > 0) setCompetitor(true);
+                if (response.data.competitor) setCompetitor(true);
             })
             .catch((error) => {
-                //setError(error);
-                console.log(error);
+                toastr.warning(error);
             });
     }, []);
 
@@ -68,19 +71,35 @@ function Dashboard() {
                         />
                     )}
                 />
-                <Route
-                    path="/leveler"
-                    render={(props) => (
-                        <Leveler
-                            {...props}
-                            refSidebar={refSidebar}
-                            refMainPanel={refMainPanel}
-                            user_id={user.id}
-                            competitor={competitor}
-                            role={role}
-                        />
-                    )}
-                />
+                <Switch>
+                    <Route
+                        exact
+                        path="/leveler"
+                        render={(props) => (
+                            <Chart
+                                {...props}
+                                refSidebar={refSidebar}
+                                refMainPanel={refMainPanel}
+                                user_id={user.id}
+                                competitor={competitor}
+                                setCompetitor={setCompetitor}
+                                role={role}
+                            />
+                        )}
+                    />
+                    <Route
+                        path="/leveler/progress"
+                        render={(props) => (
+                            <Progress
+                                {...props}
+                                refSidebar={refSidebar}
+                                refMainPanel={refMainPanel}
+                                user_id={user.id}
+                                competitor={competitor}
+                            />
+                        )}
+                    />
+                </Switch>
                 <Route
                     path="/Trip"
                     render={(props) => (
@@ -98,6 +117,18 @@ function Dashboard() {
                             {...props}
                             refSidebar={refSidebar}
                             refMainPanel={refMainPanel}
+                        />
+                    )}
+                />
+                <Route
+                    path="/Profile"
+                    render={(props) => (
+                        <Profile
+                            {...props}
+                            refSidebar={refSidebar}
+                            refMainPanel={refMainPanel}
+                            user={user}
+                            role={role}
                         />
                     )}
                 />

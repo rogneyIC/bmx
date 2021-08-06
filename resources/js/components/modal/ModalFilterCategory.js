@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Col, Form, Modal, Row } from "react-bootstrap";
 import toastr from "toastr";
-import Color from "../Color";
+import color from "../Color";
 
 export default (props) => {
     const [show, setShow] = useState(false);
@@ -15,13 +15,12 @@ export default (props) => {
     const config = (dataResponse) => {
         let labelArray = [];
         let dataArray = [];
-        let colorArray = Color;
-
         let backgroundColor = [];
+        
         dataResponse.forEach(function (val, index, array) {
-            colorArray.forEach(function (val2, index2, array2) {
+            color.forEach(function (val2, index2, array2) {
                 if (val.region == index2 + 1) {
-                    backgroundColor.push(colorArray[index2]);
+                    backgroundColor.push(color[index2]);
                 }
             });
             labelArray.push(val.name + " / " + val.age + "años");
@@ -61,8 +60,6 @@ export default (props) => {
                 handleClose();
             })
             .catch((error) => {
-                console.log(error);
-                setError(error);
                 toastr.warning(error);
             });
     };

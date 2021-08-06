@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Progress;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -14,14 +13,14 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Request  $request)
+    public function list(Request  $request)
     {
         return [User::join('role_user', 'users.id', '=', 'role_user.user_id')
             ->join('progress', 'users.id', '=', 'progress.user_id')
             ->where('role_user.role_id', 2)
-            ->whereNotNull('progress.trick')
+            ->where('progress.accepted', true)
             ->orderBy('region')
-            ->get(), count(Progress::where('user_id', $request['id'])->get()) == 0 ? false : true];
+            ->get(), count(User::where('id', $request['id'])->where('competitor', true)->get()) == 0 ? false : true];
     }
 
     /**
@@ -61,5 +60,35 @@ class UserController extends Controller
         }
         $user->orderBy('region');
         return $user->get();
+    }
+
+    /**
+     * Display a isCompetitor.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function isCompetitor(Request $request)
+    {
+        count(User::where('id', $request['id'])->where('competitor', true)->get()) == 0 ? $response['competitor'] = false : $response['competitor'] = true;
+        return $response;
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function makeCompetitor(Request $request)
+    {
+        try {
+            User::where('id', $request['id'])->update(['competitor' => true]);
+            $response['success'] = true;
+        } catch (\Exception $e) {
+            $response['error'] = $e->getMessage();
+            $response['success'] = false;
+        }
+        return $response;
     }
 }

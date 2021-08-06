@@ -16,12 +16,11 @@ export default (props) => {
     const sendData = async (e) => {
         let data = {
             user_id: props.user_id,
-            trick: { data: e.trick },
+            trick: e.trick,
             link: e.link,
-            accepted: false,
         };
         await axios
-            .post("/progress/update", data)
+            .post("/progress/store", data)
             .then((response) => {
                 toastr.success(
                     "Progreso enviado. En espera de la aceptación del administrador"
@@ -29,7 +28,6 @@ export default (props) => {
                 history.push("/leveler");
             })
             .catch((error) => {
-                console.log(error);
                 toastr.warning(error);
             });
     };
@@ -40,8 +38,8 @@ export default (props) => {
             validationSchema={schema}
             onSubmit={sendData}
             initialValues={{
-                trick: props.trick,
-                link: props.link,
+                trick: "",
+                link: "",
             }}
             validate={(values) => {
                 const errors = {};
@@ -50,15 +48,7 @@ export default (props) => {
                 return errors;
             }}
         >
-            {({
-                handleSubmit,
-                handleChange,
-                handleBlur,
-                values,
-                touched,
-                isValid,
-                errors,
-            }) => (
+            {({ handleSubmit, handleChange, values, errors }) => (
                 <Form noValidate onSubmit={handleSubmit}>
                     <Row className="mb-3">
                         <Form.Group as={Col} controlId="validationFormik01">
@@ -70,7 +60,7 @@ export default (props) => {
                                     value={values.trick}
                                     onChange={handleChange}
                                     isInvalid={!!errors.trick}
-                                    style={{ height: "160px" }}
+                                    style={{ height: "110px" }}
                                 />
                                 <Form.Control.Feedback type="invalid">
                                     {errors.trick}

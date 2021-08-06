@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Col, Form, Modal, Row } from "react-bootstrap";
 import toastr from "toastr";
-import Color from "../Color";
+import color from "../Color";
 import * as FaIcons from "react-icons/fa";
 
 export default (props) => {
@@ -44,30 +44,11 @@ export default (props) => {
         let labelArray = [];
         let dataArray = [];
 
-        let colorArray = [
-            "rgb(247,156,145)",
-            "rgb(253,196,149)",
-            "rgb(223,208,135)",
-            "rgb(249,219,26)",
-            "rgb(224,165,35)",
-            "rgb(250,220,177)",
-            "rgb(192,192,192)",
-            "rgb(236,240,129)",
-            "rgb(144,173,132)",
-            "rgb(180,205,86)",
-            "rgb(49,204,50)",
-            "rgb(68,167,39)",
-            "rgb(0,121,0)",
-            "rgb(220,183,249)",
-            "rgb(162,165,248)",
-            "rgb(19,155,227)",
-        ];
-
         let backgroundColor = [];
         dataResponse.forEach(function (val, index, array) {
-            colorArray.forEach(function (val2, index2, array2) {
+            color.forEach(function (val2, index2, array2) {
                 if (val.region == index2 + 1) {
-                    backgroundColor.push(colorArray[index2]);
+                    backgroundColor.push(color[index2]);
                 }
             });
             labelArray.push(val.name + " / " + val.age + "años");
@@ -184,8 +165,6 @@ export default (props) => {
                 handleClose();
             })
             .catch((error) => {
-                console.log(error);
-                setError(error);
                 toastr.warning(error);
             });
     };

@@ -22,8 +22,4 @@ class Progress extends Model
         'point',
         'accepted'
     ];
-
-    protected $casts = [
-        'trick' => 'array',
-    ];
 }

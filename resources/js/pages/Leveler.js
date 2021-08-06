@@ -4,8 +4,6 @@ import Progress from "./Progress";
 import { Switch, Route } from "react-router-dom";
 
 export default (props) => {
-    const [competitor, setCompetitor] = useState(props.competitor);
-
     useEffect(() => {
         if (props.refSidebar.current)
             props.refSidebar.current.style.display = "flex";
@@ -15,24 +13,11 @@ export default (props) => {
     }, []);
     return (
         <Switch>
-            <Route
-                exact
-                path="/leveler"
-                render={() => (
-                    <Chart
-                        user_id={props.user_id}
-                        role={props.role}
-                        competitor={competitor}
-                        setCompetitor={setCompetitor}
-                    />
-                )}
-            />
+            <Route exact path="/leveler" render={() => <Chart {...props} />} />
 
             <Route
                 path="/leveler/progress"
-                render={() => (
-                    <Progress user_id={props.user_id} competitor={competitor} />
-                )}
+                render={() => <Progress {...props} />}
             />
         </Switch>
     );

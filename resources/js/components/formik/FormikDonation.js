@@ -26,7 +26,6 @@ export default (props) => {
                 history.push("/leveler");
             })
             .catch((error) => {
-                console.log(error);
                 toastr.warning(error);
             });
     };

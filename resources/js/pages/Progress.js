@@ -2,28 +2,22 @@ import React, { useEffect, useState } from "react";
 import { Card, CardGroup, Col, Container, Row } from "react-bootstrap";
 import FormikProgress from "../components/formik/FormikProgress";
 import { useHistory } from "react-router-dom";
+import toastr from "toastr";
 
 export default (props) => {
     let history = useHistory();
+
     if (!props.competitor) {
         history.push("/leveler");
-    }
-    const [trick, setTrick] = useState("");
-    const [link, setLink] = useState("");
+    } else {
+        useEffect(() => {
+            if (props.refSidebar.current)
+                props.refSidebar.current.style.display = "flex";
 
-    useEffect(async () => {
-        await axios
-            .post("/progress/getProgress", { user_id: props.user_id })
-            .then((response) => {
-                if (response.data[0].trick !== null)
-                    setTrick(response.data[0].trick.data);
-                if (response.data[0].link !== null)
-                    setLink(response.data[0].link);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }, []);
+            if (props.refMainPanel.current)
+                props.refMainPanel.current.style.width = "calc(100% - 256px)";
+        }, []);
+    }
 
     return (
         <Container className="py-3 px-4">
@@ -65,13 +59,9 @@ export default (props) => {
                 </CardGroup>
             </Row>
             <Row className="justify-content-md-center">
-                <Card as={Col} md="6">
+                <Card as={Col} md={8}>
                     <Card.Body>
-                        <FormikProgress
-                            trick={trick}
-                            link={link}
-                            user_id={props.user_id}
-                        />
+                        <FormikProgress user_id={props.user_id} />
                     </Card.Body>
                 </Card>
             </Row>

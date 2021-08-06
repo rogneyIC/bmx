@@ -32,7 +32,6 @@ export default (props) => {
                 );
             })
             .catch((error) => {
-                console.log(error);
                 toastr.warning(error);
             });
     };

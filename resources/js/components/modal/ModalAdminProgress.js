@@ -16,10 +16,9 @@ export default (props) => {
     const sendData = async (e) => {
         const data = {
             user_id: props.user_id,
-            trick: { data: e.trick },
+            trick: e.trick,
             link: e.link,
             point: e.point,
-            accepted: true,
         };
         await axios
             .post("/progress/update", data)
@@ -28,7 +27,6 @@ export default (props) => {
                 toastr.success("Progreso del usuario aptualizado con éxito");
             })
             .catch((error) => {
-                console.error(error);
                 toastr.warning(error);
             });
     };
@@ -42,7 +40,6 @@ export default (props) => {
                 toastr.success("Progreso eliminado con éxito");
             })
             .catch((error) => {
-                console.log(error);
                 toastr.warning(error);
             });
     };
@@ -65,7 +62,7 @@ export default (props) => {
                     name: props.name,
                     phone: props.phone,
                     instagram: props.instagram,
-                    trick: props.trick.data,
+                    trick: props.trick,
                     link: props.link,
                     point: props.point,
                 }}

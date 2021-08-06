@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Table, Row, Col, Button } from "react-bootstrap";
 import ModalDonation from "../components/modal/ModalDonation";
 import toastr from "toastr";
@@ -11,13 +11,11 @@ export default (props) => {
             .post("/donation/list", { accepted: true })
             .then((response) => {
                 response.data.map((item) => {
-                    console.log(item);
                     item.read = item.accepted;
                 });
                 setData(response.data);
             })
             .catch((error) => {
-                console.log(error);
                 toastr.warning(error);
             });
     };
@@ -46,7 +44,6 @@ export default (props) => {
                 toastr.success("Donación eliminada con éxito");
             })
             .catch((error) => {
-                console.log(error);
                 toastr.warning(error);
             });
     };

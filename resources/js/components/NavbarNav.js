@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import * as FaIcons from "react-icons/fa";
 import { GiProgression } from "react-icons/gi";
@@ -13,6 +13,8 @@ import {
 import toastr from "toastr";
 import NotificationDonation from "./NotificationDonation";
 import NotificationProgress from "./NotificationProgress";
+import { NavLink } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 export default (props) => {
     const [listDonation, setListDonation] = useState([]);
@@ -29,7 +31,6 @@ export default (props) => {
                     setListDonation(response.data);
                 })
                 .catch((error) => {
-                    console.log(error);
                     toastr.error(error);
                 });
 
@@ -42,7 +43,6 @@ export default (props) => {
                     setListProgress(response.data);
                 })
                 .catch((error) => {
-                    console.log(error);
                     toastr.error(error);
                 });
         };
@@ -85,6 +85,11 @@ export default (props) => {
 
     const srcImg = "/images/avatars/" + props.user.photo;
 
+    let history = useHistory();
+    const showProfile = () => {
+        history.push("/profile");
+    };
+
     return (
         <Navbar bg="dark" variant="dark" sticky="top">
             <Container fluid className="justify-content-end">
@@ -109,7 +114,6 @@ export default (props) => {
                                     className="icon-notifications me-lg-2"
                                 >
                                     <span className="icon icon-sm">
-                                        {/* <FaIcons.FaBell /> */}
                                         <FaIcons.FaDonate color="white" />
                                         {areNotificationsRead ? null : (
                                             <span className="icon-badge rounded-circle unread-notifications" />
@@ -198,9 +202,9 @@ export default (props) => {
                             </div>
                         </Dropdown.Toggle>
                         <Dropdown.Menu className="user-dropdown">
-                            <Dropdown.Item>
-                                <FaIcons.FaUserCircle className="me-2" /> Mi
-                                perfil
+                            <Dropdown.Item onClick={showProfile}>
+                                <FaIcons.FaUserCircle className="me-2" />
+                                Perfil
                             </Dropdown.Item>
                             <Dropdown.Item>
                                 <FaIcons.FaCog className="me-2" />{" "}

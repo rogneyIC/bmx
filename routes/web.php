@@ -26,13 +26,16 @@ Route::get('/leveler', [App\Http\Controllers\HomeController::class, 'index'])->n
 Route::get('/trip', [App\Http\Controllers\HomeController::class, 'index'])->name('trip');
 Route::get('/datatec', [App\Http\Controllers\HomeController::class, 'index'])->name('datatec');
 Route::get('/leveler/progress', [App\Http\Controllers\HomeController::class, 'index'])->name('progress');
+Route::get('/profile', [App\Http\Controllers\HomeController::class, 'index'])->name('profile');
 
-Route::post('/user/list', [App\Http\Controllers\UserController::class, 'index']);
+Route::post('/user/list', [App\Http\Controllers\UserController::class, 'list']);
 Route::post('/user/filter', [App\Http\Controllers\UserController::class, 'filter']);
+Route::post('/user/competitor', [App\Http\Controllers\UserController::class, 'isCompetitor']);
+Route::post('/user/make', [App\Http\Controllers\UserController::class, 'makeCompetitor']);
 
-Route::post('/progress/competitor', [App\Http\Controllers\ProgressController::class, 'isCompetitor']);
 Route::post('/progress/list', [App\Http\Controllers\ProgressController::class, 'index']);
-Route::post('/progress/getProgress', [App\Http\Controllers\ProgressController::class, 'getProgress']);
+Route::post('/progress/get', [App\Http\Controllers\ProgressController::class, 'getProgress']);
+Route::post('/progress/wait', [App\Http\Controllers\ProgressController::class, 'progressWait']);
 Route::post('/progress/store', [App\Http\Controllers\ProgressController::class, 'store']);
 Route::post('/progress/update', [App\Http\Controllers\ProgressController::class, 'update']);
 Route::post('/progress/delete', [App\Http\Controllers\ProgressController::class, 'delete']);

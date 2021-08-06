@@ -21,8 +21,8 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         User::factory(50)
             ->hasAttached(Role::where('name', 'user')->first())
-            ->has(Donation::factory(1))
-            ->has(Progress::factory(1))
+            //->has(Donation::factory(1))
+            //->has(Progress::factory(1))
             ->create();
     }
 }

@@ -30,7 +30,6 @@ export default (props) => {
                 toastr.success("Donación aptualizada con éxito");
             })
             .catch((error) => {
-                console.log(error);
                 toastr.warning(error);
             });
     };
@@ -43,7 +42,6 @@ export default (props) => {
                 toastr.success("Donación eliminada con éxito");
             })
             .catch((error) => {
-                console.log(error);
                 toastr.warning(error);
             });
     };
