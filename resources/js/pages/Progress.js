@@ -2,22 +2,17 @@ import React, { useEffect, useState } from "react";
 import { Card, CardGroup, Col, Container, Row } from "react-bootstrap";
 import FormikProgress from "../components/formik/FormikProgress";
 import { useHistory } from "react-router-dom";
-import toastr from "toastr";
 
 export default (props) => {
     let history = useHistory();
 
-    if (!props.competitor) {
-        history.push("/leveler");
-    } else {
-        useEffect(() => {
-            if (props.refSidebar.current)
-                props.refSidebar.current.style.display = "flex";
+    useEffect(() => {
+        if (props.refSidebar.current)
+            props.refSidebar.current.style.display = "flex";
 
-            if (props.refMainPanel.current)
-                props.refMainPanel.current.style.width = "calc(100% - 256px)";
-        }, []);
-    }
+        if (props.refMainPanel.current)
+            props.refMainPanel.current.style.width = "calc(100% - 256px)";
+    }, []);
 
     return (
         <Container className="py-3 px-4">

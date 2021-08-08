@@ -9,14 +9,16 @@ export default (props) => {
     let history = useHistory();
 
     const schema = yup.object().shape({
-        trick: yup.string().required(),
         link: yup.string().required(),
     });
 
     const sendData = async (e) => {
+        console.log(e);
         let data = {
             user_id: props.user_id,
-            trick: e.trick,
+            street: e.street,
+            park: e.park,
+            dirt: e.dirt,
             link: e.link,
         };
         await axios
@@ -38,12 +40,18 @@ export default (props) => {
             validationSchema={schema}
             onSubmit={sendData}
             initialValues={{
-                trick: "",
+                street: "",
+                park: "",
+                dirt: "",
                 link: "",
             }}
             validate={(values) => {
                 const errors = {};
-                if (!values.trick) errors.trick = "Este campo es obligatorio";
+                if (!values.street || !values.park || !values.dirt) {
+                    errors.street = "Uno de estos campos es obligatorio";
+                    errors.park = "Uno de estos campos es obligatorio";
+                    errors.dirt = "Uno de estos campos es obligatorio";
+                }
                 if (!values.link) errors.link = "Este campo es obligatorio";
                 return errors;
             }}
@@ -51,19 +59,51 @@ export default (props) => {
             {({ handleSubmit, handleChange, values, errors }) => (
                 <Form noValidate onSubmit={handleSubmit}>
                     <Row className="mb-3">
-                        <Form.Group as={Col} controlId="validationFormik01">
-                            <FloatingLabel label="Trucos:">
+                        <Form.Group as={Col}>
+                            <FloatingLabel label="Calle:">
                                 <Form.Control
                                     as="textarea"
-                                    name="trick"
-                                    placeholder="Trucos:"
-                                    value={values.trick}
+                                    name="street"
+                                    placeholder="Calle:"
+                                    value={values.street}
                                     onChange={handleChange}
-                                    isInvalid={!!errors.trick}
+                                    // isInvalid={!!errors.street}
                                     style={{ height: "110px" }}
                                 />
                                 <Form.Control.Feedback type="invalid">
-                                    {errors.trick}
+                                    {errors.street}
+                                </Form.Control.Feedback>
+                            </FloatingLabel>
+                        </Form.Group>
+                        <Form.Group as={Col}>
+                            <FloatingLabel label="Parque:">
+                                <Form.Control
+                                    as="textarea"
+                                    name="park"
+                                    placeholder="Parque:"
+                                    value={values.park}
+                                    onChange={handleChange}
+                                    // isInvalid={!!errors.park}
+                                    style={{ height: "110px" }}
+                                />
+                                <Form.Control.Feedback type="invalid">
+                                    {errors.park}
+                                </Form.Control.Feedback>
+                            </FloatingLabel>
+                        </Form.Group>
+                        <Form.Group as={Col}>
+                            <FloatingLabel label="Tierra:">
+                                <Form.Control
+                                    as="textarea"
+                                    name="dirt"
+                                    placeholder="Tierra:"
+                                    value={values.dirt}
+                                    onChange={handleChange}
+                                    // isInvalid={!!errors.dirt}
+                                    style={{ height: "110px" }}
+                                />
+                                <Form.Control.Feedback type="invalid">
+                                    {errors.dirt}
                                 </Form.Control.Feedback>
                             </FloatingLabel>
                         </Form.Group>

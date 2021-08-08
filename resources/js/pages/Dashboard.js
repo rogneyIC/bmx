@@ -6,7 +6,6 @@ import NavbarNav from "../components/NavbarNav";
 import Home from "./Home";
 import What from "./What";
 import Donation from "./Donation";
-import Leveler from "./Leveler";
 import Trip from "./Trip";
 import Datatec from "./Datatec";
 import toastr from "toastr";

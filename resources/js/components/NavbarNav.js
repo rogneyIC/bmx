@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import * as FaIcons from "react-icons/fa";
-import { GiProgression } from "react-icons/gi";
 import {
-    Container,
-    Navbar,
-    Nav,
-    ListGroup,
-    Dropdown,
-    NavItem,
-} from "react-bootstrap";
+    FaCog,
+    FaDonate,
+    FaEnvelopeOpen,
+    FaHistory,
+    FaSignOutAlt,
+    FaUserCircle,
+    FaUserShield,
+} from "react-icons/fa";
+import { GiProgression } from "react-icons/gi";
+import { Container, Navbar, Nav, Dropdown, NavItem, ListGroup } from "react-bootstrap";
 import toastr from "toastr";
 import NotificationDonation from "./NotificationDonation";
 import NotificationProgress from "./NotificationProgress";
-import { NavLink } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
 export default (props) => {
@@ -86,8 +86,8 @@ export default (props) => {
     const srcImg = "/images/avatars/" + props.user.photo;
 
     let history = useHistory();
-    const showProfile = () => {
-        history.push("/profile");
+    const showProfile = (e) => {
+        history.push("/profile", e.target.text);
     };
 
     return (
@@ -101,7 +101,7 @@ export default (props) => {
                                 onClick={notDonation}
                             >
                                 <span className="icon icon-sm">
-                                    <FaIcons.FaDonate color="white" />
+                                    <FaDonate color="white" />
                                 </span>
                             </NavItem>
                         ) : (
@@ -114,7 +114,7 @@ export default (props) => {
                                     className="icon-notifications me-lg-2"
                                 >
                                     <span className="icon icon-sm">
-                                        <FaIcons.FaDonate color="white" />
+                                        <FaDonate color="white" />
                                         {areNotificationsRead ? null : (
                                             <span className="icon-badge rounded-circle unread-notifications" />
                                         )}
@@ -203,24 +203,28 @@ export default (props) => {
                         </Dropdown.Toggle>
                         <Dropdown.Menu className="user-dropdown">
                             <Dropdown.Item onClick={showProfile}>
-                                <FaIcons.FaUserCircle className="me-2" />
+                                <FaUserCircle className="me-2" />
                                 Perfil
                             </Dropdown.Item>
-                            <Dropdown.Item>
-                                <FaIcons.FaCog className="me-2" />{" "}
+                            <Dropdown.Item onClick={showProfile}>
+                                <FaHistory className="me-2" />
+                                Historial
+                            </Dropdown.Item>
+                            <Dropdown.Item onClick={showProfile}>
+                                <FaCog className="me-2" />
                                 Configuraciones
                             </Dropdown.Item>
-                            <Dropdown.Item>
-                                <FaIcons.FaEnvelopeOpen className="me-2" />{" "}
+                            <Dropdown.Item onClick={showProfile}>
+                                <FaEnvelopeOpen className="me-2" />
                                 Mensajes
                             </Dropdown.Item>
-                            <Dropdown.Item>
-                                <FaIcons.FaUserShield className="me-2" />{" "}
+                            <Dropdown.Item onClick={showProfile}>
+                                <FaUserShield className="me-2" />
                                 Soporte
                             </Dropdown.Item>
                             <Dropdown.Divider />
                             <Dropdown.Item onClick={handleLogout}>
-                                <FaIcons.FaSignOutAlt className="text-danger me-2" />{" "}
+                                <FaSignOutAlt className="text-danger me-2" />
                                 Cerrar sesión
                             </Dropdown.Item>
                         </Dropdown.Menu>

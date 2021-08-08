@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Button, Col, Form, Modal, Row } from "react-bootstrap";
+import { Button, Form, Modal, Row } from "react-bootstrap";
 import toastr from "toastr";
-import color from "../Color";
+import configuration from "../chart/ChartConfig";
 
 export default (props) => {
     const [show, setShow] = useState(false);
@@ -23,32 +23,6 @@ export default (props) => {
     const [check14, setCheck14] = useState(false);
     const [check15, setCheck15] = useState(false);
     const [check16, setCheck16] = useState(false);
-
-    const config = (dataResponse) => {
-        let labelArray = [];
-        let dataArray = [];
-        let backgroundColor = [];
-
-        dataResponse.forEach(function (val, index, array) {
-            color.forEach(function (val2, index2, array2) {
-                if (val.region == index2 + 1) {
-                    backgroundColor.push(color[index2]);
-                }
-            });
-            labelArray.push(val.name + " / " + val.age + "años");
-            dataArray.push(val.point);
-        });
-
-        return {
-            labels: labelArray,
-            datasets: [
-                {
-                    data: dataArray,
-                    backgroundColor: backgroundColor,
-                },
-            ],
-        };
-    };
 
     const showModal = () => {
         setCheck1(false);
@@ -96,7 +70,10 @@ export default (props) => {
         await axios
             .post("/user/filter", data)
             .then((response) => {
-                props.chartInstance.data = config(response.data);
+                props.chartInstance.data = configuration.config(
+                    response.data,
+                    props.user_id
+                );
                 props.chartInstance.update();
                 handleClose();
             })

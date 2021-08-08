@@ -35,7 +35,6 @@ class UserFactory extends Factory
             'photo' => '../default-avatar.png',
             'category' => 'iniciante',
             'competitor' => false,
-            'remember_token' => Str::random(10),
         ];
     }
 

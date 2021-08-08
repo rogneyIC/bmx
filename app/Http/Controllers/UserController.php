@@ -4,21 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function list(Request  $request)
+    public function list(Request $request)
     {
-        return [User::join('role_user', 'users.id', '=', 'role_user.user_id')
+        return [User::select('users.id', 'users.name', 'users.age', 'users.region', DB::raw('SUM(progress.point) as point'))
+            ->join('role_user', 'users.id', '=', 'role_user.user_id')
             ->join('progress', 'users.id', '=', 'progress.user_id')
-            ->where('role_user.role_id', 2)
+            ->where('users.competitor', true)
+            ->where('role_user.role_id', 2)            
             ->where('progress.accepted', true)
+            ->groupBy('users.id', 'users.name', 'users.age', 'users.region')
             ->orderBy('region')
             ->get(), count(User::where('id', $request['id'])->where('competitor', true)->get()) == 0 ? false : true];
     }
@@ -26,13 +30,32 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function getUser(Request $request)
+    {
+        return User::select('users.id', 'users.name', 'users.age', 'users.region', DB::raw('SUM(progress.point) as point'))
+            ->join('role_user', 'users.id', '=', 'role_user.user_id')
+            ->join('progress', 'users.id', '=', 'progress.user_id')
+            ->where('role_user.role_id', 2)
+            ->where('users.id', $request['id'])
+            ->groupBy('users.id', 'users.name', 'users.age', 'users.region')
+            ->get();
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function filter(Request $request)
     {
-        $user =  User::join('role_user', 'users.id', '=', 'role_user.user_id')
+        $user =  User::select('users.id', 'users.name', 'users.age', 'users.region', DB::raw('SUM(progress.point) as point'))
+            ->join('role_user', 'users.id', '=', 'role_user.user_id')
             ->join('progress', 'users.id', '=', 'progress.user_id')
+            ->where('users.competitor', true)
             ->where('role_user.role_id', 2);
         switch ($request['option']) {
             case 'region':
@@ -58,14 +81,14 @@ class UserController extends Controller
                 }
                 break;
         }
-        $user->orderBy('region');
+        $user->groupBy('users.id', 'users.name', 'users.age', 'users.region')->orderBy('region');
         return $user->get();
     }
 
     /**
      * Display a isCompetitor.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function isCompetitor(Request $request)

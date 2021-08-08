@@ -8,7 +8,9 @@ export default (props) => {
     const handleClose = () => props.setShow(false);
 
     const schema = yup.object().shape({
-        trick: yup.string().required(),
+        street: yup.string().required(),
+        park: yup.string().required(),
+        dirt: yup.string().required(),
         link: yup.string().required(),
         point: yup.string().required(),
     });
@@ -16,7 +18,9 @@ export default (props) => {
     const sendData = async (e) => {
         const data = {
             user_id: props.user_id,
-            trick: e.trick,
+            street: e.street,
+            park: e.park,
+            dirt: e.dirt,
             link: e.link,
             point: e.point,
         };
@@ -62,13 +66,15 @@ export default (props) => {
                     name: props.name,
                     phone: props.phone,
                     instagram: props.instagram,
-                    trick: props.trick,
+                    street: props.street,
+                    park: props.park,
+                    dirt: props.dirt,
                     link: props.link,
                     point: props.point,
                 }}
                 validate={(values) => {
                     const errors = {};
-                    if (!values.trick)
+                    if (!values.street)
                         errors.trick = "Este campo es obligatorio";
                     if (!values.link) errors.link = "Este campo es obligatorio";
                     if (!values.point)
@@ -138,17 +144,45 @@ export default (props) => {
                             </Row>
                             <Row>
                                 <Form.Group className="mb-3 col">
-                                    <Form.Label>Trucos:</Form.Label>
+                                    <Form.Label>Calle:</Form.Label>
                                     <Form.Control
                                         as="textarea"
                                         rows={3}
-                                        name="trick"
-                                        value={values.trick}
+                                        name="street"
+                                        value={values.street}
                                         onChange={handleChange}
-                                        isInvalid={!!errors.trick}
+                                        isInvalid={!!errors.street}
                                     />
                                     <Form.Control.Feedback type="invalid">
-                                        {errors.trick}
+                                        {errors.street}
+                                    </Form.Control.Feedback>
+                                </Form.Group>
+                                <Form.Group className="mb-3 col">
+                                    <Form.Label>Parque:</Form.Label>
+                                    <Form.Control
+                                        as="textarea"
+                                        rows={3}
+                                        name="park"
+                                        value={values.park}
+                                        onChange={handleChange}
+                                        isInvalid={!!errors.park}
+                                    />
+                                    <Form.Control.Feedback type="invalid">
+                                        {errors.park}
+                                    </Form.Control.Feedback>
+                                </Form.Group>
+                                <Form.Group className="mb-3 col">
+                                    <Form.Label>Tierra:</Form.Label>
+                                    <Form.Control
+                                        as="textarea"
+                                        rows={3}
+                                        name="dirt"
+                                        value={values.dirt}
+                                        onChange={handleChange}
+                                        isInvalid={!!errors.dirt}
+                                    />
+                                    <Form.Control.Feedback type="invalid">
+                                        {errors.dirt}
                                     </Form.Control.Feedback>
                                 </Form.Group>
                             </Row>

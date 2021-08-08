@@ -17,7 +17,9 @@ class Progress extends Model
      */
     protected $fillable = [
         'user_id',
-        'trick',
+        'street',
+        'park',
+        'dirt',
         'link',
         'point',
         'accepted'

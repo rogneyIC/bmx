@@ -46,7 +46,9 @@ class ProgressController extends Controller
         try {
             Progress::create([
                 'user_id' => $request['user_id'],
-                'trick' => $request['trick'],
+                'street' => $request['street'],
+                'park' => $request['park'],
+                'dirt' => $request['dirt'],
                 'link' => $request['link'],
                 'point' => 0,
                 'accepted' => false
@@ -71,7 +73,9 @@ class ProgressController extends Controller
             Progress::where('user_id', $request['user_id'])
                 ->where('accepted', false)
                 ->update([
-                    'trick' => $request['trick'],
+                    'street' => $request['street'],
+                    'park' => $request['park'],
+                    'dirt' => $request['dirt'],
                     'link' => $request['link'],
                     'point' => $request['point'],
                     'accepted' => true,

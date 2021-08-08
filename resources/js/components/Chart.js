@@ -7,7 +7,7 @@ import ModalFilterCategory from "./modal/ModalFilterCategory";
 import { FaFilter } from "react-icons/fa";
 import { useHistory } from "react-router-dom";
 import toastr from "toastr";
-import color from "./Color";
+import configuration from "./chart/ChartConfig";
 
 export default (props) => {
     const chartContainer = useRef(null);
@@ -15,34 +15,6 @@ export default (props) => {
     const [chartInstance, setChartInstance] = useState(null);
     const [data, setData] = useState([]);
     let history = useHistory();
-
-    const config = (dataResponse) => {
-        let labelArray = [];
-        let dataArray = [];
-        let backgroundColor = [];
-
-        dataResponse.forEach(function (val, index, array) {
-            color.forEach(function (val2, index2, array2) {
-                if (val.region == index2 + 1) {
-                    backgroundColor.push(color[index2]);
-                }
-            });
-            props.user_id == val.user_id
-                ? labelArray.push("* " + val.name + " / " + val.age + "años *")
-                : labelArray.push(val.name + " / " + val.age + "años");
-            dataArray.push(val.point);
-        });
-
-        return {
-            labels: labelArray,
-            datasets: [
-                {
-                    data: dataArray,
-                    backgroundColor: backgroundColor,
-                },
-            ],
-        };
-    };
 
     const progressWait = async () => {
         await axios
@@ -75,7 +47,10 @@ export default (props) => {
                         props.setCompetitor(response.data[1]);
                         const chartConfig = {
                             type: "bar",
-                            data: config(response.data[0]),
+                            data: configuration.config(
+                                response.data[0],
+                                props.user_id
+                            ),
                             options: {
                                 plugins: {
                                     legend: {
@@ -90,9 +65,6 @@ export default (props) => {
                                             },
                                         },
                                     ],
-                                },
-                                animation: {
-                                    onComplete: function (e) {},
                                 },
                             },
                         };
@@ -121,7 +93,10 @@ export default (props) => {
             await axios
                 .post("/user/filter", { option: "all" })
                 .then((response) => {
-                    chartInstance.data = config(response.data);
+                    chartInstance.data = configuration.config(
+                        response.data,
+                        props.user_id
+                    );
                     chartInstance.update();
                     setFieldset(true);
                 })
@@ -135,7 +110,10 @@ export default (props) => {
         await axios
             .post("/user/filter", { option: "age", age: value })
             .then((response) => {
-                chartInstance.data = config(response.data);
+                chartInstance.data = configuration.config(
+                    response.data,
+                    props.user_id
+                );
                 chartInstance.update();
             })
             .catch((error) => {
@@ -183,11 +161,13 @@ export default (props) => {
                             <fieldset disabled={fieldset} className="row">
                                 <Col className="d-grid">
                                     <ModalFilterRegion
+                                        user_id={props.user_id}
                                         chartInstance={chartInstance}
                                     />
                                 </Col>
                                 <Col className="d-grid">
                                     <ModalFilterCategory
+                                        user_id={props.user_id}
                                         chartInstance={chartInstance}
                                     />
                                 </Col>
@@ -218,9 +198,6 @@ export default (props) => {
                                 </Col>
                             </fieldset>
                         </Col>
-                        {/* <Col xs={2} className="text-end">
-                            <ModalFilter chartInstance={chartInstance} />
-                        </Col> */}
                     </Row>
                     <Row>
                         <Col>
@@ -231,20 +208,11 @@ export default (props) => {
                     </Row>
                 </Col>
             </Row>
-            {props.competitor ? (
-                <Row className="justify-content-md-end">
-                    <Col xs="auto">
-                        {/* <NavLink
-                            to="/leveler/progress"
-                            activeClassName="active"
-                            className="btn btn-primary"
-                        >
-                            {"Subir avance"}
-                        </NavLink> */}
-                        <Button onClick={progressWait}>Subir avance</Button>
-                    </Col>
-                </Row>
-            ) : null}
+            <Row className="justify-content-md-end">
+                <Col xs="auto">
+                    <Button onClick={progressWait}>Subir avance</Button>
+                </Col>
+            </Row>
         </Container>
     );
 };

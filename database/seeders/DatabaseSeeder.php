@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(RoleTableSeeder::class);
         $this->call(UserSeeder::class);
-        User::factory(50)
+        User::factory(160)
             ->hasAttached(Role::where('name', 'user')->first())
             //->has(Donation::factory(1))
             //->has(Progress::factory(1))

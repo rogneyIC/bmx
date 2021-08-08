@@ -22,8 +22,10 @@ class ProgressFactory extends Factory
     public function definition()
     {
         return [
-            'trick' => 'truco1', 'truco2', 'truco3',
-            'link' => 'link_default',
+            'street' => 'truco',
+            'park' => 'truco',
+            'dirt' => 'truco',
+            'link' => 'https://link_truco.com',
             'point' => $this->faker->numberBetween(10, 100),
             'accepted' => true,
         ];
