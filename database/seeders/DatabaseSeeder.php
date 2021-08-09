@@ -5,8 +5,6 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Role;
-use App\Models\Donation;
-use App\Models\Progress;
 
 class DatabaseSeeder extends Seeder
 {

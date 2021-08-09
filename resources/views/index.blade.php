@@ -16,7 +16,7 @@
     <div class="root d-flex align-items-center justify-content-center">
         <div class="container">
             @if (Route::has('login'))
-            <div class="row">
+            <div class="row mt-3">
                 @auth
                 <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Inicio</a>
                 @else
@@ -24,13 +24,20 @@
                     <div class="row">
                         <div class="col">
                             <div class="textIndex">
-                                El BMX (abreviación de su nombre en inglés: "Bicycle Motocross") es una disciplina del ciclismo
-                                que se practica con bicicletas cross con ruedas de 20 pulgadas de diámetro. El BMX abarca dos
-                                modalidades: carrera, cuyo objetivo es completar el recorrido en el menor tiempo posible, y estilo
-                                libre (freestyle), cuyo objetivo es realizar acrobacias. El BMX es un deporte extremo que debe ser
-                                practicado con la debida seguridad que nos brindan los siguientes objetos: casco, rodilleras, coderas,
-                                guantes de tela o plástico y zapatos anchos. La bicicleta tiene que estar en buenas condiciones para
-                                evitar accidentes.
+                                <p><strong>ComparteCompiteBMX</strong> es una iniciativa que busca mostrar el nivel de cada región de país y
+                                    motivar el deporte con ideas nuevas de competencia y apoyo ideales para fechas sin campeonatos.</p>
+                                <p>En la plataforma podrás conocer tu nivel aproximado, proponerte metas y referenciarlas según tu región o a
+                                    nivel nacional.</p>
+                                <p>Tendras información técnica, podras hacer consultar y publicar tus experiencias (de repuestos, tips de trucos,
+                                    cuidadado de lesiones, y mas).</p>
+                                <p>Nace de la idea de dar a conocer a los biker dedicados. Al mismo tiempo busca potenciar y consolidar el bmx
+                                    nacional.</p>
+                                <p>Nos gustaría ser una especie de ventana web donde las marcas puedan descubrir riders potencialmente
+                                    competitivos.</p>
+                                <p><strong><em>Comparte</em></strong> -> Viene de la idea de buscar apoyo entre nosotros, marcas y en cualquier persona que quiera
+                                    aportar con el deporte. </p>
+                                <p><strong><em>Compite</em></strong> -> Viene de la idea de generar una “competencia” a distancia y en tiempo real que pueda potencie
+                                    el bmx en diferentes partes del país al mismo tiempo.</p>
                             </div>
                         </div>
                     </div>

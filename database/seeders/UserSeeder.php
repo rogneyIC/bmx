@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use App\Models\User;
 use App\Models\Role;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
 
 class UserSeeder extends Seeder
 {
