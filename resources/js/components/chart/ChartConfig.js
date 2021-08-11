@@ -13,7 +13,7 @@ configuration.config = (dataResponse, user_id) => {
             }
         });
         user_id == val.id
-            ? labelArray.push("* " + val.name + " / " + val.age + "años *")
+            ? labelArray.push("YO")
             : labelArray.push(val.name + " / " + val.age + "años");
         dataArray.push(val.point);
     });

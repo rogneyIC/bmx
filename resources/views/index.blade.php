@@ -24,20 +24,8 @@
                     <div class="row">
                         <div class="col">
                             <div class="textIndex">
-                                <p><strong>ComparteCompiteBMX</strong> es una iniciativa que busca mostrar el nivel de cada región de país y
-                                    motivar el deporte con ideas nuevas de competencia y apoyo ideales para fechas sin campeonatos.</p>
-                                <p>En la plataforma podrás conocer tu nivel aproximado, proponerte metas y referenciarlas según tu región o a
-                                    nivel nacional.</p>
-                                <p>Tendras información técnica, podras hacer consultar y publicar tus experiencias (de repuestos, tips de trucos,
-                                    cuidadado de lesiones, y mas).</p>
-                                <p>Nace de la idea de dar a conocer a los biker dedicados. Al mismo tiempo busca potenciar y consolidar el bmx
-                                    nacional.</p>
-                                <p>Nos gustaría ser una especie de ventana web donde las marcas puedan descubrir riders potencialmente
-                                    competitivos.</p>
-                                <p><strong><em>Comparte</em></strong> -> Viene de la idea de buscar apoyo entre nosotros, marcas y en cualquier persona que quiera
-                                    aportar con el deporte. </p>
-                                <p><strong><em>Compite</em></strong> -> Viene de la idea de generar una “competencia” a distancia y en tiempo real que pueda potencie
-                                    el bmx en diferentes partes del país al mismo tiempo.</p>
+                                <p><strong>ComparteCompiteBMX</strong> es una iniciativa que busca mostrar el nivel de cada región de país y motivar
+                                    el deporte con ideas nuevas de competencia y apoyo ideales para fechas sin campeonatos.</p>
                             </div>
                         </div>
                     </div>

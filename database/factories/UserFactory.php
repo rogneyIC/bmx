@@ -34,7 +34,7 @@ class UserFactory extends Factory
             'facebook' => $this->faker->lexify('facebook-????'),
             'photo' => '../default-avatar.png',
             'category' => 'iniciante',
-            'competitor' => false,
+            'competitor' => true,
         ];
     }
 
