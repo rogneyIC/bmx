@@ -8,7 +8,7 @@ import bmx5 from "../../img/bmx5.jpg";
 import Logo from "../components/Logo";
 
 export default (props) => {
-    useEffect(() => {        
+    useEffect(() => {
         if (props.refSidebar.current)
             props.refSidebar.current.style.display = "none";
 
@@ -22,14 +22,11 @@ export default (props) => {
                     <Row>
                         <Col>
                             <p className="home-text">
-                                El BMX (abreviación de su nombre en inglés:
-                                "Bicycle Motocross") es una disciplina del
-                                ciclismo que se practica con bicicletas cross
-                                con ruedas de 20 pulgadas de diámetro. El BMX
-                                abarca dos modalidades: carrera, cuyo objetivo
-                                es completar el recorrido en el menor tiempo
-                                posible, y estilo libre (freestyle), cuyo
-                                objetivo es realizar acrobacias.
+                                <strong>ComparteCompiteBMX</strong> es una
+                                iniciativa que busca mostrar el nivel de cada
+                                región de país y motivar el deporte con ideas
+                                nuevas de competencia y apoyo ideales para
+                                fechas sin campeonatos.
                             </p>
                         </Col>
                     </Row>

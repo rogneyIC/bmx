@@ -46,20 +46,20 @@ export default (props) => {
                     </Nav.Item>
                     <Nav.Item>
                         <NavLink
-                            to="/donation"
-                            activeClassName="active"
-                            className="nav-link"
-                        >
-                            Donaciones
-                        </NavLink>
-                    </Nav.Item>
-                    <Nav.Item>
-                        <NavLink
                             to="/leveler"
                             activeClassName="active"
                             className="nav-link"
                         >
                             Nivelador
+                        </NavLink>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <NavLink
+                            to="/donation"
+                            activeClassName="active"
+                            className="nav-link"
+                        >
+                            Donaciones
                         </NavLink>
                     </Nav.Item>
                     <Nav.Item>

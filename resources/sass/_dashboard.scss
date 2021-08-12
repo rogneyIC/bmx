@@ -129,6 +129,27 @@ body > .navbar-collapse {
     .navbar {
         margin-bottom: 0;
     }
+
+    .what {
+        ul {
+            list-style-type: none;
+            a {
+                text-decoration: none;
+            }
+        }
+        ol li::marker {
+            font-weight: bold;
+            // unicode-bidi: isolate;
+            // font-variant-numeric: tabular-nums;
+            // text-transform: none;
+            // text-indent: 0px !important;
+            // text-align: start !important;
+            // text-align-last: start !important;
+        }
+        ul.ulDonation {
+            list-style-type: initial;
+        }
+    }
 }
 
 .sidebar-parent {

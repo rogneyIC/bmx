@@ -10,7 +10,14 @@ import {
     FaUserShield,
 } from "react-icons/fa";
 import { GiProgression } from "react-icons/gi";
-import { Container, Navbar, Nav, Dropdown, NavItem, ListGroup } from "react-bootstrap";
+import {
+    Container,
+    Navbar,
+    Nav,
+    Dropdown,
+    NavItem,
+    ListGroup,
+} from "react-bootstrap";
 import toastr from "toastr";
 import NotificationDonation from "./NotificationDonation";
 import NotificationProgress from "./NotificationProgress";
@@ -87,7 +94,8 @@ export default (props) => {
 
     let history = useHistory();
     const showProfile = (e) => {
-        history.push("/profile", e.target.text);
+        //history.push("/profile", e.target.text);
+        toastr.info("Funcionalidad en desarrollo");
     };
 
     return (
@@ -210,7 +218,7 @@ export default (props) => {
                                 <FaHistory className="me-2" />
                                 Historial
                             </Dropdown.Item>
-                            <Dropdown.Item onClick={showProfile}>
+                            {/* <Dropdown.Item onClick={showProfile}>
                                 <FaCog className="me-2" />
                                 Configuraciones
                             </Dropdown.Item>
@@ -221,7 +229,7 @@ export default (props) => {
                             <Dropdown.Item onClick={showProfile}>
                                 <FaUserShield className="me-2" />
                                 Soporte
-                            </Dropdown.Item>
+                            </Dropdown.Item> */}
                             <Dropdown.Divider />
                             <Dropdown.Item onClick={handleLogout}>
                                 <FaSignOutAlt className="text-danger me-2" />

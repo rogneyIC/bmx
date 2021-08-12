@@ -554,6 +554,18 @@ body > .navbar-collapse:after {
 .main-panel .navbar {
   margin-bottom: 0;
 }
+.main-panel .what ul {
+  list-style-type: none;
+}
+.main-panel .what ul a {
+  text-decoration: none;
+}
+.main-panel .what ol li::marker {
+  font-weight: bold;
+}
+.main-panel .what ul.ulDonation {
+  list-style-type: initial;
+}
 
 .sidebar-parent {
   display: none;
