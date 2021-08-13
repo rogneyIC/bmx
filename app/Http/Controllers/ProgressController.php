@@ -12,12 +12,11 @@ class ProgressController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function list()
     {
         return Progress::join('users', 'progress.user_id', '=', 'users.id')
             ->select('progress.*', 'users.*', 'progress.id as progress_id')
             ->where('progress.accepted', false)
-            ->distinct('progress.id')
             ->get();
     }
 
@@ -49,7 +48,9 @@ class ProgressController extends Controller
                 'street' => $request['street'],
                 'park' => $request['park'],
                 'dirt' => $request['dirt'],
-                'link' => $request['link'],
+                'link_street' => $request['link_street'],
+                'link_park' => $request['link_park'],
+                'link_dirt' => $request['link_dirt'],
                 'point' => 0,
                 'accepted' => false
             ]);
@@ -70,13 +71,14 @@ class ProgressController extends Controller
     public function update(Request $request)
     {
         try {
-            Progress::where('user_id', $request['user_id'])
-                ->where('accepted', false)
+            Progress::where('id', $request['id'])
                 ->update([
                     'street' => $request['street'],
                     'park' => $request['park'],
                     'dirt' => $request['dirt'],
-                    'link' => $request['link'],
+                    'link_street' => $request['link_street'],
+                    'link_park' => $request['link_park'],
+                    'link_dirt' => $request['link_dirt'],
                     'point' => $request['point'],
                     'accepted' => true,
                 ]);

@@ -34,7 +34,7 @@ Route::post('/user/competitor', [App\Http\Controllers\UserController::class, 'is
 Route::post('/user/make', [App\Http\Controllers\UserController::class, 'makeCompetitor']);
 Route::post('/user/get', [App\Http\Controllers\UserController::class, 'getUser']);
 
-Route::post('/progress/list', [App\Http\Controllers\ProgressController::class, 'index']);
+Route::post('/progress/list', [App\Http\Controllers\ProgressController::class, 'list']);
 Route::post('/progress/get', [App\Http\Controllers\ProgressController::class, 'getProgress']);
 Route::post('/progress/wait', [App\Http\Controllers\ProgressController::class, 'progressWait']);
 Route::post('/progress/store', [App\Http\Controllers\ProgressController::class, 'store']);

@@ -130,6 +130,10 @@ body > .navbar-collapse {
         margin-bottom: 0;
     }
 
+    span.title {
+        text-shadow: 0 0 6px blue;
+    }
+
     .what {
         ul {
             list-style-type: none;
@@ -139,12 +143,6 @@ body > .navbar-collapse {
         }
         ol li::marker {
             font-weight: bold;
-            // unicode-bidi: isolate;
-            // font-variant-numeric: tabular-nums;
-            // text-transform: none;
-            // text-indent: 0px !important;
-            // text-align: start !important;
-            // text-align-last: start !important;
         }
         ul.ulDonation {
             list-style-type: initial;

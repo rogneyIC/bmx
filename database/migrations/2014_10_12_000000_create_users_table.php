@@ -25,7 +25,6 @@ class CreateUsersTable extends Migration
             $table->string('instagram')->nullable();
             $table->string('facebook')->nullable();
             $table->string('photo')->nullable();
-            $table->string('category');
             $table->boolean('competitor');
             $table->rememberToken();
             $table->timestamps();

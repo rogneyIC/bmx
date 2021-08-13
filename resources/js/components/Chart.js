@@ -16,8 +16,9 @@ export default (props) => {
     const [data, setData] = useState([]);
     let history = useHistory();
 
-    const progressWait = async () => {
-        await axios
+    //const progressWait = async () => {
+    const progressWait = () => {
+        /*await axios
             .post("/progress/wait", { id: props.user_id })
             .then((response) => {
                 response.data.wait
@@ -28,7 +29,8 @@ export default (props) => {
             })
             .catch((error) => {
                 toastr.error(error);
-            });
+            });*/
+        history.push("/leveler/progress");
     };
 
     useEffect(() => {
@@ -219,7 +221,7 @@ export default (props) => {
             </Row>
             <Row className="justify-content-md-end">
                 <Col xs="auto">
-                    <Button onClick={progressWait}>Subir avance</Button>
+                    <Button onClick={progressWait}>Subir progreso</Button>
                 </Col>
             </Row>
         </Container>

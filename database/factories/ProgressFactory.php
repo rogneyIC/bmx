@@ -25,7 +25,9 @@ class ProgressFactory extends Factory
             'street' => 'truco1',
             'park' => 'truco2',
             'dirt' => 'truco3',
-            'link' => 'https://link_truco.com',
+            'link_street' => 'https://link_street.com',
+            'link_park' => 'https://link_park.com',
+            'link_dirt' => 'https://link_dirt.com',
             'point' => $this->faker->numberBetween(40, 8000),
             'accepted' => true,
         ];

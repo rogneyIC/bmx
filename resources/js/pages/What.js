@@ -343,11 +343,11 @@ export default (props) => {
                 <div className="accordion-item" id="accordion3">
                     <h2 className="accordion-header" id="heading3">
                         <button
-                            className="accordion-button"
+                            className="accordion-button collapsed"
                             type="button"
                             data-bs-toggle="collapse"
                             data-bs-target="#collapse3"
-                            aria-expanded="true"
+                            aria-expanded="false"
                             aria-controls="collapse3"
                         >
                             <strong>2 Funciones</strong>
@@ -355,7 +355,7 @@ export default (props) => {
                     </h2>
                     <div
                         id="collapse3"
-                        className="accordion-collapse collapse show"
+                        className="accordion-collapse collapse"
                         aria-labelledby="heading3"
                         data-bs-parent="#function"
                     >
@@ -607,11 +607,8 @@ export default (props) => {
                                 </Col>
                             </Row>
                             <Row>
-                                <Col>
+                                <Col className="text-center">
                                     <Image src={what6} fluid rounded />
-                                </Col>
-                                <Col>
-                                    <Image src={what7} fluid rounded />
                                 </Col>
                             </Row>
                         </div>
@@ -639,7 +636,7 @@ export default (props) => {
                         <div className="accordion-body">
                             <Row>
                                 <Col>
-                                    <Image src={what8} fluid rounded />
+                                    <Image src={what7} fluid rounded />
                                 </Col>
                             </Row>
                             <Row>
@@ -706,7 +703,7 @@ export default (props) => {
                     >
                         <div className="accordion-body">
                             <Row>
-                                <Col>
+                                <Col className="text-center">
                                     <Image src={what8} fluid rounded />
                                 </Col>
                             </Row>

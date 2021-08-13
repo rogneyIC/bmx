@@ -554,6 +554,9 @@ body > .navbar-collapse:after {
 .main-panel .navbar {
   margin-bottom: 0;
 }
+.main-panel span.title {
+  text-shadow: 0 0 6px blue;
+}
 .main-panel .what ul {
   list-style-type: none;
 }

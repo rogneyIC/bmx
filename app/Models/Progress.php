@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,7 +19,9 @@ class Progress extends Model
         'street',
         'park',
         'dirt',
-        'link',
+        'link_street',
+        'link_park',
+        'link_dirt',
         'point',
         'accepted'
     ];

@@ -19,7 +19,9 @@ class CreateProgressTable extends Migration
             $table->string('street')->nullable();
             $table->string('park')->nullable();
             $table->string('dirt')->nullable();
-            $table->string('link')->nullable();
+            $table->string('link_street')->nullable();
+            $table->string('link_park')->nullable();
+            $table->string('link_dirt')->nullable();
             $table->integer('point');
             $table->boolean('accepted');
             $table->timestamps();

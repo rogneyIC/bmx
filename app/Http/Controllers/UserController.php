@@ -63,7 +63,6 @@ class UserController extends Controller
                 break;
             case 'category':
                 if (count($request['category']) > 0) {
-                    //$user->whereIn('category', $request['category']);
                     foreach ($request['category'] as $key => $category) {
                         switch ($category) {
                             case 'iniciante':
