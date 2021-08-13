@@ -79,17 +79,17 @@ export default (props) => {
                     <ul className="index">
                         <li>
                             <a href="#accordion1" onClick={index}>
-                                1 Funciones
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#accordion2" onClick={index}>
-                                2 ¿Cómo funciona?
+                                1 ¿Cómo funciona?
                             </a>
                         </li>
                         <li className="ms-2">
+                            <a href="#accordion2" onClick={index}>
+                                1.1 Ejemplo de funcionamiento
+                            </a>
+                        </li>
+                        <li>
                             <a href="#accordion3" onClick={index}>
-                                2.1 Ejemplo de funcionamiento
+                                2 Funciones
                             </a>
                         </li>
                         <li>
@@ -200,72 +200,20 @@ export default (props) => {
                 <div className="accordion-item" id="accordion1">
                     <h2 className="accordion-header" id="heading1">
                         <button
-                            className="accordion-button"
+                            className="accordion-button collapsed"
                             type="button"
                             data-bs-toggle="collapse"
                             data-bs-target="#collapse1"
-                            aria-expanded="true"
+                            aria-expanded="false"
                             aria-controls="collapse1"
                         >
-                            <strong>1 Funciones</strong>
+                            <strong>1 ¿Cómo funciona?</strong>
                         </button>
                     </h2>
                     <div
                         id="collapse1"
-                        className="accordion-collapse collapse show"
-                        aria-labelledby="heading1"
-                        data-bs-parent="#function"
-                    >
-                        <div className="accordion-body">
-                            <p>
-                                <strong>“Nivelador”:</strong> En esta función
-                                podrás conocer tu nivel calculado en un puntaje
-                                ficticio según tus trucos aterrizados. Podrás
-                                competir por premios en una animación que agrupa
-                                y grafica los bmx de todas las regiones.
-                            </p>
-                            <p>
-                                <strong>Donaciones:</strong> En esta función se
-                                coordinarán todo tipo de donaciones que se
-                                podrán usar como incentivo para motivar el bmx.
-                            </p>
-                            <p>
-                                <strong>Trip:</strong>{" "}
-                                <em>(próximamente disponible)</em> La función
-                                trip busca facilitar los viajes entre comunas y
-                                regiones para fomentar el bmx, para que conozcan
-                                gente y gerar contactos con todas las regiones.
-                            </p>
-                            <p>
-                                <strong>Datos técnicos:</strong>{" "}
-                                <em>(próximamente disponible)</em> En esta
-                                función información para leer (tips) técnica,
-                                además podrás publicar y comentar. Constará de
-                                un foro donde podrás leer y consultar sobre
-                                tips, tratamiento lesiones, repuestos
-                                compartiendo tus propias experiencias para la
-                                comunidad biker.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div className="accordion-item" id="accordion2">
-                    <h2 className="accordion-header" id="heading2">
-                        <button
-                            className="accordion-button collapsed"
-                            type="button"
-                            data-bs-toggle="collapse"
-                            data-bs-target="#collapse2"
-                            aria-expanded="false"
-                            aria-controls="collapse2"
-                        >
-                            <strong>2 ¿Cómo funciona?</strong>
-                        </button>
-                    </h2>
-                    <div
-                        id="collapse2"
                         className="accordion-collapse collapse"
-                        aria-labelledby="heading2"
+                        aria-labelledby="heading1"
                         data-bs-parent="#function"
                     >
                         <div className="accordion-body">
@@ -332,23 +280,23 @@ export default (props) => {
                         </div>
                     </div>
                 </div>
-                <div className="accordion-item" id="accordion3">
-                    <h2 className="accordion-header" id="heading3">
+                <div className="accordion-item" id="accordion2">
+                    <h2 className="accordion-header" id="heading2">
                         <button
                             className="accordion-button collapsed"
                             type="button"
                             data-bs-toggle="collapse"
-                            data-bs-target="#collapse3"
+                            data-bs-target="#collapse2"
                             aria-expanded="false"
-                            aria-controls="collapse3"
+                            aria-controls="collapse2"
                         >
-                            <strong>2.1 Ejemplo de funcionamiento</strong>
+                            <strong>1.1 Ejemplo de funcionamiento</strong>
                         </button>
                     </h2>
                     <div
-                        id="collapse3"
+                        id="collapse2"
                         className="accordion-collapse collapse"
-                        aria-labelledby="heading3"
+                        aria-labelledby="heading2"
                         data-bs-parent="#function"
                     >
                         <div className="accordion-body">
@@ -389,6 +337,58 @@ export default (props) => {
                                     <Image src={what1} fluid rounded />
                                 </Col>
                             </Row>
+                        </div>
+                    </div>
+                </div>
+                <div className="accordion-item" id="accordion3">
+                    <h2 className="accordion-header" id="heading3">
+                        <button
+                            className="accordion-button"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#collapse3"
+                            aria-expanded="true"
+                            aria-controls="collapse3"
+                        >
+                            <strong>2 Funciones</strong>
+                        </button>
+                    </h2>
+                    <div
+                        id="collapse3"
+                        className="accordion-collapse collapse show"
+                        aria-labelledby="heading3"
+                        data-bs-parent="#function"
+                    >
+                        <div className="accordion-body">
+                            <p>
+                                <strong>“Nivelador”:</strong> En esta función
+                                podrás conocer tu nivel calculado en un puntaje
+                                ficticio según tus trucos aterrizados. Podrás
+                                competir por premios en una animación que agrupa
+                                y grafica los bmx de todas las regiones.
+                            </p>
+                            <p>
+                                <strong>Donaciones:</strong> En esta función se
+                                coordinarán todo tipo de donaciones que se
+                                podrán usar como incentivo para motivar el bmx.
+                            </p>
+                            <p>
+                                <strong>Trip:</strong>{" "}
+                                <em>(próximamente disponible)</em> La función
+                                trip busca facilitar los viajes entre comunas y
+                                regiones para fomentar el bmx, para que conozcan
+                                gente y gerar contactos con todas las regiones.
+                            </p>
+                            <p>
+                                <strong>Datos técnicos:</strong>{" "}
+                                <em>(próximamente disponible)</em> En esta
+                                función información para leer (tips) técnica,
+                                además podrás publicar y comentar. Constará de
+                                un foro donde podrás leer y consultar sobre
+                                tips, tratamiento lesiones, repuestos
+                                compartiendo tus propias experiencias para la
+                                comunidad biker.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -639,7 +639,7 @@ export default (props) => {
                         <div className="accordion-body">
                             <Row>
                                 <Col>
-                                    <Image src={what7} fluid rounded />
+                                    <Image src={what8} fluid rounded />
                                 </Col>
                             </Row>
                             <Row>

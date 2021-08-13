@@ -20,7 +20,7 @@ class UserController extends Controller
             ->join('role_user', 'users.id', '=', 'role_user.user_id')
             ->join('progress', 'users.id', '=', 'progress.user_id')
             ->where('users.competitor', true)
-            ->where('role_user.role_id', 2)            
+            ->where('role_user.role_id', 2)
             ->where('progress.accepted', true)
             ->groupBy('users.id', 'users.name', 'users.age', 'users.region')
             ->orderBy('region')
@@ -62,7 +62,25 @@ class UserController extends Controller
                 if (count($request['region']) > 0) $user->whereIn('region', $request['region']);
                 break;
             case 'category':
-                if (count($request['category']) > 0) $user->whereIn('category', $request['category']);
+                if (count($request['category']) > 0) {
+                    //$user->whereIn('category', $request['category']);
+                    foreach ($request['category'] as $key => $category) {
+                        switch ($category) {
+                            case 'iniciante':
+                                $user->where('point', '<', 2000);
+                                break;
+                            case 'intermedio':
+                                $key > 0 ? $user->orWhereBetween('point', [2000, 3999]) : $user->whereBetween('point', [2000, 3999]);
+                                break;
+                            case 'experto':
+                                $key > 0 ? $user->orWhereBetween('point', [4000, 7999]) : $user->whereBetween('point', [4000, 7999]);
+                                break;
+                            case 'pro':
+                                $key > 0 ? $user->orWhere('point', '>', 7999) : $user->where('point', '>', 7999);
+                                break;
+                        }
+                    }
+                }
                 break;
             case 'age':
                 switch ($request['age']) {

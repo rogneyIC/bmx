@@ -136,10 +136,11 @@ export default (props) => {
     return (
         <Container className="py-3 px-4 leveler">
             <Row>
-                <Col xs={2}>
+                {/* <Col xs={2}>
                     <Image src={img_chart} fluid />
-                </Col>
-                <Col xs={10} className="align-self-end">
+                </Col> */}
+                {/* <Col xs={10} className="align-self-end"> */}
+                <Col className="align-self-end">
                     <Row className="justify-content-md-end">
                         {!props.competitor && props.role != "admin" ? (
                             <Col xs={3} className="text-end">
@@ -199,6 +200,14 @@ export default (props) => {
                             </fieldset>
                         </Col>
                     </Row>
+                    {/* <Row className="justify-content-md-end">
+                        <Col xs={2} className="text-end">
+                            <Button disabled>
+                                Riders{" "}
+                                <span className="badge bg-secondary">4</span>
+                            </Button>
+                        </Col>
+                    </Row> */}
                     <Row>
                         <Col>
                             <div className="chart-container">
