@@ -15,34 +15,16 @@
 <body>
     <div class="root d-flex align-items-center justify-content-center">
         <div class="container">
-            @if (Route::has('login'))
             <div class="row mt-3">
                 @auth
-                <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Inicio</a>
+                <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Usted ya inició sesión. Volver al inicio</a>
                 @else
                 <div class="col-8">
                     <div class="row">
                         <div class="col">
                             <div class="textIndex">
-                                <p><strong>ComparteCompiteBMX</strong> es una iniciativa que busca mostrar el nivel de cada región de país y motivar
-                                    el deporte con ideas nuevas de competencia y apoyo ideales para fechas sin campeonatos.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <div id="carouselIndex" class="carousel slide carousel-fade" data-bs-ride="carousel">
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <img src="{{ asset('images/index1.jpg') }}" class="d-block w-100">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="{{ asset('images/index2.jpg') }}" class="d-block w-100">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="{{ asset('images/index3.jpg') }}" class="d-block w-100">
-                                    </div>
-                                </div>
+                                <p><strong>ComparteCompiteBMX</strong> es una iniciativa que busca dar a conocer el nivel de cada región del país y
+                                motivarlo a través de competencias a distancia y en tiempo real.</p>
                             </div>
                         </div>
                     </div>
@@ -56,20 +38,30 @@
                     <div class=" row">
                         @if (Route::has('login'))
                         <div class="col d-grid">
-                            <a class="btn btn-primary" href="{{ route('login') }}" role="button">Iniciar sesión</a>
+                            <a class="btn btn-primary" href="{{ route('login') }}" role="button">{{ __('Iniciar sesión') }}</a>
                         </div>
                         @endif
                         @if (Route::has('register'))
                         <div class="col d-grid">
-                            <a class="btn btn-primary" href="{{ route('register') }}" role="button">Registrarse</a>
+                            <a class="btn btn-primary" href="{{ route('register') }}" role="button">{{ __('Registrarse') }}</a>
                         </div>
                         @endif
                     </div>
-                    @endauth
+                    <form method="POST" action="{{ route('login') }}">
+                        @csrf
+                        <input id="invite" type="hidden" class="form-control" name="email" value="invite@invite.invite">
+                        <input id="password" type="hidden" class="form-control" name="password" value="invite">
+                        <div class="row mt-3">
+                            <div class="col d-grid">
+                                <button type="submit" class="btn btn-primary">{{ __('Iniciar sesión como invitado') }}</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
+                @endauth
             </div>
-            @endif
         </div>
+    </div>
 </body>
 
 </html>

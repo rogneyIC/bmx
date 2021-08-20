@@ -210,27 +210,31 @@ export default (props) => {
                             </div>
                         </Dropdown.Toggle>
                         <Dropdown.Menu className="user-dropdown">
-                            <Dropdown.Item onClick={showProfile}>
-                                <FaUserCircle className="me-2" />
-                                Perfil
-                            </Dropdown.Item>
-                            <Dropdown.Item onClick={showProfile}>
-                                <FaHistory className="me-2" />
-                                Historial
-                            </Dropdown.Item>
-                            {/* <Dropdown.Item onClick={showProfile}>
-                                <FaCog className="me-2" />
-                                Configuraciones
-                            </Dropdown.Item>
-                            <Dropdown.Item onClick={showProfile}>
-                                <FaEnvelopeOpen className="me-2" />
-                                Mensajes
-                            </Dropdown.Item>
-                            <Dropdown.Item onClick={showProfile}>
-                                <FaUserShield className="me-2" />
-                                Soporte
-                            </Dropdown.Item> */}
-                            <Dropdown.Divider />
+                            {props.user.email == "invite@invite.invite" ? null : (
+                                <>
+                                    <Dropdown.Item onClick={showProfile}>
+                                        <FaUserCircle className="me-2" />
+                                        Perfil
+                                    </Dropdown.Item>
+                                    <Dropdown.Item onClick={showProfile}>
+                                        <FaHistory className="me-2" />
+                                        Historial
+                                    </Dropdown.Item>
+                                    {/* <Dropdown.Item onClick={showProfile}>
+                                        <FaCog className="me-2" />
+                                        Configuraciones
+                                    </Dropdown.Item>
+                                    <Dropdown.Item onClick={showProfile}>
+                                        <FaEnvelopeOpen className="me-2" />
+                                        Mensajes
+                                    </Dropdown.Item>
+                                    <Dropdown.Item onClick={showProfile}>
+                                        <FaUserShield className="me-2" />
+                                        Soporte
+                                    </Dropdown.Item> */}
+                                    <Dropdown.Divider />
+                                </>
+                            )}
                             <Dropdown.Item onClick={handleLogout}>
                                 <FaSignOutAlt className="text-danger me-2" />
                                 Cerrar sesión

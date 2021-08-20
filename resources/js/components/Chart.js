@@ -19,7 +19,7 @@ export default (props) => {
     //const progressWait = async () => {
     const progressWait = () => {
         /*await axios
-            .post("/progress/wait", { id: props.user_id })
+            .post("/progress/wait", { id: props.id })
             .then((response) => {
                 response.data.wait
                     ? toastr.info(
@@ -34,6 +34,8 @@ export default (props) => {
     };
 
     useEffect(() => {
+        props.refLoader.current.style.display = "initial";
+
         if (props.refSidebar.current)
             props.refSidebar.current.style.display = "flex";
 
@@ -43,15 +45,16 @@ export default (props) => {
         if (chartContainer && chartContainer.current) {
             const fetchData = async () => {
                 await axios
-                    .post("/user/list", { id: props.user_id })
+                    .post("/user/list", { id: props.id })
                     .then((response) => {
                         setData(response.data[0]);
                         props.setCompetitor(response.data[1]);
+                        props.refLoader.current.style.display = "none";
                         const chartConfig = {
                             type: "bar",
                             data: configuration.config(
                                 response.data[0],
-                                props.user_id
+                                props.id
                             ),
                             options: {
                                 plugins: {
@@ -97,7 +100,7 @@ export default (props) => {
                 .then((response) => {
                     chartInstance.data = configuration.config(
                         response.data,
-                        props.user_id
+                        props.id
                     );
                     chartInstance.update();
                     setFieldset(true);
@@ -114,7 +117,7 @@ export default (props) => {
             .then((response) => {
                 chartInstance.data = configuration.config(
                     response.data,
-                    props.user_id
+                    props.id
                 );
                 chartInstance.update();
             })
@@ -125,7 +128,7 @@ export default (props) => {
 
     const makeCompetitor = async () => {
         await axios
-            .post("/user/make", { id: props.user_id })
+            .post("/user/make", { id: props.id })
             .then((response) => {
                 props.setCompetitor(true);
                 toastr.success("Felicidades, ahora usted es un competidor");
@@ -137,6 +140,14 @@ export default (props) => {
 
     return (
         <Container className="py-3 px-4 leveler">
+            {/* <Loader
+                type="Puff"
+                color="#00BFFF"
+                height={150}
+                width={150}
+                visible={spinnerLoading}
+                className="justify-content-center align-items-center loader"
+            /> */}
             <Row>
                 {/* <Col xs={2}>
                     <Image src={img_chart} fluid />
@@ -144,7 +155,9 @@ export default (props) => {
                 {/* <Col xs={10} className="align-self-end"> */}
                 <Col className="align-self-end">
                     <Row className="justify-content-md-end">
-                        {!props.competitor && props.role != "admin" ? (
+                        {!props.competitor &&
+                        props.role != "admin" &&
+                        props.email != "invite@invite.invite" ? (
                             <Col xs={3} className="text-end">
                                 <Button
                                     variant="primary"
@@ -164,13 +177,13 @@ export default (props) => {
                             <fieldset disabled={fieldset} className="row">
                                 <Col className="d-grid">
                                     <ModalFilterRegion
-                                        user_id={props.user_id}
+                                        id={props.id}
                                         chartInstance={chartInstance}
                                     />
                                 </Col>
                                 <Col className="d-grid">
                                     <ModalFilterCategory
-                                        user_id={props.user_id}
+                                        id={props.id}
                                         chartInstance={chartInstance}
                                     />
                                 </Col>
@@ -219,11 +232,13 @@ export default (props) => {
                     </Row>
                 </Col>
             </Row>
-            <Row className="justify-content-md-end">
-                <Col xs="auto">
-                    <Button onClick={progressWait}>Subir progreso</Button>
-                </Col>
-            </Row>
+            {props.email != "invite@invite.invite" ? (
+                <Row className="justify-content-md-end">
+                    <Col xs="auto">
+                        <Button onClick={progressWait}>Subir progreso</Button>
+                    </Col>
+                </Row>
+            ) : null}
         </Container>
     );
 };

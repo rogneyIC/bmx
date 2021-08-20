@@ -23,10 +23,9 @@ export default (props) => {
                         <Col>
                             <p className="home-text">
                                 <strong>ComparteCompiteBMX</strong> es una
-                                iniciativa que busca mostrar el nivel de cada
-                                región de país y motivar el deporte con ideas
-                                nuevas de competencia y apoyo ideales para
-                                fechas sin campeonatos.
+                                iniciativa que busca dar a conocer el nivel de
+                                cada región del país y motivarlo a través de
+                                competencias a distancia y en tiempo real.
                             </p>
                         </Col>
                     </Row>

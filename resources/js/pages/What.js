@@ -10,6 +10,10 @@ import what6 from "../../img/what/what6.png";
 import what7 from "../../img/what/what7.png";
 import what8 from "../../img/what/what8.png";
 import what9 from "../../img/what/what9.png";
+import what10 from "../../img/what/what10.png";
+import what11 from "../../img/what/what11.png";
+import what12 from "../../img/what/what12.png";
+import what13 from "../../img/what/what13.png";
 
 export default (props) => {
     useEffect(() => {
@@ -30,46 +34,25 @@ export default (props) => {
                 <h3 className="text-center">¿Qué es?</h3>
                 <p>
                     <strong>CCO</strong> es una plataforma web que incentiva el
-                    bmx chileno con ideas que buscan motivar y generar apoyo al
-                    bmx regional y nacional.
+                    bmx motivando y generando más opciones de apoyo al bmx
+                    regional y nacional.
                 </p>
                 <p>
-                    En la plataforma podrás conocer tu nivel aproximado,
-                    proponerte metas y referenciarlas según tu región o a nivel
-                    nacional.
+                    En la plataforma podrás conocer una aproximación de tu nivel
+                    real y referenciarlo a escala nacional.
                 </p>
                 <p>
-                    Para esto solo deberás enviarnos el link de tus clips con
-                    tus trucos (ej.: link de YouTube, Instagram, Vimeo, etc.)
+                    Para esto deberás enviarnos el link de tus clips (ej.: link
+                    de YouTube, Instagram, video, etc., de tus trucos y/o
+                    combinaciones).
                 </p>
                 <p>
-                    Tendrás información técnica, podrás hacer consultas y
-                    publicar tus experiencias (de piezas, tipos de trucos,
-                    cuidado de lesiones, y más).
+                    Nace de la idea de dar a conocer y potenciar el bmx en
+                    Chile.
                 </p>
                 <p>
-                    Nos gustaría ser una especie de ventana web donde las marcas
-                    puedan descubrir riders potencialmente competitivos.
-                </p>
-                <p>
-                    <strong>
-                        <em>Comparte</em>
-                    </strong>{" "}
-                    {"->"} Viene de la idea de buscar apoyo entre nosotros,
-                    marcas y en cualquier persona que quiera aportar con el
-                    deporte.
-                </p>
-                <p>
-                    <strong>
-                        <em>Compite</em>
-                    </strong>{" "}
-                    {"->"} Viene de la idea de generar una “competencia” a
-                    distancia y en tiempo real que pueda potencie el bmx en
-                    diferentes partes del país al mismo tiempo.
-                </p>
-                <p>
-                    Nace de la idea de dar a conocer a los biker dedicados y al
-                    mismo tiempo busca potenciar y consolidar el bmx nacional.
+                    Nos gustaría ser una especie de ventana web que ayude a
+                    descubrir a biker dedicados y a las promesas del bmx.
                 </p>
             </Row>
 
@@ -79,17 +62,17 @@ export default (props) => {
                     <ul className="index">
                         <li>
                             <a href="#accordion1" onClick={index}>
-                                1 ¿Cómo funciona?
-                            </a>
-                        </li>
-                        <li className="ms-2">
-                            <a href="#accordion2" onClick={index}>
-                                1.1 Ejemplo de funcionamiento
+                                1 Funciones
                             </a>
                         </li>
                         <li>
+                            <a href="#accordion2" onClick={index}>
+                                2 ¿Cómo funciona?
+                            </a>
+                        </li>
+                        <li className="ms-2">
                             <a href="#accordion3" onClick={index}>
-                                2 Funciones
+                                2.1 Ejemplo de funcionamiento
                             </a>
                         </li>
                         <li>
@@ -99,37 +82,32 @@ export default (props) => {
                         </li>
                         <li className="ms-2">
                             <a href="#accordion5" onClick={index}>
-                                3.1 Ejemplo
-                            </a>
-                        </li>
-                        <li className="ms-2">
-                            <a href="#accordion6" onClick={index}>
-                                3.2 Detalle de puntuación
+                                3.1 Detalle de puntuación
                             </a>
                         </li>
                         <li className="ms-4">
                             <a href="#accordion6" onClick={index}>
-                                3.2.1 Por disciplina
+                                3.1.1 Por disciplina
                             </a>
                         </li>
                         <li className="ms-4">
                             <a href="#accordion7" onClick={index}>
-                                3.2.2 Por cada truco
+                                3.1.2 Por cada truco
                             </a>
                         </li>
                         <li className="ms-4">
                             <a href="#accordion8" onClick={index}>
-                                3.2.3 Niveles de puntuación
+                                3.1.3 Niveles de puntuación
                             </a>
                         </li>
                         <li className="ms-4">
                             <a href="#accordion9" onClick={index}>
-                                3.2.4 Por categoría
+                                3.1.4 Por categoría
                             </a>
                         </li>
                         <li className="ms-4">
                             <a href="#accordion10" onClick={index}>
-                                3.2.5 Tabla resumen general
+                                3.1.5 Tabla resumen general
                             </a>
                         </li>
                         <li>
@@ -207,7 +185,7 @@ export default (props) => {
                             aria-expanded="false"
                             aria-controls="collapse1"
                         >
-                            <strong>1 ¿Cómo funciona?</strong>
+                            <strong>1 Funciones</strong>
                         </button>
                     </h2>
                     <div
@@ -218,64 +196,34 @@ export default (props) => {
                     >
                         <div className="accordion-body">
                             <p>
-                                Funciona en base a tus trucos aterrizados, una
-                                puntuación ficticia y donaciones voluntarias
-                                para incentivar la superación de cada uno.
+                                <strong>“Nivelador”:</strong> En esta función
+                                podrás conocer tu nivel calculado en un puntaje
+                                ficticio según tus trucos aterrizados. Podrás
+                                competir por premios en una animación que agrupa
+                                y grafica los bmx de todas las regiones.
                             </p>
                             <p>
-                                Cada truco tendrá un puntaje (dependiendo su
-                                dificultad promedio) y al mismo tiempo podrás
-                                sacarle más puntos según: el control, la altura
-                                o combinación que le des al truco. Solo nos
-                                debes enviar tus videos para CCO te evalúe.
+                                <strong>“Donaciones”:</strong> En esta función
+                                se coordinarán todo tipo de donaciones que se
+                                podrán usar como incentivo para en las
+                                competencias de “nivelador”.
                             </p>
                             <p>
-                                Las donaciones se podrán hacer en cualquier
-                                momento y desde cualquier parte de chile. Solo
-                                es necesario cierto compromiso de parte del
-                                donador (ya que, si donas algo que después te
-                                arrepientes, le habrás hecho una falsa ilusión a
-                                algún rider que se haya motivado con tu
-                                donación.
+                                <strong>“Trip”:</strong> (próximamente
+                                disponible) La función trip busca facilitar
+                                viajes entre comunas y regiones para fomentar el
+                                bmx, generar contactos y conocer gente para
+                                ayudar a unir el bmx de todas las regiones.
                             </p>
                             <p>
-                                Tus trucos en videos te darán cierto puntaje que
-                                se ira acumulando en el tiempo. En la misma
-                                grafica veras tu progreso y de riders de todo
-                                chile permitiendo nivelarse a distancia.
-                            </p>
-                            <p>
-                                Cuando lleguen donaciones*, CCO analizara la
-                                donación y creara distintos tipos de
-                                competencias (adaptadas a esta nueva forma de
-                                competir online) para potenciar y premiar a los
-                                rider que más les pueda servir.{" "}
-                            </p>
-                            <p>
-                                Las “competencias” serán distintas. La idea es
-                                un tipo de competencia más generalizada** y de
-                                largo plazo, ideal para las fechas “entre
-                                campeonatos”.{" "}
-                            </p>
-                            <p>
-                                También encontraras información útil de todo
-                                tipo y esperamos incentivar los viajes
-                                interregionales a través de las nuevas ideas
-                                propuestas por nuestro equipo.
-                            </p>
-                            <p>
-                                *También como CCO estaremos buscando apoyo para
-                                generar un flujo constante de donaciones.
-                            </p>
-                            <p>
-                                **Generalizada porque el puntaje será aproximado
-                                según lo que se pueda calcular de tu video. En
-                                ningún caso CCO lograra ser lo mismo que un
-                                campeonato presencial (obviamente, ya que hay
-                                muchos factores que no podemos analizar a
-                                distancia) pero buscamos complementar los
-                                campeonatos presenciales motivando la constancia
-                                y competencia cuando no haya eventos.
+                                <strong>“Datos técnicos”:</strong> (próximamente
+                                disponible) En esta función tendrás información
+                                técnica del deporte, podrás hacer consultas y
+                                publicar tus experiencias relacionadas con el
+                                bmx (de piezas, tips de trucos, cuidado de
+                                lesiones, y más). Esta función busca informar,
+                                educarnos entre nosotros y darle el peso que
+                                corresponde al bmx.
                             </p>
                         </div>
                     </div>
@@ -290,7 +238,7 @@ export default (props) => {
                             aria-expanded="false"
                             aria-controls="collapse2"
                         >
-                            <strong>1.1 Ejemplo de funcionamiento</strong>
+                            <strong>2 ¿Cómo funciona?</strong>
                         </button>
                     </h2>
                     <div
@@ -300,43 +248,55 @@ export default (props) => {
                         data-bs-parent="#function"
                     >
                         <div className="accordion-body">
-                            <Row>
-                                <Col>
-                                    <ol>
-                                        <li>
-                                            Se reciben donaciones <br />- Un
-                                            plato 28 dientes usado sin detalles
-                                            <br />- y unos puños eclat nuevos.
-                                        </li>
-                                        <li>
-                                            Luego, CCO analiza cada premio e
-                                            inventamos una competencia pensando
-                                            a quien le podría servir más.
-                                        </li>
-                                        <li>
-                                            Se publica la competencia:
-                                            <br />- El plato se ira para el
-                                            rider que tenga registrado mayor
-                                            cantidad de trucos bajados al
-                                            momento de la donación
-                                            <br />- Y los puños se irán para el
-                                            rider que: tenga más gastados los
-                                            puños y que tenga la mayor cantidad
-                                            de trucos bajados en la última
-                                            semana a partir del momento de la
-                                            donación
-                                        </li>
-                                        <li>
-                                            Así, esperamos ir generando apoyo y
-                                            al mismo tiempo potenciando el bmx
-                                            del país a distancia.
-                                        </li>
-                                    </ol>
-                                </Col>
-                                <Col>
-                                    <Image src={what1} fluid rounded />
-                                </Col>
-                            </Row>
+                            <p>
+                                Funciona en base a tus clips, una puntuación
+                                ficticia, un gráfico general y donaciones
+                                voluntarias que incentiven el deporte.
+                            </p>
+                            <p>
+                                Cada truco tendrá un puntaje variable
+                                (dependiendo de la dificultad y tu motivación).
+                            </p>
+                            <p>
+                                Por cada truco podrás sacar puntos por: 1era vez
+                                que lo caigas, control y fluidez, altura o
+                                combinación de 2 o más trucos.
+                            </p>
+                            <p>
+                                Si hay donaciones, se usaran como premio en
+                                competencias a distancia. Sera necesario cierto
+                                compromiso de parte del donador (ya que si donas
+                                algo que después te arrepientes, le habrás hecho
+                                una falsa ilusión a algún rider que se haya
+                                motivado con tu donación.
+                            </p>
+                            <p>
+                                Mientras más motivado seas, mayor puntaje
+                                sacaras y más posibilidades tendrás de ganar
+                            </p>
+                            <p>
+                                Cuando lleguen donaciones*, CCO analizará la
+                                donación y creará distintos tipos de
+                                competencias (adaptadas a esta forma de competir
+                                online) para potenciar y premiar el progreso del
+                                rider
+                            </p>
+                            <p>
+                                La idea es un tipo de competencia de largo
+                                plazo, ideal para fechas sin campeonatos. Al ser
+                                online será una competencia generalizada**
+                            </p>
+                            <p>
+                                *También estaremos continuamente buscando apoyo
+                                para generar un flujo constante de donaciones
+                            </p>
+                            <p>
+                                **Generalizada porque el puntaje será aproximado
+                                según lo que se pueda calcular de tu video. En
+                                ningún caso CCO es lo mismo que un campeonato
+                                presencial debido a todos esos factores que no
+                                se pueden analizar a distancia
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -350,7 +310,7 @@ export default (props) => {
                             aria-expanded="false"
                             aria-controls="collapse3"
                         >
-                            <strong>2 Funciones</strong>
+                            <strong>2.1 Ejemplo de funcionamiento</strong>
                         </button>
                     </h2>
                     <div
@@ -360,35 +320,51 @@ export default (props) => {
                         data-bs-parent="#function"
                     >
                         <div className="accordion-body">
-                            <p>
-                                <strong>“Nivelador”:</strong> En esta función
-                                podrás conocer tu nivel calculado en un puntaje
-                                ficticio según tus trucos aterrizados. Podrás
-                                competir por premios en una animación que agrupa
-                                y grafica los bmx de todas las regiones.
-                            </p>
-                            <p>
-                                <strong>Donaciones:</strong> En esta función se
-                                coordinarán todo tipo de donaciones que se
-                                podrán usar como incentivo para motivar el bmx.
-                            </p>
-                            <p>
-                                <strong>Trip:</strong>{" "}
-                                <em>(próximamente disponible)</em> La función
-                                trip busca facilitar los viajes entre comunas y
-                                regiones para fomentar el bmx, para que conozcan
-                                gente y gerar contactos con todas las regiones.
-                            </p>
-                            <p>
-                                <strong>Datos técnicos:</strong>{" "}
-                                <em>(próximamente disponible)</em> En esta
-                                función información para leer (tips) técnica,
-                                además podrás publicar y comentar. Constará de
-                                un foro donde podrás leer y consultar sobre
-                                tips, tratamiento lesiones, repuestos
-                                compartiendo tus propias experiencias para la
-                                comunidad biker.
-                            </p>
+                            <ol>
+                                <li>
+                                    Se reciben donaciones:
+                                    <ul className="ulDonation">
+                                        <li>
+                                            Un plato 28 dientes usado sin
+                                            detalles.
+                                        </li>
+                                        <li>Unos puños eclat nuevos.</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    Luego, CCO analiza cada premio e inventamos
+                                    una competencia pensando a quien le podría
+                                    servir más.
+                                </li>
+                                <li>
+                                    Se publica la competencia:
+                                    <br />
+                                    Ej.:
+                                    <ul className="ulDonation">
+                                        <li>
+                                            El plato se irá para el rider que
+                                            tenga registrado mayor cantidad de
+                                            trucos bajados al momento de la
+                                            donación.
+                                        </li>
+                                        <li>
+                                            Los puños se irán para el rider que:
+                                            tenga más gastados los puños y que
+                                            tenga la mayor cantidad de trucos
+                                            bajados hace una semana atrás a
+                                            partir del momento de la donación.
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    Así, esperamos ir generando apoyo y al mismo
+                                    tiempo potenciando el bmx del país a
+                                    distancia.
+                                </li>
+                            </ol>
+                            <div className="text-center">
+                                <Image src={what1} fluid rounded />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -415,18 +391,18 @@ export default (props) => {
                             <p>
                                 Esta función busca motivar el bmx a través de la
                                 nivelación a distancia. Se usa una animación
-                                grafica para mostrar el nivel aproximadamente de
-                                cada biker y sus trucos.
+                                gráfica para mostrar el nivel aproximado de cada
+                                biker y sus trucos.
                             </p>
                             <p>
-                                Cada truco y/o combinación se le asignara un
+                                Cada truco y/o combinación se le asignará un
                                 puntaje ficticio según el
                                 <strong>nivel</strong> y la{" "}
                                 <strong>calidad</strong> del truco.
                             </p>
                             <p>
-                                <strong>Nivel:</strong> para hacerlo mas
-                                practico, hemos separado los trucos en 4 niveles
+                                <strong>Nivel:</strong> para hacerlo más
+                                práctico, hemos separado los trucos en 5 niveles
                                 de complejidad (que define el rango puntaje que
                                 puedes obtener).
                             </p>
@@ -434,7 +410,7 @@ export default (props) => {
                                 <strong>Calidad:</strong> representa el puntaje
                                 según el control, fluidez y estilo en la
                                 bicicleta. Para esto, debes subir el video a
-                                internet (YouTube, Instagram, Vimeo, etc.) y
+                                internet (YouTube, Instagram, video, etc.) y
                                 enviarnos el link de tus videos para la
                                 puntuación.
                             </p>
@@ -444,6 +420,9 @@ export default (props) => {
                                 detalles de cada biker (esto último estará
                                 disponible próximamente).
                             </p>
+                            <div className="text-center">
+                                <Image src={what2} fluid rounded />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -457,7 +436,7 @@ export default (props) => {
                             aria-expanded="false"
                             aria-controls="collapse5"
                         >
-                            <strong>3.1 Ejemplo</strong>
+                            <strong>3.1 Detalle de la puntación</strong>
                         </button>
                     </h2>
                     <div
@@ -467,20 +446,26 @@ export default (props) => {
                         data-bs-parent="#function"
                     >
                         <div className="accordion-body">
-                            <Row>
-                                <Col className="text-center">
-                                    <Image src={what2} fluid rounded />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col>
-                                    <p>
-                                        Así podrás ir avanzando en tu progreso y
-                                        podrás subirlo en CCO para postular a
-                                        premios y nivelarte a distancia.
-                                    </p>
-                                </Col>
-                            </Row>
+                            <p>
+                                Para evaluar la mayor cantidad de trucos y sus
+                                combinaciones posibles, el puntaje dependerá de
+                                5 factores principales (se detallan en el punto
+                                3.1.2).
+                            </p>
+                            <ul className="ulDonation">
+                                <li>1ra vez.</li>
+                                <li>Control y fluidez.</li>
+                                <li>Altura.</li>
+                                <li>Spot.</li>
+                                <li>Combinación.</li>
+                            </ul>
+                            <p>
+                                Nota: esta forma de evaluar está en periodo de
+                                prueba. Cualquier sugerencia o crítica
+                                constructiva será bien recibida. Necesitamos ir
+                                puliendo la evaluación para mejorar el cálculo
+                                de tu nivel real
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -494,10 +479,7 @@ export default (props) => {
                             aria-expanded="false"
                             aria-controls="collapse6"
                         >
-                            <strong>
-                                3.2 Detalle de la puntación <br />
-                                3.2.1 Por disciplina
-                            </strong>
+                            <strong>3.1.1 Por disciplina</strong>
                         </button>
                     </h2>
                     <div
@@ -507,23 +489,22 @@ export default (props) => {
                         data-bs-parent="#function"
                     >
                         <div className="accordion-body">
-                            <Row>
-                                <Col>
-                                    <p>
-                                        Por ahora abarcamos solo 3 disciplinas:
-                                        Street, park y dirt. Además, el puntaje
-                                        está pensado para casi “obligar” a los
-                                        rider a practicar al menos 2 disciplinas
-                                        (hay que andar en todos lados por cabros
-                                        jjajsk)
-                                    </p>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col>
-                                    <Image src={what3} fluid rounded />
-                                </Col>
-                            </Row>
+                            <p>
+                                Los trucos los separamos en las 3 disciplinas
+                                clásicas (más adelante queremos abarcar las
+                                otras).
+                            </p>
+                            <p>
+                                La puntuación total está pensada para motivar a
+                                los rider a practicar al menos 2 disciplinas.
+                            </p>
+                            <p>
+                                Por lo tanto, los biker más completos tendrán
+                                más posibilidades de ganar.
+                            </p>
+                            <div className="text-center">
+                                <Image src={what3} fluid rounded />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -537,7 +518,7 @@ export default (props) => {
                             aria-expanded="false"
                             aria-controls="collapse7"
                         >
-                            <strong>3.2.2 Por cada truco</strong>
+                            <strong>3.1.2 Por cada truco</strong>
                         </button>
                     </h2>
                     <div
@@ -547,30 +528,143 @@ export default (props) => {
                         data-bs-parent="#function"
                     >
                         <div className="accordion-body">
-                            <Row>
-                                <Col>
-                                    <p>
-                                        Cada truco puede recibir diferentes
-                                        puntuaciones según los siguientes
-                                        factores:
-                                    </p>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col>
-                                    <Image src={what4} fluid rounded />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col>
-                                    <p>Figura de rangos de altura:</p>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col>
-                                    <Image src={what5} fluid rounded />
-                                </Col>
-                            </Row>
+                            <p>
+                                Cada truco puede recibir puntos acumulables
+                                según los siguientes factores:
+                            </p>
+                            <ul className="ulDonation">
+                                <li>1ra vez.</li>
+                                <li>Control y fluidez.</li>
+                                <li>Altura.</li>
+                                <li>Spot.</li>
+                                <li>Combinación.</li>
+                            </ul>
+                            <strong>1) Por primera vez</strong>
+                            <br />
+                            <p>
+                                Cada vez que caigas un truco por primera vez,
+                                recibirás este puntaje. Los trucos están
+                                separados por nivel de complejidad el cual
+                                define la cantidad de puntos que sacas
+                            </p>
+                            <div>
+                                <Image src={what4} fluid rounded />
+                            </div>
+                            <br />
+                            <strong>2) Control y fluidez</strong>
+                            <br />
+                            <p>
+                                Este puntaje se te sumara cada vez que cumplas
+                                con un control relativo del truco (o
+                                combinación).
+                            </p>
+                            <p>
+                                Para esto, deberás enviar el truco caído tres
+                                veces en la misma sesh
+                            </p>
+                            <p>
+                                Estos 3 intentos deben cumplir con un mínimo de
+                                control para sacar el puntaje.
+                            </p>
+                            <p>
+                                Necesitarás tirar el truco con una altura mínima
+                                (ver figura de altura), realizar el truco sin
+                                complicaciones (sin mayor esfuerzo), movimientos
+                                fluidos, giros controlados y un aterrizaje
+                                limpio.
+                            </p>
+                            <p>
+                                Este puntaje de control, se lo podrás sacar a
+                                trucos individuales y combinaciones.
+                            </p>
+                            <div>
+                                <Image src={what5} fluid rounded />
+                            </div>
+                            <br />
+                            <strong>3) Altura</strong>
+                            <br />
+                            <p>
+                                El puntaje de altura se sumara cada vez que
+                                superes un rango aproximado de altura. Es
+                                aproximado por ser una puntuación online, las
+                                distancias verdaderas se distorsionan según la
+                                ubicación de la cámara.
+                            </p>
+                            <p>
+                                Para calcular la altura promedio, se medirá
+                                según el tamaño de tu rueda. De esta forma
+                                calcularemos la altura aproximada en los videos
+                                que nos envíes.
+                            </p>
+                            <p>
+                                (Para rider pequeñitos, la altura será según su
+                                propio aro)
+                            </p>
+                            <p>
+                                Cuando cueste demasiado calcular la altura,
+                                simplemente no se evaluara y después podrás
+                                enviar una nueva toma donde se logre apreciar
+                                mejor la altura.
+                            </p>
+                            <p>(ver figura de abajo)</p>
+                            <div className="text-center">
+                                <Image src={what6} fluid rounded />
+                                <Image src={what7} fluid rounded />
+                            </div>
+                            <br />
+                            <strong>4) Spot</strong>
+                            <br />
+                            <p>
+                                Este puntaje se sumara cuando sueltes trucos en
+                                spot nuevos de mayor dificultad. Esta dificultad
+                                se refiere principalmente a la altura del spot.
+                            </p>
+                            <div className="text-center">
+                                <Image src={what8} fluid rounded />
+                            </div>
+                            <br />
+                            <strong>5) Combinación</strong>
+                            <br />
+                            <p>
+                                Este puntaje se te sumara cada vez que aterrices
+                                dos o más trucos combinados.
+                            </p>
+                            <p>
+                                Por ejemplo, si caes Barspin-No hander, los
+                                puntos que sacaras serán la suma de la
+                                combinación del bars y del no hander (ver imagen
+                                de ejemplo)
+                            </p>
+                            <div className="text-center">
+                                <Image src={what9} fluid rounded />
+                            </div>
+                            <p>
+                                A estas combinaciones, también le podrás sacar
+                                puntos de control, altura y spot si fuera el
+                                caso
+                            </p>
+                            <p>
+                                En street, se refiere a toda combinación que sea
+                                continua. Continua se refiere a que los trucos
+                                deben estar conectados entre ellos. La línea se
+                                acaba cuando las dos ruedas tocan el piso (a
+                                excepción de ir de fakie obviamente). Las líneas
+                                exactamente iguales o muy parecidas (en trucos y
+                                en spot parecidos), se analizarán juntas y solo
+                                se tomará en cuenta la más completa.
+                            </p>
+                            Ej.
+                            <ol>
+                                <li>feeble + 180 + halcab a un cajon</li>
+                                <li>
+                                    feeble + 180 + halcab baspin a un cajon
+                                    parecido.
+                                </li>
+                            </ol>
+                            <p>
+                                En un caso así, se puntuará solo la combinación
+                                nº2.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -584,7 +678,7 @@ export default (props) => {
                             aria-expanded="false"
                             aria-controls="collapse8"
                         >
-                            <strong>3.2.3 Niveles de puntación</strong>
+                            <strong>3.1.3 Niveles de puntación</strong>
                         </button>
                     </h2>
                     <div
@@ -608,7 +702,7 @@ export default (props) => {
                             </Row>
                             <Row>
                                 <Col className="text-center">
-                                    <Image src={what6} fluid rounded />
+                                    <Image src={what10} fluid rounded />
                                 </Col>
                             </Row>
                         </div>
@@ -624,7 +718,7 @@ export default (props) => {
                             aria-expanded="false"
                             aria-controls="collapse9"
                         >
-                            <strong>3.2.4 Por categoría</strong>
+                            <strong>3.1.4 Por categoría</strong>
                         </button>
                     </h2>
                     <div
@@ -636,7 +730,7 @@ export default (props) => {
                         <div className="accordion-body">
                             <Row>
                                 <Col>
-                                    <Image src={what7} fluid rounded />
+                                    <Image src={what11} fluid rounded />
                                 </Col>
                             </Row>
                             <Row>
@@ -692,7 +786,7 @@ export default (props) => {
                             aria-expanded="false"
                             aria-controls="collapse10"
                         >
-                            <strong>3.2.5 Tabla resumen general</strong>
+                            <strong>3.1.5 Tabla resumen general</strong>
                         </button>
                     </h2>
                     <div
@@ -704,7 +798,7 @@ export default (props) => {
                         <div className="accordion-body">
                             <Row>
                                 <Col className="text-center">
-                                    <Image src={what8} fluid rounded />
+                                    <Image src={what12} fluid rounded />
                                 </Col>
                             </Row>
                         </div>
@@ -876,7 +970,7 @@ export default (props) => {
                                 Con esta idea tratamos de generar varias
                                 competencias a partir de una donación.
                             </p>
-                            <Image src={what9} fluid rounded />
+                            <Image src={what13} fluid rounded />
                         </div>
                     </div>
                 </div>

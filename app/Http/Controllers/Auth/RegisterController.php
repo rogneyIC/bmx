@@ -75,7 +75,6 @@ class RegisterController extends Controller
             'instagram' => $data['instagram'],
             'facebook' => $data['facebook'],
             'photo' => $data['photo'],
-            'category' => 'iniciante',
             'competitor' => false,
         ]);
 
