@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
-import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import NavbarNav from "../components/NavbarNav";
 import Home from "./Home";
@@ -12,16 +12,25 @@ import toastr from "toastr";
 import Chart from "../components/Chart";
 import Progress from "./Progress";
 import Profile from "../components/Profile";
-import Loader from "react-loader-spinner";
 import { Col, Row, ProgressBar } from "react-bootstrap";
+import { CradleLoader } from "react-loader-spinner";
+import Leveler from "./Leveler";
 
 function Dashboard() {
-    const user = JSON.parse(document.getElementById("main").dataset.user);
-    const role = document.getElementById("main").dataset.role;
-    const refSidebar = useRef();
-    const refMainPanel = useRef();
+    const user = JSON.parse(document.getElementById("app").dataset.user);
+    const role = document.getElementById("app").dataset.role;
     const [competitor, setCompetitor] = useState(false);
     const refLoader = useRef();
+
+    const [toggled, setToggled] = useState(false);
+    const [collapsed, setCollapsed] = useState(false);
+
+    const handleToggleSidebar = (value) => {
+        setToggled(value);
+    };
+    const handleCollapsedChange = (collapsed) => {
+        setCollapsed(collapsed);
+    };
 
     useEffect(async () => {
         await axios
@@ -39,7 +48,7 @@ function Dashboard() {
         <>
             <div ref={refLoader}>
                 <div className="loader d-grid align-content-center justify-content-center text-center">
-                    <Loader
+                    <CradleLoader
                         type="Puff"
                         color="#00BFFF"
                         height={150}
@@ -47,10 +56,67 @@ function Dashboard() {
                         visible={true}
                         className="row"
                     />
-                    <ProgressBar animated now={100} label="Cargando..."/>
+                    <ProgressBar animated now={100} label="Cargando..." />
                 </div>
             </div>
             <Router>
+                <Sidebar
+                    toggled={toggled}
+                    collapsed={collapsed}
+                    handleToggleSidebar={handleToggleSidebar}
+                />
+                <main>
+                    <NavbarNav
+                        user={user}
+                        role={role}
+                        collapsed={collapsed}
+                        handleToggleSidebar={handleToggleSidebar}
+                        handleCollapsedChange={handleCollapsedChange}
+                    />
+                    <Routes>
+                        <Route path="/home" element={<Home />} />
+                        <Route path="/what" element={<What />} />
+                        <Route
+                            path="/donation"
+                            element={<Donation user_id={user.id} role={role} />}
+                        />
+                        <Route
+                            path="/leveler"
+                            element={
+                                /*<Chart
+                                    {...user}
+                                    competitor={competitor}
+                                    setCompetitor={setCompetitor}
+                                    role={role}
+                                    refLoader={refLoader}
+                                />*/
+                                <Leveler
+                                    {...user}
+                                    competitor={competitor}
+                                    setCompetitor={setCompetitor}
+                                    role={role}
+                                    refLoader={refLoader}
+                                />
+                            }
+                        />
+                        <Route
+                            path="/leveler/progress"
+                            element={
+                                <Progress {...user} competitor={competitor} />
+                            }
+                        />
+                        <Route path="/trip" element={<Trip />} />
+                        <Route path="/datatec" element={<Datatec />} />
+                        {/* <Route
+                            path="/Profile"
+                            element={
+                                <Profile {...props} user={user} role={role} />
+                            }
+                        /> */}
+                    </Routes>
+                </main>
+            </Router>
+            {/* <Router>
                 <div className="sidebar-parent" ref={refSidebar}>
                     <Sidebar />
                 </div>
@@ -151,11 +217,11 @@ function Dashboard() {
                         )}
                     />
                 </div>
-            </Router>
+            </Router> */}
         </>
     );
 }
 
 export default Dashboard;
-if (document.getElementById("main"))
-    ReactDOM.render(<Dashboard />, document.getElementById("main"));
+if (document.getElementById("app"))
+    ReactDOM.render(<Dashboard />, document.getElementById("app"));

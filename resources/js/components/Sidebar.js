@@ -1,16 +1,72 @@
 import React, { useState } from "react";
-import { useLocation, NavLink } from "react-router-dom";
-import sidebarImage from "../../img/sidebarFond.jpg";
-import logo from "../../img/logo-sidebar.svg";
+import { useLocation, NavLink, Link } from "react-router-dom";
+import sidebarFond from "../../img/sidebarFond.jpg";
+import sidebarLogo from "../../img/logo-sidebar.svg";
 import { Image, Nav } from "react-bootstrap";
+import {
+    Menu,
+    MenuItem,
+    ProSidebar,
+    SidebarContent,
+    SidebarHeader,
+} from "react-pro-sidebar";
+import {
+    FaAccessibleIcon,
+    FaDonate,
+    FaHome,
+    FaQuestion,
+    FaTable,
+    FaTeeth,
+} from "react-icons/fa";
 
-export default (props) => {
+export default ({ toggled, collapsed, handleToggleSidebar }) => {
     const location = useLocation();
     const [show, setShow] = useState(false);
     const showClass = show ? "show" : "";
     const onCollapse = () => setShow(!show);
     return (
-        <div className="sidebar-inner" data-image={sidebarImage}>
+        <ProSidebar
+            breakPoint="md"
+            image={sidebarFond}
+            toggled={toggled}
+            collapsed={collapsed}
+            onToggle={handleToggleSidebar}
+        >
+            <SidebarHeader>
+                <a className="brand-link" href="#">
+                    <Image src={sidebarLogo} fluid />
+                </a>
+            </SidebarHeader>
+            <SidebarContent>
+                <Menu iconShape="circle">
+                    <MenuItem icon={<FaHome />} active>
+                        Inicio
+                        <Link to="/home" />
+                    </MenuItem>
+                    <MenuItem icon={<FaQuestion />}>
+                        ¿Qués es?
+                        <Link to="/what" />
+                    </MenuItem>
+                    <MenuItem icon={<FaAccessibleIcon />}>
+                        Nivelador
+                        <Link to="/leveler" />
+                    </MenuItem>
+                    <MenuItem icon={<FaDonate />}>
+                        Donaciones
+                        <Link to="/donation" />
+                    </MenuItem>
+                    <MenuItem icon={<FaTable />}>
+                        TRIP
+                        <Link to="/trip" />
+                    </MenuItem>
+                    <MenuItem icon={<FaTeeth />}>
+                        Datos técnicos
+                        <Link to="/datatec" />
+                    </MenuItem>
+                </Menu>
+            </SidebarContent>
+        </ProSidebar>
+        /*<div className="sidebar-inner" data-image={sidebarImage}>
             <div
                 className="sidebar-background"
                 style={{
@@ -82,6 +138,6 @@ export default (props) => {
                     </Nav.Item>
                 </Nav>
             </div>
-        </div>
+        </div>*/
     );
 };

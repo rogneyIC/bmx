@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Container, Row, Col, Carousel } from "react-bootstrap";
 import bmx1 from "../../img/bmx1.jpg";
 import bmx2 from "../../img/bmx2.jpg";
@@ -7,16 +7,9 @@ import bmx4 from "../../img/bmx4.jpg";
 import bmx5 from "../../img/bmx5.jpg";
 import Logo from "../components/Logo";
 
-export default (props) => {
-    useEffect(() => {
-        if (props.refSidebar.current)
-            props.refSidebar.current.style.display = "none";
-
-        if (props.refMainPanel.current)
-            props.refMainPanel.current.style.width = "100%";
-    }, []);
+export default () => {
     return (
-        <Container className="py-3">
+        <Container className="p-5" fluid>
             <Row>
                 <Col xs={7}>
                     <Row>
@@ -52,7 +45,7 @@ export default (props) => {
                     </Row>
                 </Col>
                 <Col xs={5} className="align-self-center">
-                    <Logo props={props} />
+                    <Logo />
                 </Col>
             </Row>
         </Container>

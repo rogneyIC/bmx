@@ -8,30 +8,20 @@ import {
     Form,
     Row,
 } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import toastr from "toastr";
 
 export default (props) => {
-    let history = useHistory();
+    const navigate = useNavigate();
     if (props.email == "invite@invite.invite") {
-        history.push("/leveler");
-        return <></>;
-    } else {        
+        navigate("/leveler");
+    } else {
         const [street, setStreet] = useState("");
         const [park, setPark] = useState("");
         const [dirt, setDirt] = useState("");
         const [link_street, setLink_street] = useState("");
         const [link_park, setLink_park] = useState("");
         const [link_dirt, setLink_dirt] = useState("");
-
-        useEffect(() => {
-            console.log(props);
-            if (props.refSidebar.current)
-                props.refSidebar.current.style.display = "flex";
-
-            if (props.refMainPanel.current)
-                props.refMainPanel.current.style.width = "calc(100% - 256px)";
-        }, []);
 
         const sendData = async (e) => {
             e.preventDefault();
@@ -88,7 +78,7 @@ export default (props) => {
                         toastr.success(
                             "Progreso enviado. En espera de aceptación"
                         );
-                        history.push("/leveler");
+                        navigate("/leveler");
                     })
                     .catch((error) => {
                         toastr.warning(error);

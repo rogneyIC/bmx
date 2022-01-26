@@ -9,7 +9,6 @@
                     <div class="card-header">{{ __('Iniciar sesión') }}</div>
                     <div class="card-body p-4">
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                            <!-- Form Login -->
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
                                 <label for="email" class="form-label">{{ __('Correo electrónico') }}</label>
@@ -32,16 +31,8 @@
                                     </span>
                                     @enderror
                                 </div>
-                                <div class="row">
-                                    <div class="col-auto mt-1">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                            <label class="form-check-label" for="remember">
-                                                {{ __('Recuérdame') }}
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-auto">
+                                <div class="row text-center">
+                                    <div class="col">
                                         @if (Route::has('password.request'))
                                         <a class="btn btn-link" href="{{ route('password.request') }}">
                                             {{ __('¿Olvidó su contraseña?') }}

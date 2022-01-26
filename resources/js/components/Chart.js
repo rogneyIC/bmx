@@ -5,7 +5,7 @@ import img_chart from "../../img/img-chart.jpg";
 import ModalFilterRegion from "./modal/ModalFilterRegion";
 import ModalFilterCategory from "./modal/ModalFilterCategory";
 import { FaFilter } from "react-icons/fa";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import toastr from "toastr";
 import configuration from "./chart/ChartConfig";
 
@@ -14,7 +14,7 @@ export default (props) => {
     const [fieldset, setFieldset] = useState(true);
     const [chartInstance, setChartInstance] = useState(null);
     const [data, setData] = useState([]);
-    let history = useHistory();
+    const navigate = useNavigate();
 
     //const progressWait = async () => {
     const progressWait = () => {
@@ -30,17 +30,11 @@ export default (props) => {
             .catch((error) => {
                 toastr.error(error);
             });*/
-        history.push("/leveler/progress");
+        navigate("/leveler/progress");
     };
 
     useEffect(() => {
         props.refLoader.current.style.display = "initial";
-
-        if (props.refSidebar.current)
-            props.refSidebar.current.style.display = "flex";
-
-        if (props.refMainPanel.current)
-            props.refMainPanel.current.style.width = "calc(100% - 256px)";
 
         if (chartContainer && chartContainer.current) {
             const fetchData = async () => {
@@ -49,7 +43,7 @@ export default (props) => {
                     .then((response) => {
                         setData(response.data[0]);
                         props.setCompetitor(response.data[1]);
-                        props.refLoader.current.style.display = "none";
+                        //props.refLoader.current.style.display = "none";
                         const chartConfig = {
                             type: "bar",
                             data: configuration.config(

@@ -15,21 +15,13 @@ import what11 from "../../img/what/what11.png";
 import what12 from "../../img/what/what12.png";
 import what13 from "../../img/what/what13.png";
 
-export default (props) => {
-    useEffect(() => {
-        if (props.refSidebar.current)
-            props.refSidebar.current.style.display = "flex";
-
-        if (props.refMainPanel.current)
-            props.refMainPanel.current.style.width = "calc(100% - 256px)";
-    }, []);
-
+export default () => {
     const index = (e) => {
         $(e.target.hash).find(".collapse").collapse("show");
     };
 
     return (
-        <Container className="py-3 px-4 what">
+        <Container className="py-3 px-4 what" fluid>
             <Row>
                 <h3 className="text-center">¿Qué es?</h3>
                 <p>

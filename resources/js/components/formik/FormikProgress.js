@@ -3,10 +3,10 @@ import { Formik } from "formik";
 import * as yup from "yup";
 import { Button, Col, FloatingLabel, Form, Row } from "react-bootstrap";
 import toastr from "toastr";
-import { useHistory } from "react-router-dom";
+//import { useHistory } from "react-router-dom";
 
 export default (props) => {
-    let history = useHistory();
+    //let history = useHistory();
 
     /*const schema = yup.object().shape({
         link: yup.string().required(),

@@ -37,7 +37,7 @@ export default (props) => {
     };
 
     return (
-        <Row className="justify-content-md-end">
+        <Row className="justify-content-md-end mb-3">
             <Col xs="auto">
                 <Button variant="primary" onClick={handleShow}>
                     Haz tu donación

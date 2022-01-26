@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import {
+    FaBars,
     FaCog,
     FaDonate,
     FaEnvelopeOpen,
@@ -17,13 +18,21 @@ import {
     Dropdown,
     NavItem,
     ListGroup,
+    Image,
 } from "react-bootstrap";
 import toastr from "toastr";
 import NotificationDonation from "./NotificationDonation";
 import NotificationProgress from "./NotificationProgress";
-import { useHistory } from "react-router-dom";
+import navbarImg from "../../img/navbarLogo.svg";
+//import { useHistory } from "react-router-dom";
 
-export default (props) => {
+export default ({
+    user,
+    role,
+    collapsed,
+    handleToggleSidebar,
+    handleCollapsedChange,
+}) => {
     const [listDonation, setListDonation] = useState([]);
     const [listProgress, setListProgress] = useState([]);
 
@@ -80,19 +89,19 @@ export default (props) => {
         true
     );
 
-    /*const markNotificationsAsRead = () => {
+    const markNotificationsAsRead = () => {
         setTimeout(() => {
             setListDonation(listDonation.map((n) => ({ ...n, read: true })));
         }, 1000);
-    };*/
+    };
 
     const handleLogout = () => {
         axios.post("/logout").then(() => (location.href = "/"));
     };
 
-    const srcImg = "/images/avatars/" + props.user.photo;
+    const srcImg = "/images/avatars/" + user.photo;
 
-    let history = useHistory();
+    //let history = useHistory();
     const showProfile = (e) => {
         //history.push("/profile", e.target.text);
         toastr.info("Funcionalidad en desarrollo");
@@ -100,9 +109,170 @@ export default (props) => {
 
     return (
         <Navbar bg="dark" variant="dark" sticky="top">
+            <Container fluid>
+                <Navbar.Brand>
+                    <div
+                        className="btn-toggle d-none"
+                        onClick={() => handleToggleSidebar(true)}
+                    >
+                        <FaBars />
+                    </div>
+                    <div
+                        className="btn-nav d-flex"
+                        onClick={() => handleCollapsedChange(!collapsed)}
+                    >
+                        <FaBars />
+                    </div>
+                    <Image src={navbarImg} hidden={!collapsed}></Image>
+                </Navbar.Brand>
+                <Nav>
+                    {role == "admin" ? (
+                        listDonation.length == 0 ? (
+                            <NavItem
+                                className="icon-notifications me-lg-2 only-icon d-flex align-items-center"
+                                onClick={notDonation}
+                            >
+                                <span className="icon icon-sm">
+                                    <FaDonate color="white" />
+                                </span>
+                            </NavItem>
+                        ) : (
+                            <Dropdown
+                                as={Nav.Item}
+                                onToggle={markNotificationsAsRead}
+                                className="d-flex align-items-center"
+                            >
+                                <Dropdown.Toggle
+                                    as={Nav.Link}
+                                    className="icon-notifications me-lg-2"
+                                >
+                                    <span className="icon icon-sm">
+                                        <FaDonate color="white" />
+                                        {areNotificationsRead ? null : (
+                                            <span className="icon-badge rounded-circle unread-notifications" />
+                                        )}
+                                    </span>
+                                </Dropdown.Toggle>
+                                <Dropdown.Menu className="notification-dropdown py-0 mt-2">
+                                    <ListGroup className="list-group-flush">
+                                        <ListGroup.Item className="text-center text-primary fw-bold py-3">
+                                            Donaciones pendintes
+                                        </ListGroup.Item>
+
+                                        {listDonation.map((n) => (
+                                            <NotificationDonation
+                                                key={n.donation_id}
+                                                {...n}
+                                            />
+                                        ))}
+
+                                        <Dropdown.Item className="text-center text-primary fw-bold py-3">
+                                            Ver todas
+                                        </Dropdown.Item>
+                                    </ListGroup>
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        )
+                    ) : null}
+
+                    {role == "admin" ? (
+                        listProgress.length == 0 ? (
+                            <NavItem
+                                className="icon-notifications me-lg-2 only-icon d-flex align-items-center"
+                                onClick={notProgress}
+                            >
+                                <span className="icon icon-sm">
+                                    <GiProgression color="white" />
+                                </span>
+                            </NavItem>
+                        ) : (
+                            <Dropdown as={Nav.Item} className="d-flex align-items-center">
+                                <Dropdown.Toggle
+                                    as={Nav.Link}
+                                    className="icon-notifications me-lg-2"
+                                >
+                                    <span className="icon icon-sm">
+                                        <GiProgression color="white" />
+                                        {areNotificationsProgressRead ? null : (
+                                            <span className="icon-badge rounded-circle unread-notifications" />
+                                        )}
+                                    </span>
+                                </Dropdown.Toggle>
+                                <Dropdown.Menu className="notification-dropdown py-0 mt-2">
+                                    <ListGroup className="list-group-flush">
+                                        <ListGroup.Item className="text-center text-primary fw-bold py-3">
+                                            Progresos de usuarios pendintes
+                                        </ListGroup.Item>
+
+                                        {listProgress.map((n) => (
+                                            <NotificationProgress
+                                                key={n.progress_id}
+                                                {...n}
+                                            />
+                                        ))}
+
+                                        <Dropdown.Item className="text-center text-primary fw-bold py-3">
+                                            Ver todas
+                                        </Dropdown.Item>
+                                    </ListGroup>
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        )
+                    ) : null}
+
+                    <Dropdown as={Nav.Item}>
+                        <Dropdown.Toggle as={Nav.Link}>
+                            <div className="media d-flex align-items-center">
+                                <img
+                                    src={srcImg}
+                                    className="user-avatar md-avatar rounded-circle"
+                                />
+                                <div className="media-body ms-2 text-white align-items-center d-none d-lg-block">
+                                    <span className="mb-0 font-small fw-bold">
+                                        {user.name}
+                                    </span>
+                                </div>
+                            </div>
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu className="user-dropdown">
+                            {user.email == "invite@invite.invite" ? null : (
+                                <>
+                                    <Dropdown.Item onClick={showProfile}>
+                                        <FaUserCircle className="me-2" />
+                                        Perfil
+                                    </Dropdown.Item>
+                                    <Dropdown.Item onClick={showProfile}>
+                                        <FaHistory className="me-2" />
+                                        Historial
+                                    </Dropdown.Item>
+                                    <Dropdown.Item onClick={showProfile}>
+                                        <FaCog className="me-2" />
+                                        Configuraciones
+                                    </Dropdown.Item>
+                                    <Dropdown.Item onClick={showProfile}>
+                                        <FaEnvelopeOpen className="me-2" />
+                                        Mensajes
+                                    </Dropdown.Item>
+                                    <Dropdown.Item onClick={showProfile}>
+                                        <FaUserShield className="me-2" />
+                                        Soporte
+                                    </Dropdown.Item>
+                                    <Dropdown.Divider />
+                                </>
+                            )}
+                            <Dropdown.Item onClick={handleLogout}>
+                                <FaSignOutAlt className="text-danger me-2" />
+                                Cerrar sesión
+                            </Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
+                </Nav>
+            </Container>
+        </Navbar>
+        /*<Navbar bg="dark" variant="dark" sticky="top">
             <Container fluid className="justify-content-end">
                 <Nav className="align-items-center">
-                    {props.role == "admin" ? (
+                    {role == "admin" ? (
                         listDonation.length == 0 ? (
                             <NavItem
                                 className="icon-notifications me-lg-2 only-icon"
@@ -150,7 +320,7 @@ export default (props) => {
                         )
                     ) : null}
 
-                    {props.role == "admin" ? (
+                    {role == "admin" ? (
                         listProgress.length == 0 ? (
                             <NavItem
                                 className="icon-notifications me-lg-2 only-icon"
@@ -204,13 +374,14 @@ export default (props) => {
                                 />
                                 <div className="media-body ms-2 text-white align-items-center d-none d-lg-block">
                                     <span className="mb-0 font-small fw-bold">
-                                        {props.user.name}
+                                        {user.name}
                                     </span>
                                 </div>
                             </div>
                         </Dropdown.Toggle>
                         <Dropdown.Menu className="user-dropdown">
-                            {props.user.email == "invite@invite.invite" ? null : (
+                            {user.email ==
+                            "invite@invite.invite" ? null : (
                                 <>
                                     <Dropdown.Item onClick={showProfile}>
                                         <FaUserCircle className="me-2" />
@@ -220,7 +391,7 @@ export default (props) => {
                                         <FaHistory className="me-2" />
                                         Historial
                                     </Dropdown.Item>
-                                    {/* <Dropdown.Item onClick={showProfile}>
+                                    { <Dropdown.Item onClick={showProfile}>
                                         <FaCog className="me-2" />
                                         Configuraciones
                                     </Dropdown.Item>
@@ -231,7 +402,7 @@ export default (props) => {
                                     <Dropdown.Item onClick={showProfile}>
                                         <FaUserShield className="me-2" />
                                         Soporte
-                                    </Dropdown.Item> */}
+                                    </Dropdown.Item> }
                                     <Dropdown.Divider />
                                 </>
                             )}
@@ -243,6 +414,6 @@ export default (props) => {
                     </Dropdown>
                 </Nav>
             </Container>
-        </Navbar>
+        </Navbar>*/
     );
 };
